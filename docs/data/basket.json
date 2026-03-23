@@ -1,0 +1,299 @@
+{
+  "metadata": {
+    "name": "Canasta Básica Alimentaria Venezuela",
+    "source": "Basada en metodología CENDAS-FVM",
+    "base_date": "2026-04-01",
+    "currency": "USD",
+    "description": "22 productos alimentarios básicos monitoreados semanalmente en 3 supermercados de Caracas",
+    "methodology": "Índice de Laspeyres con ponderación por importancia nutricional y gasto estimado",
+    "last_updated": "2026-03-22"
+  },
+  "products": [
+    {
+      "id": "harina_maiz",
+      "name": "Harina de Maíz Precocida (1kg)",
+      "category": "cereales",
+      "weight": 3,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "harina maiz precocida",
+        "plaza": "harina pan",
+        "central": "harina maiz"
+      },
+      "notes": "Marca de referencia: Harina PAN, Polar o equivalente"
+    },
+    {
+      "id": "arroz",
+      "name": "Arroz Blanco (1kg)",
+      "category": "cereales",
+      "weight": 3,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "arroz blanco",
+        "plaza": "arroz blanco",
+        "central": "arroz blanco"
+      },
+      "notes": "Arroz blanco regular, cualquier marca"
+    },
+    {
+      "id": "pasta",
+      "name": "Pasta Spaghetti (500g)",
+      "category": "cereales",
+      "weight": 2,
+      "unit": "500g",
+      "search_terms": {
+        "gama": "pasta spaghetti",
+        "plaza": "spaghetti",
+        "central": "pasta spaghetti"
+      },
+      "notes": "Spaghetti o pasta larga 500g"
+    },
+    {
+      "id": "caraotas",
+      "name": "Caraotas Negras (500g)",
+      "category": "granos",
+      "weight": 2,
+      "unit": "500g",
+      "search_terms": {
+        "gama": "caraotas negras",
+        "plaza": "caraotas negras",
+        "central": "caraotas negras"
+      },
+      "notes": "Caraotas negras secas 500g"
+    },
+    {
+      "id": "lentejas",
+      "name": "Lentejas (500g)",
+      "category": "granos",
+      "weight": 1,
+      "unit": "500g",
+      "search_terms": {
+        "gama": "lentejas",
+        "plaza": "lentejas",
+        "central": "lentejas"
+      },
+      "notes": "Lentejas secas 500g"
+    },
+    {
+      "id": "aceite",
+      "name": "Aceite Vegetal (1L)",
+      "category": "grasas",
+      "weight": 3,
+      "unit": "1L",
+      "search_terms": {
+        "gama": "aceite vegetal",
+        "plaza": "aceite vegetal",
+        "central": "aceite vegetal"
+      },
+      "notes": "Aceite vegetal o de girasol 1 litro"
+    },
+    {
+      "id": "margarina",
+      "name": "Margarina (500g)",
+      "category": "grasas",
+      "weight": 2,
+      "unit": "500g",
+      "search_terms": {
+        "gama": "margarina",
+        "plaza": "margarina",
+        "central": "margarina"
+      },
+      "notes": "Margarina regular 500g, ej. Mavesa"
+    },
+    {
+      "id": "azucar",
+      "name": "Azúcar Blanca (1kg)",
+      "category": "endulzantes",
+      "weight": 2,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "azucar blanca",
+        "plaza": "azucar blanca",
+        "central": "azucar blanca"
+      },
+      "notes": "Azúcar blanca refinada 1kg"
+    },
+    {
+      "id": "sal",
+      "name": "Sal (1kg)",
+      "category": "condimentos",
+      "weight": 1,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "sal",
+        "plaza": "sal",
+        "central": "sal"
+      },
+      "notes": "Sal refinada 1kg"
+    },
+    {
+      "id": "cafe",
+      "name": "Café Molido (250g)",
+      "category": "bebidas",
+      "weight": 2,
+      "unit": "250g",
+      "search_terms": {
+        "gama": "cafe molido",
+        "plaza": "cafe molido",
+        "central": "cafe molido"
+      },
+      "notes": "Café molido tostado 250g, ej. Fama de América, Café Madrid"
+    },
+    {
+      "id": "carne_molida",
+      "name": "Carne Molida de Res (1kg)",
+      "category": "proteinas",
+      "weight": 5,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "carne molida",
+        "plaza": "carne molida",
+        "central": "carne molida"
+      },
+      "notes": "Carne molida de res por kg. Proteína clave."
+    },
+    {
+      "id": "pollo",
+      "name": "Pechuga de Pollo (1kg)",
+      "category": "proteinas",
+      "weight": 5,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "pechuga pollo",
+        "plaza": "pechuga pollo",
+        "central": "pechuga pollo"
+      },
+      "notes": "Pechuga de pollo fresca por kg. Proteína clave."
+    },
+    {
+      "id": "huevos",
+      "name": "Huevos (cartón 30 unidades)",
+      "category": "proteinas",
+      "weight": 4,
+      "unit": "30u",
+      "search_terms": {
+        "gama": "huevos carton",
+        "plaza": "huevos carton",
+        "central": "huevos carton"
+      },
+      "notes": "Cartón de 30 huevos de gallina"
+    },
+    {
+      "id": "sardinas",
+      "name": "Sardinas en Lata (170g)",
+      "category": "proteinas",
+      "weight": 2,
+      "unit": "170g",
+      "search_terms": {
+        "gama": "sardinas lata",
+        "plaza": "sardinas",
+        "central": "sardinas"
+      },
+      "notes": "Sardinas en aceite o salsa de tomate, lata 170g"
+    },
+    {
+      "id": "atun",
+      "name": "Atún en Lata (140g)",
+      "category": "proteinas",
+      "weight": 2,
+      "unit": "140g",
+      "search_terms": {
+        "gama": "atun lata",
+        "plaza": "atun",
+        "central": "atun"
+      },
+      "notes": "Atún en agua o aceite, lata 140g"
+    },
+    {
+      "id": "leche_polvo",
+      "name": "Leche en Polvo (400g)",
+      "category": "lacteos",
+      "weight": 4,
+      "unit": "400g",
+      "search_terms": {
+        "gama": "leche polvo",
+        "plaza": "leche en polvo",
+        "central": "leche polvo"
+      },
+      "notes": "Leche entera en polvo 400g. Lácteo clave."
+    },
+    {
+      "id": "queso_blanco",
+      "name": "Queso Blanco Duro (1kg)",
+      "category": "lacteos",
+      "weight": 5,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "queso blanco",
+        "plaza": "queso blanco",
+        "central": "queso blanco"
+      },
+      "notes": "Queso blanco duro venezolano por kg. Uno de los más sensibles al alza."
+    },
+    {
+      "id": "mantequilla",
+      "name": "Mantequilla (250g)",
+      "category": "lacteos",
+      "weight": 2,
+      "unit": "250g",
+      "search_terms": {
+        "gama": "mantequilla",
+        "plaza": "mantequilla",
+        "central": "mantequilla"
+      },
+      "notes": "Mantequilla regular 250g"
+    },
+    {
+      "id": "tomate",
+      "name": "Tomate (1kg)",
+      "category": "vegetales",
+      "weight": 2,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "tomate",
+        "plaza": "tomate",
+        "central": "tomate"
+      },
+      "notes": "Tomate fresco por kg"
+    },
+    {
+      "id": "cebolla",
+      "name": "Cebolla (1kg)",
+      "category": "vegetales",
+      "weight": 2,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "cebolla",
+        "plaza": "cebolla",
+        "central": "cebolla"
+      },
+      "notes": "Cebolla blanca o amarilla por kg"
+    },
+    {
+      "id": "papa",
+      "name": "Papa (1kg)",
+      "category": "vegetales",
+      "weight": 2,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "papa",
+        "plaza": "papa",
+        "central": "papa"
+      },
+      "notes": "Papa o patata blanca por kg"
+    },
+    {
+      "id": "platano",
+      "name": "Plátano (1kg)",
+      "category": "vegetales",
+      "weight": 2,
+      "unit": "1kg",
+      "search_terms": {
+        "gama": "platano",
+        "plaza": "platano",
+        "central": "platano"
+      },
+      "notes": "Plátano verde o maduro por kg"
+    }
+  ]
+}

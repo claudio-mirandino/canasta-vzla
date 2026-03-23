@@ -1,0 +1,73 @@
+name: Recolección Semanal de Precios
+
+on:
+  # Corre cada lunes a las 9:00 AM hora de Caracas (UTC-4 → 13:00 UTC)
+  schedule:
+    - cron: '0 13 * * 1'
+
+  # Permite correr manualmente desde GitHub (útil para pruebas)
+  workflow_dispatch:
+    inputs:
+      scrape_date:
+        description: 'Fecha de recolección (YYYY-MM-DD, dejar vacío = hoy)'
+        required: false
+        default: ''
+
+jobs:
+  scrape-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    permissions:
+      contents: write  # Necesario para hacer commit de los datos
+
+    steps:
+      # 1. Descargar el código del repositorio
+      - name: Checkout repositorio
+        uses: actions/checkout@v4
+
+      # 2. Instalar Python
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # 3. Instalar dependencias Python
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      # 4. Instalar Playwright (navegador Chromium headless)
+      - name: Instalar Playwright + Chromium
+        run: playwright install chromium --with-deps
+
+      # 5. Ejecutar el scraper y calcular el índice
+      - name: Recolectar precios y calcular índice
+        run: |
+          if [ -n "${{ github.event.inputs.scrape_date }}" ]; then
+            python main.py --scrape-date "${{ github.event.inputs.scrape_date }}" --date "${{ github.event.inputs.scrape_date }}"
+          else
+            python main.py
+          fi
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      # 6. Si hubo screenshots de errores, guardarlos como artefacto para diagnóstico
+      - name: Subir screenshots de debug (si hay errores)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-screenshots-${{ github.run_number }}
+          path: debug_screenshots/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      # 7. Hacer commit de los datos actualizados al repositorio
+      - name: Commit de datos actualizados
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Canasta Bot"
+          git add docs/data/prices_raw.csv docs/data/index.csv
+          # Solo hace commit si hay cambios
+          git diff --staged --quiet || git commit -m "datos: actualización semanal $(date +%Y-%m-%d)"
+          git push

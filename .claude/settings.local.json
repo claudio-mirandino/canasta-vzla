@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.excelsior.com.ve)",
+      "WebFetch(domain:www.bicentenario.com.ve)",
+      "WebSearch",
+      "WebFetch(domain:gamaenlinea.com)",
+      "WebFetch(domain:excelsiorgama.com)",
+      "WebFetch(domain:vallearriba.elplazas.com)",
+      "WebFetch(domain:www.abastosbicentenario.gob.ve)",
+      "WebFetch(domain:enlinea.elplazas.com)",
+      "WebFetch(domain:www.elplazas.com)",
+      "WebFetch(domain:chaguaramos.elplazas.com)",
+      "Bash(curl -s -I \"https://centralm.com.ve\")",
+      "WebFetch(domain:tucentralonline.com)",
+      "WebFetch(domain:www.diadia.com.ve)",
+      "Bash(curl -s \"https://tucentralonline.com/wp-admin/admin-ajax.php\")",
+      "WebFetch(domain:centralmadeirense.quosmarket.com)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}
