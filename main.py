@@ -13,6 +13,8 @@ import sys
 import json
 import logging
 import argparse
+import threading
+import queue
 import pandas as pd
 from pathlib import Path
 from datetime import date
@@ -115,7 +117,8 @@ def print_scraping_summary(all_results: list, collection_date: str):
     print("═" * 60)
     print(f"  Fecha:             {collection_date}")
     print(f"  Total intentos:    {total}")
-    print(f"  Precios obtenidos: {found} ({found/total*100:.0f}%)")
+    pct_found = (found/total*100) if total > 0 else 0
+    print(f"  Precios obtenidos: {found} ({pct_found:.0f}%)")
     print(f"  Anomalías/errores: {flagged}")
     print()
 
@@ -143,8 +146,21 @@ def print_scraping_summary(all_results: list, collection_date: str):
     print("═" * 60 + "\n")
 
 
+def _run_scraper_in_thread(scraper, products, previous_prices, result_queue):
+    """Wrapper para correr un scraper en un thread separado (evita conflicto con asyncio)."""
+    try:
+        results = scraper.scrape_all(products, previous_prices)
+        result_queue.put(("ok", results))
+    except Exception as e:
+        result_queue.put(("error", str(e)))
+
+
 def run_scrapers(products: list, previous_prices: dict, collection_date: str) -> list:
-    """Ejecuta los 3 scrapers y retorna todos los resultados."""
+    """
+    Ejecuta los 3 scrapers y retorna todos los resultados.
+    Cada scraper corre en su propio thread para evitar conflicto
+    con el event loop de asyncio del entorno.
+    """
     all_results = []
 
     scrapers = [
@@ -157,11 +173,25 @@ def run_scrapers(products: list, previous_prices: dict, collection_date: str) ->
         logger.info(f"\n{'─'*40}")
         logger.info(f"Iniciando scraper: {scraper.STORE_NAME.upper()}")
         logger.info(f"{'─'*40}")
-        try:
-            results = scraper.scrape_all(products, previous_prices)
-            all_results.extend(results)
-        except Exception as e:
-            logger.error(f"Error fatal en scraper {scraper.STORE_NAME}: {e}")
+
+        result_queue = queue.Queue()
+        t = threading.Thread(
+            target=_run_scraper_in_thread,
+            args=(scraper, products, previous_prices, result_queue),
+            daemon=True
+        )
+        t.start()
+        t.join(timeout=300)  # 5 min max por tienda
+
+        if t.is_alive():
+            logger.error(f"Timeout: scraper {scraper.STORE_NAME} tardó más de 5 minutos")
+            continue
+
+        status, payload = result_queue.get()
+        if status == "ok":
+            all_results.extend(payload)
+        else:
+            logger.error(f"Error fatal en scraper {scraper.STORE_NAME}: {payload}")
 
     return all_results
 
