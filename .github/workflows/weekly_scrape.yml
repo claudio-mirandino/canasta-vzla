@@ -39,7 +39,7 @@ jobs:
 
       # 4. Instalar Playwright (navegador Chromium headless)
       - name: Instalar Playwright + Chromium
-        run: playwright install chromium --with-deps
+        run: python -m playwright install chromium --with-deps
 
       # 5. Ejecutar el scraper y calcular el índice
       - name: Recolectar precios y calcular índice
