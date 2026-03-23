@@ -1,1 +1,23 @@
 date,product_id,store,price_usd,price_original,currency_original,product_name_found,url_found,flagged,flag_reason
+2026-03-22,aceite,central,5.06,"5,06",USD,Aceite Coposa Vegetal 850Mlts,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/,False,
+2026-03-22,arroz,central,1.57,"1,57",USD,Arroz Monica Blanco Tipo I 900Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/,False,
+2026-03-22,atun,central,3.36,"3,36",USD,Albóndigas Newpesca de Atun En Tomate 160G,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/,False,
+2026-03-22,azucar,central,1.75,"1,75",USD,Azucar Kaly Blanca Plastico 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/,False,
+2026-03-22,cafe,central,2.99,"2,99",USD,Cafe Amanecer Gourmet Molido 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/,False,
+2026-03-22,caraotas,central,1.25,"1,25",USD,Caraotas Mary Negras 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/page/2/,False,
+2026-03-22,carne_molida,central,4.8,"4,80",USD,Carne Molida 500Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/,False,
+2026-03-22,cebolla,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/,True,URL 404: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/
+2026-03-22,harina_maiz,central,1.05,"1,05",USD,Harina De Maiz Kaly Amarilla 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/,False,
+2026-03-22,huevos,central,2.69,"2,69",USD,Huevos Rojos Grande Est. 12 Unidades,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/,False,
+2026-03-22,leche_polvo,central,2.7,"2,70",USD,Chicha San Simon Con Leche 250Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/,False,
+2026-03-22,lentejas,central,1.69,"1,69",USD,Lentejas Mary 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/page/2/,False,
+2026-03-22,mantequilla,central,8.3,"8,30",USD,Mantequilla Campestre En Barra 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/page/2/,False,
+2026-03-22,margarina,central,3.39,"3,39",USD,Margarina Chiffon 454Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/page/3/,False,
+2026-03-22,papa,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/,True,URL 404: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/
+2026-03-22,pasta,central,6.52,"6,52",USD,Pasta AmOr Spaghetti Andina Sin Gluten 227Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/,False,
+2026-03-22,platano,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/,True,URL 404: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/
+2026-03-22,pollo,central,2.1,"2,10",USD,Alas De Pollo 500Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/,False,
+2026-03-22,queso_blanco,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/lacteos-y-derivados/page/3/,True,Producto 'queso blanco' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/lacteos-y-derivados/
+2026-03-22,sal,central,1.98,"1,98",USD,Adobo La Comadre Con Salero 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/salsas-aderezos-condimentos-y-sopas/,False,
+2026-03-22,sardinas,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/page/3/,True,Producto 'sardinas' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/
+2026-03-22,tomate,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/,True,URL 404: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/

@@ -2,7 +2,10 @@
 Scraper para Central Madeirense - tucentralonline.com
 
 BUENA NOTICIA: Este sitio es server-rendered. NO necesita Playwright.
-Usamos requests + parsing de HTML simple.
+Usamos requests + BeautifulSoup + búsqueda interna del sitio (?s=término).
+
+Estrategia: URL_de_categoría + ?s=término_de_búsqueda
+Esto usa el propio buscador del sitio y elimina falsos positivos.
 
 URL base: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/[categoria]/
 Selectores: li.product-col, h3 (nombre), .price (precio)
@@ -12,28 +15,33 @@ import re
 import time
 import logging
 import requests
+from urllib.parse import quote_plus
+from bs4 import BeautifulSoup
 from scrapers.base import BaseScraper
 
 logger = logging.getLogger("central")
 
 STORE_BASE = "https://tucentralonline.com/Av-Presidente-Medina-02/comprar"
 
-# Mapeo de categorías del basket → URL de Central
+# Mapeo de categorías del basket → URL base de Central
+# Se le agregará ?s=término para búsqueda precisa
 CATEGORY_URLS = {
     "cereales":    f"{STORE_BASE}/viveres/harinas/",
     "granos":      f"{STORE_BASE}/viveres/arroz-y-granos/",
     "grasas":      f"{STORE_BASE}/viveres/margarinas-y-aceites/",
     "endulzantes": f"{STORE_BASE}/viveres/cafe-y-endulzantes/",
-    "condimentos": f"{STORE_BASE}/viveres/cafe-y-endulzantes/",
+    "condimentos": f"{STORE_BASE}/viveres/",
     "bebidas":     f"{STORE_BASE}/viveres/cafe-y-endulzantes/",
     "proteinas":   f"{STORE_BASE}/refrigerados/carniceria-pescaderia/carnes-aves/",
     "lacteos":     f"{STORE_BASE}/viveres/lacteos-y-derivados/",
-    "vegetales":   f"{STORE_BASE}/refrigerados/frutas-y-vegetales/",
+    "vegetales":   f"{STORE_BASE}/fruteria-y-vegetales/vegetales/",
 }
 
-# Para productos específicos que necesitan una URL diferente a la de su categoría
+# Para productos específicos que necesitan una URL de categoría diferente
+# El buscador ?s= se agrega dinámicamente en scrape_product
 PRODUCT_OVERRIDES = {
-    "sardinas":    f"{STORE_BASE}/viveres/enlatados/",
+    "sardinas":    None,  # No disponible en Central Madeirense
+    "platano":     None,  # No disponible en Central Madeirense
     "atun":        f"{STORE_BASE}/viveres/enlatados/",
     "pasta":       f"{STORE_BASE}/viveres/pastas/",
     "arroz":       f"{STORE_BASE}/viveres/arroz-y-granos/",
@@ -41,15 +49,14 @@ PRODUCT_OVERRIDES = {
     "lentejas":    f"{STORE_BASE}/viveres/arroz-y-granos/",
     "huevos":      f"{STORE_BASE}/refrigerados/huevos/",
     "leche_polvo": f"{STORE_BASE}/viveres/lacteos-y-derivados/",
-    "queso_blanco":f"{STORE_BASE}/lacteos-y-derivados/",
+    "queso_blanco":f"{STORE_BASE}/charcuteria/quesos/",
     "mantequilla": f"{STORE_BASE}/viveres/margarinas-y-aceites/",
     "cafe":        f"{STORE_BASE}/viveres/cafe-y-endulzantes/",
     "azucar":      f"{STORE_BASE}/viveres/cafe-y-endulzantes/",
-    "sal":         f"{STORE_BASE}/viveres/salsas-aderezos-condimentos-y-sopas/",
-    "tomate":      f"{STORE_BASE}/refrigerados/frutas-y-vegetales/",
-    "cebolla":     f"{STORE_BASE}/refrigerados/frutas-y-vegetales/",
-    "papa":        f"{STORE_BASE}/refrigerados/frutas-y-vegetales/",
-    "platano":     f"{STORE_BASE}/refrigerados/frutas-y-vegetales/",
+    "sal":         f"{STORE_BASE}/viveres/",
+    "tomate":      f"{STORE_BASE}/fruteria-y-vegetales/vegetales/",
+    "cebolla":     f"{STORE_BASE}/fruteria-y-vegetales/vegetales/",
+    "papa":        f"{STORE_BASE}/fruteria-y-vegetales/vegetales/",
     "pollo":       f"{STORE_BASE}/refrigerados/carniceria-pescaderia/carnes-aves/",
     "carne_molida":f"{STORE_BASE}/refrigerados/carniceria-pescaderia/carnes-aves/",
     "aceite":      f"{STORE_BASE}/viveres/margarinas-y-aceites/",
@@ -93,127 +100,111 @@ class CentralScraper(BaseScraper):
             "flag_reason": "",
         }
 
-        # Determinar URL a usar
-        url = PRODUCT_OVERRIDES.get(product_id) or CATEGORY_URLS.get(product.get("category", ""), "")
-        if not url:
+        # Determinar URL base a usar
+        # None = producto explícitamente no disponible en esta tienda
+        if product_id in PRODUCT_OVERRIDES:
+            base_url = PRODUCT_OVERRIDES[product_id]
+        else:
+            base_url = CATEGORY_URLS.get(product.get("category", ""), "")
+
+        if base_url is None:
+            result["flag_reason"] = f"Producto no disponible en Central Madeirense"
+            logger.info(f"[central] {product_id}: no disponible en esta tienda")
+            return result
+
+        if not base_url:
             result["flagged"] = True
             result["flag_reason"] = "No hay URL de categoría configurada"
             return result
 
-        # Intentar varias páginas si hay paginación
-        for page in range(1, 4):
-            page_url = url if page == 1 else f"{url}page/{page}/"
-            result["url_found"] = page_url
+        # Usar el buscador interno del sitio: ?s=término
+        # Esto filtra resultados desde el servidor, mucho más preciso que fuzzy matching
+        search_url = f"{base_url}?s={quote_plus(search_term)}"
+        result["url_found"] = search_url
 
-            try:
-                resp = requests.get(page_url, headers=HEADERS, timeout=20)
-                if resp.status_code == 404:
-                    if page == 1:
-                        # Intentar URL alternativa sin trailing slash
-                        alt_url = url.rstrip("/")
-                        resp = requests.get(alt_url, headers=HEADERS, timeout=20)
-                        if resp.status_code != 200:
-                            result["flagged"] = True
-                            result["flag_reason"] = f"URL 404: {page_url}"
-                            return result
-                    else:
-                        break  # No hay más páginas
-
-                if resp.status_code != 200:
-                    logger.warning(f"[central] HTTP {resp.status_code} en {page_url}")
-                    break
-
-                # Buscar producto en el HTML
-                price_text, found_name = self._find_product_in_html(
-                    resp.text, search_term
-                )
-
-                if price_text:
-                    price = self.parse_price(price_text)
-                    if price and price > 0:
-                        result["price_usd"] = round(price, 2)
-                        result["price_original"] = price_text
-                        result["product_name_found"] = found_name
-                        logger.info(f"[central] {product_id}: {found_name} → ${price:.2f}")
-                        return result
-
-            except requests.RequestException as e:
-                logger.error(f"[central] Error HTTP en {page_url}: {e}")
+        try:
+            resp = requests.get(search_url, headers=HEADERS, timeout=20)
+            if resp.status_code == 404:
                 result["flagged"] = True
-                result["flag_reason"] = f"Error de red: {e}"
+                result["flag_reason"] = f"URL 404: {search_url}"
                 return result
 
-            time.sleep(0.5)
+            if resp.status_code != 200:
+                result["flagged"] = True
+                result["flag_reason"] = f"HTTP {resp.status_code}: {search_url}"
+                logger.warning(f"[central] HTTP {resp.status_code} en {search_url}")
+                return result
+
+            # Buscar producto en los resultados
+            price_text, found_name = self._find_product_in_html(resp.text, search_term)
+
+            if price_text:
+                price = self.parse_price(price_text)
+                if price and price > 0:
+                    result["price_usd"] = round(price, 2)
+                    result["price_original"] = price_text
+                    result["product_name_found"] = found_name
+                    logger.info(f"[central] {product_id}: {found_name} → ${price:.2f}")
+                    return result
+
+        except requests.RequestException as e:
+            logger.error(f"[central] Error HTTP en {search_url}: {e}")
+            result["flagged"] = True
+            result["flag_reason"] = f"Error de red: {e}"
+            return result
 
         result["flagged"] = True
-        result["flag_reason"] = f"Producto '{search_term}' no encontrado en {url}"
+        result["flag_reason"] = f"Producto '{search_term}' no encontrado en {search_url}"
         return result
 
     def _find_product_in_html(self, html: str, search_term: str) -> tuple[str, str]:
         """
         Busca el producto más relevante en el HTML de la categoría.
+        Usa BeautifulSoup para parsing robusto (evita fallos con </li> anidados).
         Retorna (precio_texto, nombre_encontrado).
-
-        Estructura del HTML:
-          <li class="product-col ...">
-            <h3>Nombre Del Producto</h3>
-            <span class="price">$X.XX</span>
-          </li>
         """
-        # Extraer todos los bloques de producto
-        # Pattern: desde <li class="product-col hasta el siguiente </li>
-        product_blocks = re.findall(
-            r'<li[^>]*class="[^"]*product-col[^"]*"[^>]*>(.*?)</li>',
-            html,
-            re.DOTALL | re.IGNORECASE
-        )
+        soup = BeautifulSoup(html, "html.parser")
 
-        if not product_blocks:
-            # Fallback: buscar bloques con class="product"
-            product_blocks = re.findall(
-                r'<li[^>]*class="[^"]*product[^"]*"[^>]*>(.*?)</li>',
-                html,
-                re.DOTALL | re.IGNORECASE
-            )
+        # Buscar todos los <li class="product-col ...">
+        product_items = soup.find_all("li", class_=lambda c: c and "product-col" in c)
+        if not product_items:
+            # Fallback: cualquier li con "product" en la clase
+            product_items = soup.find_all("li", class_=lambda c: c and "product" in c)
 
-        if not product_blocks:
-            logger.debug(f"[central] No se encontraron bloques de productos")
+        if not product_items:
+            logger.debug(f"[central] No se encontraron bloques de productos en la pagina")
             return "", ""
 
         search_words = search_term.lower().split()
         best_match = None
         best_score = 0
 
-        for block in product_blocks:
-            # Extraer nombre (dentro de <h3>)
-            name_match = re.search(r'<h3[^>]*>(.*?)</h3>', block, re.DOTALL | re.IGNORECASE)
-            if not name_match:
+        for item in product_items:
+            # Nombre: primer <h3> o <h2> dentro del bloque
+            name_tag = item.find(["h3", "h2"])
+            if not name_tag:
                 continue
-            raw_name = re.sub(r'<[^>]+>', '', name_match.group(1)).strip()
+            raw_name = name_tag.get_text(strip=True)
+            if not raw_name:
+                continue
 
-            # Calcular score de coincidencia
+            # Score de coincidencia
             name_lower = raw_name.lower()
             score = sum(1 for word in search_words if word in name_lower)
-
             if score == 0:
                 continue
 
-            # Extraer precio
-            price_match = re.search(
-                r'<(?:span|div)[^>]*class="[^"]*price[^"]*"[^>]*>(.*?)</(?:span|div)>',
-                block,
-                re.DOTALL | re.IGNORECASE
-            )
-            if not price_match:
+            # Precio: elemento con clase "price" o que contenga "$"
+            price_tag = item.find(class_=lambda c: c and "price" in c)
+            if not price_tag:
                 continue
 
-            price_raw = re.sub(r'<[^>]+>', '', price_match.group(1)).strip()
-            # Limpiar y quedarnos con el precio actual (el último número si hay tachado)
+            price_raw = price_tag.get_text(strip=True)
             prices_found = re.findall(r'\$?\d+[.,]\d{2}', price_raw)
             if not prices_found:
                 continue
 
-            # Tomar el precio más bajo (precio en oferta > precio regular)
+            # Tomar el precio más bajo (oferta sobre regular)
             price_text = min(prices_found, key=lambda p: float(
                 p.replace('$', '').replace(',', '.')
             ))
@@ -225,8 +216,7 @@ class CentralScraper(BaseScraper):
         if best_match:
             return best_match
 
-        # Fallback: si hay cualquier precio en la página, tomar el primero
-        # solo si buscamos un término muy específico
+        # Fallback: cualquier precio en la página
         any_price = re.search(r'\$(\d+\.\d{2})', html)
         if any_price and len(search_words) >= 2:
             return f"${any_price.group(1)}", f"(match aproximado para '{search_term}')"

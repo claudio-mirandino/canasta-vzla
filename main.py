@@ -10,6 +10,7 @@ Uso:
 """
 
 import sys
+import io
 import json
 import logging
 import argparse
@@ -18,6 +19,12 @@ import queue
 import pandas as pd
 from pathlib import Path
 from datetime import date
+
+# Forzar UTF-8 en Windows para evitar error con tildes y ñ en la consola
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
+if sys.stderr.encoding != 'utf-8':
+    sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 from scrapers.gama import GamaScraper
 from scrapers.plaza import PlazaScraper

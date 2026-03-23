@@ -18,7 +18,7 @@
       "search_terms": {
         "gama": "harina maiz precocida",
         "plaza": "harina pan",
-        "central": "harina maiz"
+        "central": "harina maiz kaly"
       },
       "notes": "Marca de referencia: Harina PAN, Polar o equivalente"
     },
@@ -44,7 +44,7 @@
       "search_terms": {
         "gama": "pasta spaghetti",
         "plaza": "spaghetti",
-        "central": "pasta spaghetti"
+        "central": "spaghetti 500"
       },
       "notes": "Spaghetti o pasta larga 500g"
     },
@@ -122,7 +122,7 @@
       "search_terms": {
         "gama": "sal",
         "plaza": "sal",
-        "central": "sal"
+        "central": "sal refinada"
       },
       "notes": "Sal refinada 1kg"
     },
@@ -135,7 +135,7 @@
       "search_terms": {
         "gama": "cafe molido",
         "plaza": "cafe molido",
-        "central": "cafe molido"
+        "central": "cafe molido 200"
       },
       "notes": "Café molido tostado 250g, ej. Fama de América, Café Madrid"
     },
@@ -161,7 +161,7 @@
       "search_terms": {
         "gama": "pechuga pollo",
         "plaza": "pechuga pollo",
-        "central": "pechuga pollo"
+        "central": "pechuga de pollo"
       },
       "notes": "Pechuga de pollo fresca por kg. Proteína clave."
     },
@@ -174,7 +174,7 @@
       "search_terms": {
         "gama": "huevos carton",
         "plaza": "huevos carton",
-        "central": "huevos carton"
+        "central": "huevos 30"
       },
       "notes": "Cartón de 30 huevos de gallina"
     },
@@ -200,7 +200,7 @@
       "search_terms": {
         "gama": "atun lata",
         "plaza": "atun",
-        "central": "atun"
+        "central": "atun agua"
       },
       "notes": "Atún en agua o aceite, lata 140g"
     },
@@ -213,7 +213,7 @@
       "search_terms": {
         "gama": "leche polvo",
         "plaza": "leche en polvo",
-        "central": "leche polvo"
+        "central": "leche en polvo 400"
       },
       "notes": "Leche entera en polvo 400g. Lácteo clave."
     },
@@ -252,7 +252,7 @@
       "search_terms": {
         "gama": "tomate",
         "plaza": "tomate",
-        "central": "tomate"
+        "central": "tomate manzano"
       },
       "notes": "Tomate fresco por kg"
     },
