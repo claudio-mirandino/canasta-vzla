@@ -21,3 +21,47 @@ date,product_id,store,price_usd,price_original,currency_original,product_name_fo
 2026-03-22,sal,central,1.98,"1,98",USD,Adobo La Comadre Con Salero 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/salsas-aderezos-condimentos-y-sopas/,False,
 2026-03-22,sardinas,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/page/3/,True,Producto 'sardinas' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/
 2026-03-22,tomate,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/,True,URL 404: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/frutas-y-vegetales/
+2026-03-30,aceite,central,4.19,"4,19",USD,Aceite Coposa Vegetal 850Mlts,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=aceite+vegetal,False,
+2026-03-30,aceite,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,arroz,central,1.57,"1,57",USD,Arroz Monica Blanco Tipo I 900Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=arroz+blanco,False,
+2026-03-30,arroz,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,atun,central,3.76,"3,76",USD,Atun Pafia Lomo en Agua Sabor a Limon 140Grs,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/?s=atun+agua,False,
+2026-03-30,atun,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,azucar,central,1.99,"1,99",USD,Azucar Kaly Blanca Plastico 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=azucar+blanca,False,
+2026-03-30,azucar,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,cafe,central,3.05,"3,05",USD,Cafe Flor De Arauca Gourmet Molido Paq. 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=cafe+molido+200,False,
+2026-03-30,cafe,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,caraotas,central,1.25,"1,25",USD,Caraotas Mary Negras 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=caraotas+negras,False,
+2026-03-30,caraotas,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,carne_molida,central,12.5,"12,50",USD,Carne Molida Premium KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=carne+molida,True,"Cambio de 160.4% vs semana anterior (anterior: $4.80, nuevo: $12.50)"
+2026-03-30,carne_molida,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,cebolla,central,1.2,"1,20",USD,Cebolla Blanca Nacional 1000Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=cebolla,False,
+2026-03-30,cebolla,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,harina_maiz,central,1.05,"1,05",USD,Harina De Maiz Kaly Amarilla 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/?s=harina+maiz+kaly,False,
+2026-03-30,harina_maiz,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,huevos,central,7.29,"7,29",USD,Huevos Rojos Grande Est. 30 Unidades,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/?s=huevos+30,True,"Cambio de 171.0% vs semana anterior (anterior: $2.69, nuevo: $7.29)"
+2026-03-30,huevos,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,leche_polvo,central,7.89,"7,89",USD,Leche La Campina En Polvo Descremada 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/?s=leche+en+polvo+400,True,"Cambio de 192.2% vs semana anterior (anterior: $2.70, nuevo: $7.89)"
+2026-03-30,leche_polvo,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,lentejas,central,1.69,"1,69",USD,Lentejas Pantera 400 Gr.,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=lentejas,False,
+2026-03-30,lentejas,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,mantequilla,central,9.05,"9,05",USD,Mantequilla La Paisana Sin Sal Barra 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=mantequilla,False,
+2026-03-30,mantequilla,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,margarina,central,2.49,"2,49",USD,Margarina Juana 454Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=margarina,False,
+2026-03-30,margarina,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,papa,central,1.58,"1,58",USD,Papa Criolla Lavada KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=papa,False,
+2026-03-30,papa,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,pasta,central,1.36,"1,36",USD,Pasta Galo Spaghetti 500Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/?s=spaghetti+500,True,"Cambio de 79.1% vs semana anterior (anterior: $6.52, nuevo: $1.36)"
+2026-03-30,pasta,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,platano,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-03-30,platano,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,pollo,central,7.85,"7,85",USD,Delicia De Pechuga de Pollo Kg KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=pechuga+de+pollo,True,"Cambio de 273.8% vs semana anterior (anterior: $2.10, nuevo: $7.85)"
+2026-03-30,pollo,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,queso_blanco,central,14.16,"14,16",USD,Queso Blanco Pasteurizado El Zedeño KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/charcuteria/quesos/?s=queso+blanco,False,
+2026-03-30,queso_blanco,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,sal,central,0.73,"0,73",USD,Sal Arrecife Refinada fina Paquete 1 Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+refinada,True,"Cambio de 63.1% vs semana anterior (anterior: $1.98, nuevo: $0.73)"
+2026-03-30,sal,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,sardinas,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-03-30,sardinas,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
+2026-03-30,tomate,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate+manzano,True,Producto 'tomate manzano' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate+manzano
+2026-03-30,tomate,plaza,0.0,,USD,,https://enlinea.elplazas.com,True,Producto no encontrado en búsqueda
