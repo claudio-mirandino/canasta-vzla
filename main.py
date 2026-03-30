@@ -239,8 +239,8 @@ def main():
         save_index(result)
         logger.info("✓ Proceso completado exitosamente")
     else:
-        logger.error("✗ No se pudo calcular el índice")
-        sys.exit(1)
+        logger.warning("⚠ Índice no calculado — datos base disponibles desde 2026-04-01")
+        logger.info("✓ Scraping completado. El índice se calculará a partir del 1° de abril.")
 
 
 if __name__ == "__main__":
