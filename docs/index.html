@@ -3,204 +3,399 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Índice Canasta Básica Alimentaria Venezuela</title>
+  <title>Canasta Básica Alimentaria Venezuela — Seguimiento de precios</title>
+  <meta name="description" content="Seguimiento semanal del costo de la canasta básica alimentaria en 3 supermercados de Caracas. Metodología Laspeyres. Precios en USD." />
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-  <!-- PapaParse (leer CSVs) -->
+  <!-- PapaParse -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
 
   <style>
     :root {
-      --gold: #c9a84c;
+      --gold:      #c9a84c;
       --dark-blue: #1a2e4a;
-      --light-bg: #f8f9fa;
+      --light-bg:  #f4f6f9;
+      --green:     #198754;
+      --red:       #dc3545;
     }
 
     body {
       font-family: 'Segoe UI', system-ui, sans-serif;
       background-color: var(--light-bg);
-      color: #333;
+      color: #2c2c2c;
     }
 
+    /* ── Header ── */
     header {
       background-color: var(--dark-blue);
       color: white;
-      padding: 2rem 0 1.5rem;
+      padding: 1.8rem 0 1.4rem;
       border-bottom: 4px solid var(--gold);
     }
-
     header h1 {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.2rem;
+    }
+    header .subtitle {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+    }
+    header .last-updated {
+      color: rgba(255,255,255,0.45);
+      font-size: 0.78rem;
+      margin-top: 0.4rem;
     }
 
-    header p {
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 0;
-      font-size: 0.9rem;
-    }
-
-    .index-hero {
+    /* ── Stat cards ── */
+    .stat-card {
       background: white;
-      border-radius: 12px;
-      border: 1px solid #e0e0e0;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-radius: 10px;
+      border: 1px solid #e0e6ed;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
-
-    .index-value {
-      font-size: 4rem;
+    .stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #8a97a8;
+      margin-bottom: 0.4rem;
+    }
+    .stat-value {
+      font-size: 2rem;
       font-weight: 800;
       color: var(--dark-blue);
-      line-height: 1;
+      line-height: 1.1;
     }
-
-    .index-change {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-top: 0.5rem;
+    .stat-sub {
+      font-size: 0.78rem;
+      color: #9aa5b4;
+      margin-top: 0.3rem;
     }
+    .stat-change-up   { color: var(--red);   font-weight: 600; }
+    .stat-change-down { color: var(--green);  font-weight: 600; }
+    .stat-change-flat { color: #9aa5b4; font-weight: 600; }
 
-    .change-up   { color: #dc3545; }
-    .change-down { color: #198754; }
-    .change-flat { color: #6c757d; }
-
-    .badge-base {
-      background-color: var(--gold);
-      color: var(--dark-blue);
-      font-size: 0.75rem;
-      padding: 0.3em 0.6em;
-      border-radius: 20px;
-      font-weight: 600;
-    }
-
+    /* ── Card ── */
     .card {
-      border: 1px solid #e0e0e0;
+      border: 1px solid #e0e6ed;
       border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      background: white;
     }
-
     .card-header {
       background: var(--dark-blue);
       color: white;
       font-weight: 600;
       border-radius: 10px 10px 0 0 !important;
+      font-size: 0.9rem;
+      padding: 0.75rem 1.2rem;
+    }
+    .card-header .card-sub {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ── Store status cards ── */
+    .store-card {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid #e0e6ed;
+      padding: 1rem 1.2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .store-card .store-name {
+      font-weight: 700;
+      color: var(--dark-blue);
       font-size: 0.95rem;
     }
-
-    .table th {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      color: #6c757d;
+    .store-card .store-location {
+      font-size: 0.75rem;
+      color: #9aa5b4;
+    }
+    .store-badge-ok {
+      display: inline-block;
+      background: #d1fae5;
+      color: #065f46;
+      font-size: 0.72rem;
       font-weight: 600;
-      border-top: none;
+      padding: 0.2em 0.7em;
+      border-radius: 20px;
+      margin-top: 0.4rem;
+    }
+    .store-badge-pending {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2em 0.7em;
+      border-radius: 20px;
+      margin-top: 0.4rem;
     }
 
-    .flag-badge {
-      background-color: #fff3cd;
-      color: #856404;
+    /* ── Price table ── */
+    .table-price th {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #8a97a8;
+      font-weight: 600;
+      border-bottom: 2px solid #e0e6ed;
+      white-space: nowrap;
+      padding: 0.6rem 0.75rem;
+    }
+    .table-price td {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.88rem;
+      vertical-align: middle;
+      border-bottom: 1px solid #f0f3f6;
+    }
+    .table-price tr:last-child td { border-bottom: none; }
+    .table-price tr:hover td { background: #f8fafc; }
+
+    /* Category separator rows */
+    .category-row td {
+      background: #f0f4f8 !important;
       font-size: 0.7rem;
-      padding: 0.2em 0.5em;
-      border-radius: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #5a6e85;
+      padding: 0.35rem 0.75rem;
+      border-bottom: none !important;
+    }
+    .category-row:hover td { background: #f0f4f8 !important; }
+
+    /* Price cell states */
+    .price-available { color: #1a2e4a; font-weight: 500; }
+    .price-none {
+      color: #c0c8d2;
+      font-size: 0.78rem;
+    }
+    .price-flagged { color: #92400e; }
+    .flag-dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #f59e0b;
+      border-radius: 50%;
+      margin-right: 3px;
+      vertical-align: middle;
+    }
+    .avg-cell { font-weight: 700; color: var(--dark-blue); }
+
+    /* Change badges */
+    .chg-up   { color: var(--red);  font-size: 0.82rem; font-weight: 600; }
+    .chg-down { color: var(--green); font-size: 0.82rem; font-weight: 600; }
+    .chg-flat { color: #c0c8d2; font-size: 0.82rem; }
+
+    /* Total row */
+    .total-row td {
+      background: #eef2f7 !important;
+      font-weight: 700;
+      color: var(--dark-blue);
+      border-top: 2px solid #d0d8e4 !important;
+    }
+    .total-row:hover td { background: #e8ecf3 !important; }
+
+    /* ── History table ── */
+    .table-history th {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #8a97a8;
+      font-weight: 600;
+      border-bottom: 2px solid #e0e6ed;
+      padding: 0.6rem 0.75rem;
+    }
+    .table-history td {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.88rem;
+      border-bottom: 1px solid #f0f3f6;
+    }
+    .table-history tr:hover td { background: #f8fafc; }
+    .index-pill {
+      display: inline-block;
+      background: var(--dark-blue);
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.2em 0.7em;
+      border-radius: 20px;
     }
 
+    /* ── Methodology ── */
     .methodology-box {
       background: white;
       border-left: 4px solid var(--gold);
       padding: 1.2rem 1.5rem;
       border-radius: 0 8px 8px 0;
-      font-size: 0.88rem;
-      color: #555;
+      font-size: 0.86rem;
+      color: #5a6e85;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .methodology-box strong { color: var(--dark-blue); }
+
+    /* ── Notice banner ── */
+    .data-notice {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      font-size: 0.82rem;
+      color: #78350f;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
+    /* ── Footer ── */
     footer {
       background-color: var(--dark-blue);
-      color: rgba(255,255,255,0.6);
-      font-size: 0.8rem;
-      padding: 1.5rem 0;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.78rem;
+      padding: 1.4rem 0;
       margin-top: 3rem;
       border-top: 4px solid var(--gold);
     }
+    footer a { color: rgba(255,255,255,0.65); text-decoration: none; }
+    footer a:hover { color: white; }
 
-    .loading-overlay {
-      text-align: center;
-      padding: 3rem;
-      color: #6c757d;
-    }
+    /* ── Loading ── */
+    .spinner-border { color: var(--gold) !important; width: 1.5rem; height: 1.5rem; }
 
-    .spinner-border {
-      color: var(--gold) !important;
-    }
-
-    #last-updated {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.55);
-      margin-top: 0.3rem;
+    /* ── Responsive tweaks ── */
+    @media (max-width: 576px) {
+      .stat-value { font-size: 1.5rem; }
+      header h1   { font-size: 1.2rem; }
     }
   </style>
 </head>
-
 <body>
 
-<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════ -->
+<!-- ═══════ HEADER ═══════════════════════════════════════════════════════════ -->
 <header>
   <div class="container">
-    <div class="d-flex align-items-center gap-3">
-      <div>
-        <h1>Índice de Precios — Canasta Básica Alimentaria Venezuela</h1>
-        <p>Seguimiento semanal de precios en 3 supermercados de Caracas &nbsp;·&nbsp; Metodología Laspeyres</p>
-        <div id="last-updated">Cargando datos...</div>
-      </div>
+    <h1>Canasta Básica Alimentaria Venezuela</h1>
+    <div class="subtitle">
+      Seguimiento semanal de precios &nbsp;·&nbsp; Excelsior Gama, El Plazas y Central Madeirense &nbsp;·&nbsp; Metodología Laspeyres
     </div>
+    <div class="last-updated" id="last-updated">Cargando datos…</div>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════ MAIN ════════════════════════════════ -->
+<!-- ═══════ MAIN ══════════════════════════════════════════════════════════════ -->
 <main class="container py-4">
 
-  <!-- Índice actual + cambio semanal -->
-  <div class="row g-4 mb-4">
-    <div class="col-md-4">
-      <div class="index-hero h-100">
-        <div class="text-muted small mb-1">ÍNDICE ACTUAL</div>
-        <div class="index-value" id="current-index">—</div>
-        <div class="index-change" id="weekly-change">—</div>
-        <div class="mt-2">
-          <span class="badge-base">Base: 1° Abr 2026 = 100</span>
-        </div>
-        <div class="text-muted small mt-2" id="products-coverage">—</div>
+  <!-- ── 4 Stat cards ─────────────────────────────────────────────────────── -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-label">Índice actual</div>
+        <div class="stat-value" id="sc-index">—</div>
+        <div class="stat-sub">Base: 1° abr 2026 = 100</div>
       </div>
     </div>
-    <div class="col-md-8">
-      <div class="card h-100">
-        <div class="card-header">Evolución del índice</div>
-        <div class="card-body">
-          <canvas id="indexChart" height="140"></canvas>
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-label">Cambio semanal</div>
+        <div class="stat-value" id="sc-change" style="font-size:1.6rem">—</div>
+        <div class="stat-sub">vs semana anterior</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-label">Costo canasta</div>
+        <div class="stat-value" id="sc-basket">—</div>
+        <div class="stat-sub" id="sc-basket-sub">promedio tiendas disponibles</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="stat-card">
+        <div class="stat-label">Cobertura</div>
+        <div class="stat-value" id="sc-coverage">—</div>
+        <div class="stat-sub">productos con precio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Evolución del índice (chart) ─────────────────────────────────────── -->
+  <div class="row g-3 mb-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span>Evolución del índice</span>
+          <span class="card-sub">base 1° abr 2026 = 100</span>
+        </div>
+        <div class="card-body py-3 px-3">
+          <canvas id="indexChart" height="90"></canvas>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Cambio semanal por producto -->
-  <div class="row g-4 mb-4">
+  <!-- ── Estado por tienda ────────────────────────────────────────────────── -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-4">
+      <div class="store-card">
+        <div class="store-name">Excelsior Gama</div>
+        <div class="store-location">Gama Plus Santa Eduvigis · Baruta</div>
+        <div id="store-badge-gama"><span class="store-badge-pending">⏳ Iniciando recolección</span></div>
+        <div class="mt-1" id="store-count-gama" style="font-size:0.78rem; color:#9aa5b4;"></div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="store-card">
+        <div class="store-name">El Plazas</div>
+        <div class="store-location">Valle Arriba · Caracas</div>
+        <div id="store-badge-plaza"><span class="store-badge-pending">⏳ Iniciando recolección</span></div>
+        <div class="mt-1" id="store-count-plaza" style="font-size:0.78rem; color:#9aa5b4;"></div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="store-card">
+        <div class="store-name">Central Madeirense</div>
+        <div class="store-location">Av. Presidente Medina · Caracas</div>
+        <div id="store-badge-central"><span class="store-badge-pending">⏳ Cargando…</span></div>
+        <div class="mt-1" id="store-count-central" style="font-size:0.78rem; color:#9aa5b4;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Tabla de precios ──────────────────────────────────────────────────── -->
+  <div class="row g-3 mb-4">
     <div class="col-12">
       <div class="card">
-        <div class="card-header">Precios por producto — última semana</div>
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <span>Precios por producto</span>
+          <span class="card-sub" id="prices-date-label">última semana disponible</span>
+        </div>
         <div class="card-body p-0">
-          <div id="prices-loading" class="loading-overlay">
-            <div class="spinner-border mb-2" role="status"></div>
-            <div>Cargando precios...</div>
+          <!-- Aviso mientras no hay datos de todas las tiendas -->
+          <div class="m-3" id="data-notice" style="display:none">
+            <div class="data-notice">
+              <span>⚠️</span>
+              <span id="data-notice-text"></span>
+            </div>
           </div>
+          <!-- Loading state -->
+          <div id="prices-loading" class="text-center py-5">
+            <div class="spinner-border mb-2" role="status"></div>
+            <div class="text-muted small">Cargando precios…</div>
+          </div>
+          <!-- Table -->
           <div class="table-responsive" id="prices-table-container" style="display:none">
-            <table class="table table-hover table-sm mb-0" id="prices-table">
+            <table class="table table-price mb-0">
               <thead>
                 <tr>
-                  <th class="ps-3">Producto</th>
+                  <th class="ps-3" style="min-width:180px">Producto</th>
                   <th class="text-end">Gama</th>
                   <th class="text-end">Plaza</th>
                   <th class="text-end">Central</th>
@@ -216,19 +411,20 @@
     </div>
   </div>
 
-  <!-- Historial del índice -->
-  <div class="row g-4 mb-4">
+  <!-- ── Historial del índice ──────────────────────────────────────────────── -->
+  <div class="row g-3 mb-4">
     <div class="col-12">
       <div class="card">
-        <div class="card-header">Historial semanal del índice</div>
+        <div class="card-header">Historial del índice</div>
         <div class="card-body p-0">
           <div class="table-responsive">
-            <table class="table table-sm mb-0">
+            <table class="table table-history mb-0">
               <thead>
                 <tr>
                   <th class="ps-3">Semana</th>
                   <th class="text-end">Índice</th>
-                  <th class="text-end">Cambio semanal</th>
+                  <th class="text-end">Cambio</th>
+                  <th class="text-end">Costo canasta</th>
                   <th class="text-end pe-3">Productos</th>
                 </tr>
               </thead>
@@ -240,63 +436,76 @@
     </div>
   </div>
 
-  <!-- Metodología -->
+  <!-- ── Metodología ───────────────────────────────────────────────────────── -->
   <div class="row">
     <div class="col-12">
-      <h5 class="text-muted mb-3" style="font-size:0.85rem; text-transform:uppercase; letter-spacing:1px">
+      <p class="text-muted mb-2" style="font-size:0.7rem; text-transform:uppercase; letter-spacing:1.2px; font-weight:600">
         Nota metodológica
-      </h5>
+      </p>
       <div class="methodology-box">
         <strong>¿Qué mide este índice?</strong> El costo semanal de una canasta de 22 productos
-        alimentarios básicos en tres supermercados de Caracas (Excelsior Gama, El Plazas y
-        Central Madeirense). El índice base es 100 a partir del 1° de abril de 2026.
-        Un valor de 115 indica que la canasta cuesta 15% más que en esa fecha.
+        alimentarios básicos en tres supermercados de Caracas: Excelsior Gama (Santa Eduvigis),
+        El Plazas (Valle Arriba) y Central Madeirense (Av. Presidente Medina). El índice base
+        es 100 a partir del 1° de abril de 2026. Un valor de 115 indica que la canasta cuesta
+        15% más que en esa fecha de referencia.
         <br><br>
-        <strong>Metodología:</strong> Índice de Laspeyres ponderado. Cada producto tiene un peso
-        que refleja su importancia en el gasto familiar venezolano (proteínas y lácteos tienen
-        mayor peso). Se usa el precio promedio entre tiendas disponibles. Los precios están en
-        dólares estadounidenses (USD), moneda de cotización en los supermercados monitoreados.
+        <strong>Metodología:</strong> Índice de Laspeyres ponderado. Los productos con mayor
+        importancia en el gasto familiar (proteínas: carne, pollo, queso, huevos) tienen
+        mayor peso. Se usa el precio promedio entre las tiendas disponibles cada semana. Todos
+        los precios están en dólares (USD), moneda de cotización en los supermercados monitoreados.
+        Cada producto tiene marca y presentación fija para garantizar comparabilidad semana a semana.
         <br><br>
-        <strong>Fuentes:</strong> Precios recolectados automáticamente cada lunes mediante
-        scraping de los sitios web oficiales de cada supermercado. Los precios con variación
-        semanal superior al 30% son marcados y verificados antes de ser incluidos.
-        <br><br>
-        <strong>Referencia:</strong> Metodología basada en CENDAS-FVM (Centro de Documentación
-        y Análisis Social de la Federación Venezolana de Maestros).
+        <strong>Recolección:</strong> Los precios se obtienen automáticamente cada lunes mediante
+        scraping de los sitios web oficiales de cada supermercado. Variaciones superiores al 30%
+        respecto a la semana anterior son marcadas y verificadas. Metodología basada en
+        <strong>CENDAS-FVM</strong> (Centro de Documentación y Análisis Social de la Federación
+        Venezolana de Maestros).
       </div>
     </div>
   </div>
 
 </main>
 
-<!-- ═══════════════════════════════════ FOOTER ══════════════════════════════ -->
+<!-- ═══════ FOOTER ══════════════════════════════════════════════════════════ -->
 <footer>
-  <div class="container d-flex justify-content-between align-items-center">
-    <div>Datos actualizados cada lunes &nbsp;·&nbsp; Precios en USD</div>
+  <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div>Datos actualizados cada lunes &nbsp;·&nbsp; Precios en USD &nbsp;·&nbsp; Caracas, Venezuela</div>
     <div>
-      <a href="data/prices_raw.csv" class="text-white-50 text-decoration-none me-3" download>
-        ↓ Descargar datos (CSV)
-      </a>
+      <a href="data/prices_raw.csv" download>↓ Descargar precios (CSV)</a>
+      &nbsp;·&nbsp;
+      <a href="data/index.csv" download>↓ Descargar índice (CSV)</a>
     </div>
   </div>
 </footer>
 
-<!-- ═══════════════════════════════════ SCRIPTS ═════════════════════════════ -->
+<!-- ═══════ SCRIPTS ══════════════════════════════════════════════════════════ -->
 <script>
-// ─── Basket metadata (names) ──────────────────────────────────────────────
-const PRODUCT_NAMES = {};
+// ─── Categorías y orden de display ───────────────────────────────────────────
+const CATEGORY_ORDER = [
+  { id: 'cereales',    label: 'Cereales y Harinas' },
+  { id: 'granos',      label: 'Granos' },
+  { id: 'grasas',      label: 'Aceites y Grasas' },
+  { id: 'endulzantes', label: 'Endulzantes' },
+  { id: 'condimentos', label: 'Condimentos' },
+  { id: 'bebidas',     label: 'Bebidas' },
+  { id: 'proteinas',   label: 'Proteínas' },
+  { id: 'lacteos',     label: 'Lácteos' },
+  { id: 'vegetales',   label: 'Vegetales y Frutas' },
+];
 
+// Mapa: product_id → { name, category, weight }
+const PRODUCTS = {};
+
+// ─── Carga basket.json ────────────────────────────────────────────────────────
 async function loadBasket() {
-  try {
-    const r = await fetch('data/basket.json');
-    const data = await r.json();
-    data.products.forEach(p => { PRODUCT_NAMES[p.id] = p.name; });
-  } catch(e) {
-    console.warn('No se pudo cargar basket.json', e);
-  }
+  const r = await fetch('data/basket.json');
+  const data = await r.json();
+  data.products.forEach(p => {
+    PRODUCTS[p.id] = { name: p.name, category: p.category, weight: p.weight };
+  });
 }
 
-// ─── Load index CSV ───────────────────────────────────────────────────────
+// ─── Carga index.csv ──────────────────────────────────────────────────────────
 async function loadIndexData() {
   const r = await fetch('data/index.csv');
   const text = await r.text();
@@ -304,7 +513,7 @@ async function loadIndexData() {
   return parsed.data.sort((a, b) => a.date.localeCompare(b.date));
 }
 
-// ─── Load prices CSV ──────────────────────────────────────────────────────
+// ─── Carga prices_raw.csv ─────────────────────────────────────────────────────
 async function loadPricesData() {
   const r = await fetch('data/prices_raw.csv');
   const text = await r.text();
@@ -312,11 +521,72 @@ async function loadPricesData() {
   return parsed.data;
 }
 
-// ─── Render index chart ───────────────────────────────────────────────────
+// ─── Formato de fecha legible ─────────────────────────────────────────────────
+function fmtDate(dateStr) {
+  const dt = new Date(dateStr + 'T00:00:00');
+  return dt.toLocaleDateString('es-VE', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+// ─── Render stat cards (hero) ─────────────────────────────────────────────────
+function renderStatCards(indexData, pricesData) {
+  if (!indexData.length) return;
+  const latest = indexData[indexData.length - 1];
+
+  // Índice
+  document.getElementById('sc-index').textContent =
+    parseFloat(latest.index_value).toFixed(2);
+
+  // Cambio semanal
+  const change = parseFloat(latest.weekly_change_pct);
+  const changeEl = document.getElementById('sc-change');
+  if (!isNaN(change) && change !== 0) {
+    const arrow = change > 0 ? '▲' : '▼';
+    const cls   = change > 0 ? 'stat-change-up' : 'stat-change-down';
+    changeEl.innerHTML = `<span class="${cls}">${arrow} ${Math.abs(change).toFixed(2)}%</span>`;
+  } else {
+    changeEl.innerHTML = '<span class="stat-change-flat">─ Sin cambio</span>';
+  }
+
+  // Cobertura
+  document.getElementById('sc-coverage').textContent =
+    `${latest.products_priced}/${latest.products_total}`;
+
+  // Costo canasta (suma de precios promedio disponibles en la última semana)
+  const dates = [...new Set(pricesData.map(r => r.date))].sort();
+  const latestDate = dates[dates.length - 1];
+  const latestRows = pricesData.filter(r => r.date === latestDate && parseFloat(r.price_usd) > 0);
+
+  // Agrupar por producto y promediar tiendas
+  const byProduct = {};
+  latestRows.forEach(r => {
+    if (!byProduct[r.product_id]) byProduct[r.product_id] = [];
+    byProduct[r.product_id].push(parseFloat(r.price_usd));
+  });
+  let total = 0;
+  let count = 0;
+  for (const prices of Object.values(byProduct)) {
+    total += prices.reduce((a,b) => a+b, 0) / prices.length;
+    count++;
+  }
+  const basketEl = document.getElementById('sc-basket');
+  if (count > 0) {
+    basketEl.textContent = '$' + total.toFixed(2);
+    document.getElementById('sc-basket-sub').textContent =
+      `${count} productos · ${latestDate}`;
+  } else {
+    basketEl.textContent = '—';
+  }
+
+  // Last updated
+  document.getElementById('last-updated').textContent =
+    `Última actualización: ${fmtDate(latest.date)}`;
+}
+
+// ─── Render chart ─────────────────────────────────────────────────────────────
 function renderIndexChart(indexData) {
   const labels = indexData.map(d => {
     const dt = new Date(d.date + 'T00:00:00');
-    return dt.toLocaleDateString('es-VE', { day:'2-digit', month:'short' });
+    return dt.toLocaleDateString('es-VE', { day: '2-digit', month: 'short' });
   });
   const values = indexData.map(d => parseFloat(d.index_value));
 
@@ -326,15 +596,16 @@ function renderIndexChart(indexData) {
     data: {
       labels,
       datasets: [{
-        label: 'Índice (base 100)',
+        label: 'Índice',
         data: values,
         borderColor: '#1a2e4a',
-        backgroundColor: 'rgba(26,46,74,0.08)',
+        backgroundColor: 'rgba(26,46,74,0.07)',
         borderWidth: 2.5,
         pointBackgroundColor: '#c9a84c',
-        pointRadius: 4,
+        pointBorderColor: '#c9a84c',
+        pointRadius: 5,
         fill: true,
-        tension: 0.3,
+        tension: 0.35,
       }]
     },
     options: {
@@ -350,169 +621,319 @@ function renderIndexChart(indexData) {
       scales: {
         y: {
           beginAtZero: false,
-          ticks: { callback: v => v.toFixed(0) },
-          grid: { color: 'rgba(0,0,0,0.05)' }
+          suggestedMin: 90,
+          suggestedMax: 115,
+          ticks: {
+            callback: v => v.toFixed(0),
+            font: { size: 11 }
+          },
+          grid: { color: 'rgba(0,0,0,0.04)' }
         },
-        x: { grid: { display: false } }
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 11 } }
+        }
       }
     }
   });
 }
 
-// ─── Render hero numbers ──────────────────────────────────────────────────
-function renderHero(indexData) {
-  if (!indexData.length) return;
-  const latest = indexData[indexData.length - 1];
-  const prev   = indexData.length > 1 ? indexData[indexData.length - 2] : null;
+// ─── Render store status cards ────────────────────────────────────────────────
+function renderStoreCards(pricesData) {
+  const stores = ['gama', 'plaza', 'central'];
+  const dates  = [...new Set(pricesData.map(r => r.date))].sort();
+  const latestDate = dates[dates.length - 1];
 
-  document.getElementById('current-index').textContent =
-    parseFloat(latest.index_value).toFixed(2);
+  stores.forEach(store => {
+    const storeRows = pricesData.filter(
+      r => r.date === latestDate && r.store === store && parseFloat(r.price_usd) > 0
+    );
+    const count = storeRows.length;
+    const total = 22;
+    const badgeEl = document.getElementById(`store-badge-${store}`);
+    const countEl = document.getElementById(`store-count-${store}`);
 
-  const change = parseFloat(latest.weekly_change_pct);
-  const changeEl = document.getElementById('weekly-change');
-  if (!isNaN(change) && change !== 0) {
-    const arrow  = change > 0 ? '▲' : '▼';
-    const cls    = change > 0 ? 'change-up' : 'change-down';
-    changeEl.innerHTML = `<span class="${cls}">${arrow} ${Math.abs(change).toFixed(2)}% esta semana</span>`;
-  } else {
-    changeEl.innerHTML = '<span class="change-flat">─ Sin cambio</span>';
-  }
-
-  document.getElementById('products-coverage').textContent =
-    `${latest.products_priced}/${latest.products_total} productos con precio`;
-
-  document.getElementById('last-updated').textContent =
-    `Última actualización: ${latest.date}`;
+    if (count > 0) {
+      badgeEl.innerHTML = `<span class="store-badge-ok">✓ ${count}/${total} productos</span>`;
+      countEl.textContent = `Datos desde ${fmtDate(latestDate)}`;
+    } else {
+      // Verificar si hay datos de fechas anteriores
+      const anyRows = pricesData.filter(r => r.store === store && parseFloat(r.price_usd) > 0);
+      if (anyRows.length > 0) {
+        const lastWithData = [...new Set(anyRows.map(r => r.date))].sort().pop();
+        badgeEl.innerHTML = `<span class="store-badge-pending">⚠ Sin datos esta semana</span>`;
+        countEl.textContent = `Último dato: ${fmtDate(lastWithData)}`;
+      } else {
+        badgeEl.innerHTML = `<span class="store-badge-pending">⏳ Primera recolección en curso</span>`;
+        countEl.textContent = 'Scraper activo — datos disponibles próximo lunes';
+      }
+    }
+  });
 }
 
-// ─── Render history table ─────────────────────────────────────────────────
-function renderHistory(indexData) {
+// ─── Render prices table ──────────────────────────────────────────────────────
+function renderPricesTable(pricesData) {
+  const loadingEl   = document.getElementById('prices-loading');
+  const containerEl = document.getElementById('prices-table-container');
+  const tbodyEl     = document.getElementById('prices-tbody');
+  const noticeEl    = document.getElementById('data-notice');
+  const noticeText  = document.getElementById('data-notice-text');
+  const dateLabelEl = document.getElementById('prices-date-label');
+
+  if (!pricesData.length) {
+    loadingEl.innerHTML = '<div class="py-4 text-center text-muted small">No hay datos de precios disponibles aún.</div>';
+    return;
+  }
+
+  const dates = [...new Set(pricesData.map(r => r.date))].sort();
+  const latestDate = dates[dates.length - 1];
+  const prevDate   = dates.length > 1 ? dates[dates.length - 2] : null;
+
+  dateLabelEl.textContent = `Semana del ${fmtDate(latestDate)}`;
+
+  const latest = pricesData.filter(r => r.date === latestDate);
+  const prev   = prevDate ? pricesData.filter(r => r.date === prevDate) : [];
+
+  const STORES = ['gama', 'plaza', 'central'];
+
+  // Detectar qué tiendas tienen datos esta semana
+  const activeStores = STORES.filter(s =>
+    latest.some(r => r.store === s && parseFloat(r.price_usd) > 0)
+  );
+  const missingStores = STORES.filter(s => !activeStores.includes(s));
+
+  if (missingStores.length > 0) {
+    const nombres = { gama: 'Gama', plaza: 'Plaza', central: 'Central Madeirense' };
+    const faltantes = missingStores.map(s => nombres[s]).join(' y ');
+    noticeText.textContent =
+      `${faltantes} aún no tienen datos para esta semana. ` +
+      `Los scrapers están activos y empezarán a recolectar datos automáticamente cada lunes.`;
+    noticeEl.style.display = 'flex';
+  }
+
+  // Calcular prevAvg por producto
+  const prevAvg = {};
+  if (prev.length) {
+    const byProduct = {};
+    prev.forEach(r => {
+      if (!byProduct[r.product_id]) byProduct[r.product_id] = [];
+      if (parseFloat(r.price_usd) > 0) byProduct[r.product_id].push(parseFloat(r.price_usd));
+    });
+    for (const [pid, prices] of Object.entries(byProduct)) {
+      prevAvg[pid] = prices.reduce((a,b) => a+b, 0) / prices.length;
+    }
+  }
+
+  // Calcular costo canasta total actual
+  const basketTotals = {};   // por tienda: sum of prices available
+  const basketCounts = {};
+  STORES.forEach(s => { basketTotals[s] = 0; basketCounts[s] = 0; });
+
+  // Agrupar rows del latest por producto
+  const latestByProduct = {};
+  latest.forEach(r => {
+    if (!latestByProduct[r.product_id]) latestByProduct[r.product_id] = {};
+    latestByProduct[r.product_id][r.store] = r;
+  });
+
+  // Acumular para total canasta
+  for (const [pid, storeMap] of Object.entries(latestByProduct)) {
+    STORES.forEach(s => {
+      const p = storeMap[s] ? parseFloat(storeMap[s].price_usd) : 0;
+      if (p > 0) { basketTotals[s] += p; basketCounts[s]++; }
+    });
+  }
+
+  // Build rows grouped by category
+  let html = '';
+  let grandTotal = 0;
+  let grandCount = 0;
+
+  CATEGORY_ORDER.forEach(cat => {
+    // Productos de esta categoría, en el orden del basket
+    const catProducts = Object.entries(PRODUCTS)
+      .filter(([pid, p]) => p.category === cat.id)
+      .map(([pid]) => pid);
+
+    if (catProducts.length === 0) return;
+
+    // Check if any product in this category has data this week
+    const catHasData = catProducts.some(pid =>
+      latestByProduct[pid] && STORES.some(s => {
+        const r = latestByProduct[pid][s];
+        return r && parseFloat(r.price_usd) > 0;
+      })
+    );
+    if (!catHasData) return; // Skip empty categories
+
+    // Category header row
+    html += `
+      <tr class="category-row">
+        <td colspan="6">${cat.label}</td>
+      </tr>`;
+
+    catProducts.forEach(pid => {
+      const rows = latestByProduct[pid] || {};
+      const storeMap = {};
+      STORES.forEach(s => {
+        const r = rows[s];
+        storeMap[s] = r ? parseFloat(r.price_usd) : null;
+        if (storeMap[s] !== null && storeMap[s] <= 0) storeMap[s] = null;
+      });
+
+      const validPrices = STORES.map(s => storeMap[s]).filter(p => p !== null);
+      const avg = validPrices.length
+        ? validPrices.reduce((a,b)=>a+b,0) / validPrices.length
+        : null;
+
+      if (avg !== null) { grandTotal += avg; grandCount++; }
+
+      // Price cell renderer
+      const priceCell = (store) => {
+        const p = storeMap[store];
+        if (p === null) {
+          return `<td class="text-end price-none">—</td>`;
+        }
+        const row = rows[store];
+        const flagged = row && row.flagged === 'True';
+        if (flagged) {
+          return `<td class="text-end price-flagged">
+            <span class="flag-dot" title="${row.flag_reason || 'verificar'}"></span>$${p.toFixed(2)}
+          </td>`;
+        }
+        return `<td class="text-end price-available">$${p.toFixed(2)}</td>`;
+      };
+
+      // Change vs previous week
+      let changeCell;
+      if (avg !== null && prevAvg[pid]) {
+        const chg = (avg - prevAvg[pid]) / prevAvg[pid] * 100;
+        if (Math.abs(chg) < 0.1) {
+          changeCell = `<td class="text-end pe-3 chg-flat">─</td>`;
+        } else {
+          const arrow = chg > 0 ? '▲' : '▼';
+          const cls   = chg > 0 ? 'chg-up' : 'chg-down';
+          changeCell = `<td class="text-end pe-3 ${cls}">${arrow} ${Math.abs(chg).toFixed(1)}%</td>`;
+        }
+      } else {
+        changeCell = `<td class="text-end pe-3 chg-flat">—</td>`;
+      }
+
+      const name = PRODUCTS[pid]?.name || pid;
+      html += `
+        <tr>
+          <td class="ps-3" style="font-size:0.85rem">${name}</td>
+          ${priceCell('gama')}
+          ${priceCell('plaza')}
+          ${priceCell('central')}
+          <td class="text-end avg-cell">${avg !== null ? '$'+avg.toFixed(2) : '<span class="chg-flat">—</span>'}</td>
+          ${changeCell}
+        </tr>`;
+    });
+  });
+
+  // Total row
+  if (grandCount > 0) {
+    html += `
+      <tr class="total-row">
+        <td class="ps-3">CANASTA TOTAL (${grandCount} productos)</td>
+        <td class="text-end">
+          ${basketCounts.gama > 0 ? '$'+basketTotals.gama.toFixed(2) : '<span style="color:#bbb">—</span>'}
+        </td>
+        <td class="text-end">
+          ${basketCounts.plaza > 0 ? '$'+basketTotals.plaza.toFixed(2) : '<span style="color:#bbb">—</span>'}
+        </td>
+        <td class="text-end">
+          ${basketCounts.central > 0 ? '$'+basketTotals.central.toFixed(2) : '<span style="color:#bbb">—</span>'}
+        </td>
+        <td class="text-end" style="font-size:1rem">$${grandTotal.toFixed(2)}</td>
+        <td class="text-end pe-3"></td>
+      </tr>`;
+  }
+
+  tbodyEl.innerHTML = html;
+  loadingEl.style.display = 'none';
+  containerEl.style.display = 'block';
+}
+
+// ─── Render history table ─────────────────────────────────────────────────────
+function renderHistory(indexData, pricesData) {
   const tbody = document.getElementById('history-tbody');
+
+  // Calcular costo canasta por fecha
+  const basketByDate = {};
+  pricesData.forEach(r => {
+    const p = parseFloat(r.price_usd);
+    if (p > 0) {
+      if (!basketByDate[r.date]) basketByDate[r.date] = {};
+      if (!basketByDate[r.date][r.product_id]) basketByDate[r.date][r.product_id] = [];
+      basketByDate[r.date][r.product_id].push(p);
+    }
+  });
+
   const rows = [...indexData].reverse();
   tbody.innerHTML = rows.map(row => {
+    // Cambio semanal
     const change = parseFloat(row.weekly_change_pct);
-    let changeFmt = '─';
-    let changeClass = '';
-    if (!isNaN(change) && change !== 0) {
+    let changeFmt;
+    if (isNaN(change) || change === 0) {
+      changeFmt = '<span class="chg-flat">─ Base</span>';
+    } else {
       const arrow = change > 0 ? '▲' : '▼';
-      changeClass = change > 0 ? 'text-danger' : 'text-success';
-      changeFmt = `<span class="${changeClass}">${arrow} ${Math.abs(change).toFixed(2)}%</span>`;
+      const cls   = change > 0 ? 'chg-up' : 'chg-down';
+      changeFmt = `<span class="${cls}">${arrow} ${Math.abs(change).toFixed(2)}%</span>`;
     }
+
+    // Costo canasta ese día
+    let basketCost = '—';
+    if (basketByDate[row.date]) {
+      let total = 0;
+      for (const prices of Object.values(basketByDate[row.date])) {
+        total += prices.reduce((a,b)=>a+b,0) / prices.length;
+      }
+      basketCost = '$' + total.toFixed(2);
+    }
+
     return `
       <tr>
-        <td class="ps-3">${row.date}</td>
-        <td class="text-end fw-bold">${parseFloat(row.index_value).toFixed(2)}</td>
+        <td class="ps-3">${fmtDate(row.date)}</td>
+        <td class="text-end"><span class="index-pill">${parseFloat(row.index_value).toFixed(2)}</span></td>
         <td class="text-end">${changeFmt}</td>
+        <td class="text-end" style="color:#5a6e85">${basketCost}</td>
         <td class="text-end pe-3 text-muted">${row.products_priced}/${row.products_total}</td>
       </tr>`;
   }).join('');
 }
 
-// ─── Render prices table ──────────────────────────────────────────────────
-function renderPricesTable(pricesData, indexData) {
-  if (!pricesData.length) {
-    document.getElementById('prices-loading').innerHTML = '<div class="p-4 text-muted">No hay datos de precios disponibles.</div>';
-    return;
-  }
-
-  // Get latest date
-  const dates = [...new Set(pricesData.map(r => r.date))].sort();
-  const latestDate = dates[dates.length - 1];
-  const prevDate   = dates.length > 1 ? dates[dates.length - 2] : null;
-
-  const latest = pricesData.filter(r => r.date === latestDate);
-  const prev   = prevDate ? pricesData.filter(r => r.date === prevDate) : [];
-
-  // Group by product
-  const products = [...new Set(latest.map(r => r.product_id))].sort();
-  const stores = ['gama', 'plaza', 'central'];
-
-  const prevAvg = {};
-  if (prev.length) {
-    const prevByProduct = {};
-    prev.forEach(r => {
-      if (!prevByProduct[r.product_id]) prevByProduct[r.product_id] = [];
-      if (parseFloat(r.price_usd) > 0) prevByProduct[r.product_id].push(parseFloat(r.price_usd));
-    });
-    for (const [pid, prices] of Object.entries(prevByProduct)) {
-      prevAvg[pid] = prices.reduce((a,b)=>a+b,0)/prices.length;
-    }
-  }
-
-  const tbody = document.getElementById('prices-tbody');
-  tbody.innerHTML = products.map(pid => {
-    const productRows = latest.filter(r => r.product_id === pid);
-    const storePrice = {};
-    stores.forEach(s => {
-      const row = productRows.find(r => r.store === s);
-      const price = row ? parseFloat(row.price_usd) : 0;
-      storePrice[s] = price > 0 ? price : null;
-    });
-
-    const validPrices = Object.values(storePrice).filter(p => p !== null);
-    const avg = validPrices.length
-      ? validPrices.reduce((a,b)=>a+b,0)/validPrices.length
-      : null;
-
-    const priceCell = (p, store) => {
-      if (p === null) return '<td class="text-end text-muted">—</td>';
-      const row = productRows.find(r => r.store === store);
-      const flagged = row && row.flagged === 'True';
-      return `<td class="text-end">${flagged ? '<span class="flag-badge">⚠</span> ' : ''}$${p.toFixed(2)}</td>`;
-    };
-
-    let changeCell = '<td class="text-end pe-3 text-muted">—</td>';
-    if (avg !== null && prevAvg[pid]) {
-      const chg = (avg - prevAvg[pid]) / prevAvg[pid] * 100;
-      const arrow = chg > 0 ? '▲' : (chg < 0 ? '▼' : '─');
-      const cls = chg > 0 ? 'text-danger' : (chg < 0 ? 'text-success' : 'text-muted');
-      changeCell = `<td class="text-end pe-3"><span class="${cls}">${arrow} ${Math.abs(chg).toFixed(1)}%</span></td>`;
-    }
-
-    const name = PRODUCT_NAMES[pid] || pid;
-    return `
-      <tr>
-        <td class="ps-3 small">${name}</td>
-        ${priceCell(storePrice['gama'], 'gama')}
-        ${priceCell(storePrice['plaza'], 'plaza')}
-        ${priceCell(storePrice['central'], 'central')}
-        <td class="text-end fw-bold">${avg !== null ? '$' + avg.toFixed(2) : '—'}</td>
-        ${changeCell}
-      </tr>`;
-  }).join('');
-
-  document.getElementById('prices-loading').style.display = 'none';
-  document.getElementById('prices-table-container').style.display = 'block';
-}
-
-// ─── Main ─────────────────────────────────────────────────────────────────
+// ─── Init ─────────────────────────────────────────────────────────────────────
 async function init() {
   await loadBasket();
 
-  let indexData = [];
+  let indexData  = [];
   let pricesData = [];
 
   try {
     indexData = await loadIndexData();
   } catch(e) {
-    console.warn('index.csv no disponible aún:', e);
-    document.getElementById('current-index').textContent = 'N/D';
-    document.getElementById('last-updated').textContent = 'Sin datos — primera recolección pendiente';
+    console.warn('index.csv no disponible:', e);
+    document.getElementById('sc-index').textContent = 'N/D';
+    document.getElementById('last-updated').textContent = 'Sin datos aún — primera recolección en curso';
   }
 
   try {
     pricesData = await loadPricesData();
   } catch(e) {
-    console.warn('prices_raw.csv no disponible aún:', e);
+    console.warn('prices_raw.csv no disponible:', e);
   }
 
   if (indexData.length) {
-    renderHero(indexData);
+    renderStatCards(indexData, pricesData);
     renderIndexChart(indexData);
-    renderHistory(indexData);
+    renderHistory(indexData, pricesData);
   }
 
-  renderPricesTable(pricesData, indexData);
+  renderStoreCards(pricesData);
+  renderPricesTable(pricesData);
 }
 
 init();
