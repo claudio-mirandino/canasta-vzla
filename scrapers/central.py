@@ -123,7 +123,7 @@ class CentralScraper(BaseScraper):
         result["url_found"] = search_url
 
         try:
-            resp = requests.get(search_url, headers=HEADERS, timeout=20)
+            resp = requests.get(search_url, headers=HEADERS, timeout=45)
             if resp.status_code == 404:
                 result["flagged"] = True
                 result["flag_reason"] = f"URL 404: {search_url}"
@@ -160,15 +160,22 @@ class CentralScraper(BaseScraper):
     def _find_product_in_html(self, html: str, search_term: str) -> tuple[str, str]:
         """
         Busca el producto más relevante en el HTML de la categoría.
-        Usa BeautifulSoup para parsing robusto (evita fallos con </li> anidados).
+        Usa BeautifulSoup para parsing robusto.
         Retorna (precio_texto, nombre_encontrado).
+
+        El sitio usa estructura WooCommerce:
+          <article class="product ...">
+            <h2 class="woocommerce-loop-product__title">Nombre</h2>
+            <span class="price"><span class="woocommerce-Price-amount">$ 1,05</span></span>
         """
         soup = BeautifulSoup(html, "html.parser")
 
-        # Buscar todos los <li class="product-col ...">
-        product_items = soup.find_all("li", class_=lambda c: c and "product-col" in c)
+        # Selector primario: article.product (WooCommerce nuevo)
+        product_items = soup.find_all("article", class_=lambda c: c and "product" in c)
         if not product_items:
-            # Fallback: cualquier li con "product" en la clase
+            # Fallback: li con "product-col" (estructura anterior)
+            product_items = soup.find_all("li", class_=lambda c: c and "product-col" in c)
+        if not product_items:
             product_items = soup.find_all("li", class_=lambda c: c and "product" in c)
 
         if not product_items:
@@ -180,8 +187,11 @@ class CentralScraper(BaseScraper):
         best_score = 0
 
         for item in product_items:
-            # Nombre: primer <h3> o <h2> dentro del bloque
-            name_tag = item.find(["h3", "h2"])
+            # Nombre: .woocommerce-loop-product__title, h2, o h3
+            name_tag = (
+                item.find(class_=lambda c: c and "woocommerce-loop-product__title" in c)
+                or item.find(["h2", "h3"])
+            )
             if not name_tag:
                 continue
             raw_name = name_tag.get_text(strip=True)
@@ -194,20 +204,19 @@ class CentralScraper(BaseScraper):
             if score == 0:
                 continue
 
-            # Precio: elemento con clase "price" o que contenga "$"
-            price_tag = item.find(class_=lambda c: c and "price" in c)
-            if not price_tag:
+            # Precio: .woocommerce-Price-amount dentro de .price, o cualquier .price
+            price_container = item.find(class_=lambda c: c and "price" in c)
+            if not price_container:
                 continue
 
-            price_raw = price_tag.get_text(strip=True)
-            prices_found = re.findall(r'\$?\d+[.,]\d{2}', price_raw)
+            price_raw = price_container.get_text(strip=True)
+            # Soporta $1,05 / # 1,05 / 1.05 USD / etc.
+            prices_found = re.findall(r'[\$#]?\s*(\d+[.,]\d{2})', price_raw)
             if not prices_found:
                 continue
 
             # Tomar el precio más bajo (oferta sobre regular)
-            price_text = min(prices_found, key=lambda p: float(
-                p.replace('$', '').replace(',', '.')
-            ))
+            price_text = min(prices_found, key=lambda p: float(p.replace(',', '.')))
 
             if score > best_score:
                 best_score = score
@@ -217,9 +226,9 @@ class CentralScraper(BaseScraper):
             return best_match
 
         # Fallback: cualquier precio en la página
-        any_price = re.search(r'\$(\d+\.\d{2})', html)
+        any_price = re.search(r'[\$#]\s*(\d+[.,]\d{2})', html)
         if any_price and len(search_words) >= 2:
-            return f"${any_price.group(1)}", f"(match aproximado para '{search_term}')"
+            return any_price.group(1), f"(match aproximado para '{search_term}')"
 
         return "", ""
 
