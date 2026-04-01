@@ -1,20 +1,19 @@
 """
 Scraper para Central Madeirense - tucentralonline.com
 
-BUENA NOTICIA: Este sitio es server-rendered. NO necesita Playwright.
-Usamos requests + BeautifulSoup + búsqueda interna del sitio (?s=término).
+El sitio bloquea requests directas de Python (timeout/403), pero responde
+correctamente a un browser real. Usamos Playwright + BeautifulSoup.
 
-Estrategia: URL_de_categoría + ?s=término_de_búsqueda
-Esto usa el propio buscador del sitio y elimina falsos positivos.
+Estrategia: navegar a URL_categoría?s=término_de_búsqueda con Playwright,
+extraer el HTML renderizado y parsearlo con BeautifulSoup.
 
 URL base: https://tucentralonline.com/Av-Presidente-Medina-02/comprar/[categoria]/
-Selectores: li.product-col, h3 (nombre), .price (precio)
+Selectores: article.product (WooCommerce), h2.woocommerce-loop-product__title, .price
 """
 
 import re
 import time
 import logging
-import requests
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from scrapers.base import BaseScraper
@@ -24,7 +23,6 @@ logger = logging.getLogger("central")
 STORE_BASE = "https://tucentralonline.com/Av-Presidente-Medina-02/comprar"
 
 # Mapeo de categorías del basket → URL base de Central
-# Se le agregará ?s=término para búsqueda precisa
 CATEGORY_URLS = {
     "cereales":    f"{STORE_BASE}/viveres/harinas/",
     "granos":      f"{STORE_BASE}/viveres/arroz-y-granos/",
@@ -38,7 +36,7 @@ CATEGORY_URLS = {
 }
 
 # Para productos específicos que necesitan una URL de categoría diferente
-# El buscador ?s= se agrega dinámicamente en scrape_product
+# None = producto no disponible en Central Madeirense
 PRODUCT_OVERRIDES = {
     "sardinas":    None,  # No disponible en Central Madeirense
     "platano":     None,  # No disponible en Central Madeirense
@@ -64,16 +62,6 @@ PRODUCT_OVERRIDES = {
     "harina_maiz": f"{STORE_BASE}/viveres/harinas/",
 }
 
-HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    ),
-    "Accept-Language": "es-VE,es;q=0.9",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-}
-
 
 class CentralScraper(BaseScraper):
 
@@ -82,8 +70,8 @@ class CentralScraper(BaseScraper):
 
     def scrape_product(self, product: dict) -> dict:
         """
-        Busca un producto en Central Madeirense usando requests (no Playwright).
-        Navega a la página de categoría y busca el producto por nombre.
+        Busca un producto en Central Madeirense usando Playwright (no requests).
+        Navega a la página de categoría con ?s=término y extrae el resultado.
         """
         search_term = product["search_terms"]["central"]
         product_id = product["id"]
@@ -100,15 +88,14 @@ class CentralScraper(BaseScraper):
             "flag_reason": "",
         }
 
-        # Determinar URL base a usar
-        # None = producto explícitamente no disponible en esta tienda
+        # Determinar URL base
         if product_id in PRODUCT_OVERRIDES:
             base_url = PRODUCT_OVERRIDES[product_id]
         else:
             base_url = CATEGORY_URLS.get(product.get("category", ""), "")
 
         if base_url is None:
-            result["flag_reason"] = f"Producto no disponible en Central Madeirense"
+            result["flag_reason"] = "Producto no disponible en Central Madeirense"
             logger.info(f"[central] {product_id}: no disponible en esta tienda")
             return result
 
@@ -117,26 +104,27 @@ class CentralScraper(BaseScraper):
             result["flag_reason"] = "No hay URL de categoría configurada"
             return result
 
-        # Usar el buscador interno del sitio: ?s=término
-        # Esto filtra resultados desde el servidor, mucho más preciso que fuzzy matching
+        # Buscador interno del sitio: ?s=término
         search_url = f"{base_url}?s={quote_plus(search_term)}"
         result["url_found"] = search_url
 
+        page = self.new_page()
         try:
-            resp = requests.get(search_url, headers=HEADERS, timeout=45)
-            if resp.status_code == 404:
-                result["flagged"] = True
-                result["flag_reason"] = f"URL 404: {search_url}"
-                return result
+            # Usar Playwright para bypassear el bloqueo de Python requests
+            page.goto(search_url, wait_until="domcontentloaded", timeout=45000)
 
-            if resp.status_code != 200:
-                result["flagged"] = True
-                result["flag_reason"] = f"HTTP {resp.status_code}: {search_url}"
-                logger.warning(f"[central] HTTP {resp.status_code} en {search_url}")
-                return result
+            # Esperar a que la página termine de cargar (WooCommerce es server-rendered)
+            try:
+                page.wait_for_selector(
+                    "article.product, li.product, .woocommerce-loop-product__title",
+                    timeout=10000
+                )
+            except Exception:
+                pass  # Continuar aunque no aparezca — el HTML podría tener resultados
 
-            # Buscar producto en los resultados
-            price_text, found_name = self._find_product_in_html(resp.text, search_term)
+            html = page.content()
+
+            price_text, found_name = self._find_product_in_html(html, search_term)
 
             if price_text:
                 price = self.parse_price(price_text)
@@ -147,14 +135,21 @@ class CentralScraper(BaseScraper):
                     logger.info(f"[central] {product_id}: {found_name} → ${price:.2f}")
                     return result
 
-        except requests.RequestException as e:
-            logger.error(f"[central] Error HTTP en {search_url}: {e}")
             result["flagged"] = True
-            result["flag_reason"] = f"Error de red: {e}"
-            return result
+            result["flag_reason"] = f"Producto '{search_term}' no encontrado en {search_url}"
+            self.save_screenshot(page, f"not_found_{product_id}")
 
-        result["flagged"] = True
-        result["flag_reason"] = f"Producto '{search_term}' no encontrado en {search_url}"
+        except Exception as e:
+            logger.error(f"[central] Error en {search_url}: {e}")
+            result["flagged"] = True
+            result["flag_reason"] = f"Error: {e}"
+            try:
+                self.save_screenshot(page, f"error_{product_id}")
+            except Exception:
+                pass
+        finally:
+            page.close()
+
         return result
 
     def _find_product_in_html(self, html: str, search_term: str) -> tuple[str, str]:
@@ -163,23 +158,22 @@ class CentralScraper(BaseScraper):
         Usa BeautifulSoup para parsing robusto.
         Retorna (precio_texto, nombre_encontrado).
 
-        El sitio usa estructura WooCommerce:
+        El sitio usa WooCommerce:
           <article class="product ...">
             <h2 class="woocommerce-loop-product__title">Nombre</h2>
             <span class="price"><span class="woocommerce-Price-amount">$ 1,05</span></span>
         """
         soup = BeautifulSoup(html, "html.parser")
 
-        # Selector primario: article.product (WooCommerce nuevo)
+        # Selector primario: article.product (WooCommerce moderno)
         product_items = soup.find_all("article", class_=lambda c: c and "product" in c)
         if not product_items:
-            # Fallback: li con "product-col" (estructura anterior)
             product_items = soup.find_all("li", class_=lambda c: c and "product-col" in c)
         if not product_items:
             product_items = soup.find_all("li", class_=lambda c: c and "product" in c)
 
         if not product_items:
-            logger.debug(f"[central] No se encontraron bloques de productos en la pagina")
+            logger.debug(f"[central] No se encontraron bloques de productos en la página")
             return "", ""
 
         search_words = search_term.lower().split()
@@ -204,7 +198,7 @@ class CentralScraper(BaseScraper):
             if score == 0:
                 continue
 
-            # Precio: .woocommerce-Price-amount dentro de .price, o cualquier .price
+            # Precio: .woocommerce-Price-amount o .price
             price_container = item.find(class_=lambda c: c and "price" in c)
             if not price_container:
                 continue
@@ -231,41 +225,3 @@ class CentralScraper(BaseScraper):
             return any_price.group(1), f"(match aproximado para '{search_term}')"
 
         return "", ""
-
-    # Override: Central no usa Playwright, así que sobreescribimos scrape_all
-    def scrape_all(self, products: list, previous_prices: dict = None) -> list:
-        """Versión sin Playwright para Central."""
-        if previous_prices is None:
-            previous_prices = {}
-
-        results = []
-        for product in products:
-            logger.info(f"Scraping: {product['name']} (central)")
-            try:
-                result = self.scrape_product(product)
-                if result.get("price_usd") and result["price_usd"] > 0:
-                    flagged, reason = self.check_anomaly(
-                        product["id"], result["price_usd"], previous_prices
-                    )
-                    if flagged and not result.get("flagged"):
-                        result["flagged"] = True
-                        result["flag_reason"] = reason
-                results.append(result)
-            except Exception as e:
-                logger.error(f"Error en central/{product['id']}: {e}")
-                results.append({
-                    "product_id": product["id"],
-                    "store": self.STORE_NAME,
-                    "price_usd": None,
-                    "price_original": "",
-                    "currency_original": "USD",
-                    "product_name_found": "",
-                    "url_found": "",
-                    "flagged": True,
-                    "flag_reason": str(e),
-                })
-            time.sleep(0.8)
-
-        found = sum(1 for r in results if r.get("price_usd") and r["price_usd"] > 0)
-        logger.info(f"central: {found}/{len(products)} productos encontrados")
-        return results

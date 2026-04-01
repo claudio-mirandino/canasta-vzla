@@ -1,2 +1,4 @@
 date,index_value,weekly_change_pct,products_priced,products_total,base_date,notes
+2026-03-22,101.41,0.0,9,22,2026-04-01,Productos sin datos: pasta (sin precio actual); sal (sin precio actual); carne_molida (sin precio actual); pollo (sin precio actual); huevos (sin precio actual); sardinas (sin precio base); atun (sin precio actual); leche_polvo (sin precio actual); queso_blanco (sin precio actual); tomate (sin precio actual); cebolla (sin precio actual); papa (sin precio actual); platano (sin precio base)
+2026-03-30,96.05,-5.29,19,22,2026-04-01,Productos sin datos: sardinas (sin precio base); tomate (sin precio actual); platano (sin precio base)
 2026-04-01,100.0,0.0,20,22,2026-04-01,Fecha base — índice = 100 por definición
