@@ -173,3 +173,25 @@ date,product_id,store,price_usd,price_original,currency_original,product_name_fo
 2026-04-13,sal,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+arrecife+refinada+1kg,True,Producto 'sal arrecife refinada 1kg' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+arrecife+refinada+1kg
 2026-04-13,sardinas,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
 2026-04-13,tomate,central,5.79,"5,79",USD,Tomate Cherry Manzano 300 Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate,True,"Cambio de 43.7% vs semana anterior (anterior: $4.03, nuevo: $5.79)"
+2026-04-20,aceite,central,3.79,"3,79",USD,Aceite Coposa Vegetal 850Mlts,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=aceite+coposa+vegetal+850,False,
+2026-04-20,arroz,central,1.57,"1,57",USD,Arroz Monica Blanco Tipo I 900Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=arroz+monica+blanco+900,False,
+2026-04-20,atun,central,3.85,"3,85",USD,Atun Pafia Lomo en Agua Sabor a Limon 140Grs,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/?s=atun+pafia+agua+140,False,
+2026-04-20,azucar,central,1.75,"1,75",USD,Azucar Kaly Blanca Plastico 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=azucar+kaly+blanca+1kg,False,
+2026-04-20,cafe,central,3.05,"3,05",USD,Cafe Flor De Arauca Gourmet Molido Paq. 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=cafe+flor+arauca+molido+200,False,
+2026-04-20,caraotas,central,1.25,"1,25",USD,Caraotas Mary Negras 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=caraotas+mary+negras+400,False,
+2026-04-20,carne_molida,central,12.5,"12,50",USD,Carne Molida Premium KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=carne+molida+premium+kg,False,
+2026-04-20,cebolla,central,1.65,"1,65",USD,Cebolla Blanca Nacional 1000Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=cebolla+blanca+1000,False,
+2026-04-20,harina_maiz,central,1.05,"1,05",USD,Harina De Maiz Kaly Amarilla 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/?s=harina+maiz+kaly+1kg,False,
+2026-04-20,huevos,central,7.69,"7,69",USD,Huevos Rojos Grande Est. 30 Unidades,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/?s=huevos+rojos+30+unidades,False,
+2026-04-20,leche_polvo,central,9.5,"9,50",USD,Leche La Campina En Polvo Descremada 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/?s=leche+campina+polvo+400,False,
+2026-04-20,lentejas,central,1.69,"1,69",USD,Lentejas Mary 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=lentejas+mary+400,False,
+2026-04-20,mantequilla,central,9.05,"9,05",USD,Mantequilla La Paisana Sin Sal Barra 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=mantequilla+paisana+200,False,
+2026-04-20,margarina,central,2.49,"2,49",USD,Margarina Juana 454Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=margarina+juana+454,False,
+2026-04-20,papa,central,2.2,"2,20",USD,Papa Criolla Lavada KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=papa+criolla+kg,False,
+2026-04-20,pasta,central,1.36,"1,36",USD,Pasta Galo Spaghetti 500Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/?s=spaghetti+galo+500,False,
+2026-04-20,platano,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-04-20,pollo,central,8.39,"8,39",USD,Delicia De Pechuga de Pollo Kg KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=pechuga+pollo+kg,False,
+2026-04-20,queso_blanco,central,14.16,"14,16",USD,Queso Blanco Pasteurizado El Zedeño KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/charcuteria/quesos/?s=queso+blanco+zedeno+kg,False,
+2026-04-20,sal,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+arrecife+refinada+1kg,True,Producto 'sal arrecife refinada 1kg' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+arrecife+refinada+1kg
+2026-04-20,sardinas,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-04-20,tomate,central,4.03,"4,03",USD,Tomate Cherry Compuesto del Campo 310Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate,True,"Cambio de 30.4% vs semana anterior (anterior: $5.79, nuevo: $4.03)"
