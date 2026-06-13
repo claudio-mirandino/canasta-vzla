@@ -1,0 +1,41 @@
+{
+  "base_date": "2026-06-12",
+  "last_date": "2026-06-12",
+  "weeks": 1,
+  "index_usd": 100.0,
+  "index_bs": 100.0,
+  "basket_cost_usd": 83.02,
+  "basket_cost_bs": 48374.61,
+  "coverage": "22/22",
+  "stores": [
+    "central",
+    "gama",
+    "plansuarez"
+  ],
+  "metrics": {
+    "weekly_pct": 0.0,
+    "monthly_pct": null,
+    "accumulated_pct": 0.0,
+    "annualized_pct": null,
+    "interannual_pct": null,
+    "accumulated_bs_pct": 0.0
+  },
+  "rates": {
+    "oficial": 582.6862,
+    "paralelo": 793.1995,
+    "brecha_pct": 36.13,
+    "date": "2026-06-12"
+  },
+  "dispersion": {
+    "by_store": {
+      "central": 91.03,
+      "gama": 81.59,
+      "plansuarez": 67.44
+    },
+    "common_products": 20,
+    "min": 67.44,
+    "median": 81.59,
+    "max": 91.03,
+    "cv_pct": 12.1
+  }
+}

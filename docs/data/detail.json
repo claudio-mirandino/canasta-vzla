@@ -1,6 +1,6 @@
 {
   "last_date": "2026-06-12",
-  "prev_date": "2026-06-08",
+  "prev_date": null,
   "stores": [
     "central",
     "gama",
@@ -17,7 +17,7 @@
         "gama": 1.2,
         "plansuarez": 1.21
       },
-      "weekly_change_pct": 14.29
+      "weekly_change_pct": null
     },
     {
       "id": "arroz",
@@ -29,7 +29,7 @@
         "gama": 2.9,
         "plansuarez": 1.73
       },
-      "weekly_change_pct": 10.19
+      "weekly_change_pct": null
     },
     {
       "id": "pasta",
@@ -41,7 +41,7 @@
         "gama": 3.56,
         "plansuarez": 2.85
       },
-      "weekly_change_pct": 96.55
+      "weekly_change_pct": null
     },
     {
       "id": "caraotas",
@@ -53,7 +53,7 @@
         "gama": 1.28,
         "plansuarez": 1.24
       },
-      "weekly_change_pct": -0.78
+      "weekly_change_pct": null
     },
     {
       "id": "lentejas",
@@ -65,7 +65,7 @@
         "gama": 1.76,
         "plansuarez": 1.71
       },
-      "weekly_change_pct": -4.86
+      "weekly_change_pct": null
     },
     {
       "id": "aceite",
@@ -77,7 +77,7 @@
         "gama": 4.45,
         "plansuarez": 4.49
       },
-      "weekly_change_pct": 6.21
+      "weekly_change_pct": null
     },
     {
       "id": "margarina",
@@ -89,7 +89,7 @@
         "gama": 3.22,
         "plansuarez": 2.22
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": null
     },
     {
       "id": "azucar",
@@ -101,7 +101,7 @@
         "gama": 1.95,
         "plansuarez": 1.83
       },
-      "weekly_change_pct": -2.01
+      "weekly_change_pct": null
     },
     {
       "id": "sal",
@@ -125,7 +125,7 @@
         "gama": 2.7,
         "plansuarez": 3.0
       },
-      "weekly_change_pct": -1.64
+      "weekly_change_pct": null
     },
     {
       "id": "carne_molida",
@@ -137,7 +137,7 @@
         "gama": 10.99,
         "plansuarez": 11.25
       },
-      "weekly_change_pct": -13.39
+      "weekly_change_pct": null
     },
     {
       "id": "pollo",
@@ -149,7 +149,7 @@
         "gama": 3.42,
         "plansuarez": 3.43
       },
-      "weekly_change_pct": -61.8
+      "weekly_change_pct": null
     },
     {
       "id": "huevos",
@@ -161,7 +161,7 @@
         "gama": 7.69,
         "plansuarez": 6.99
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": null
     },
     {
       "id": "sardinas",
@@ -184,7 +184,7 @@
         "gama": 2.35,
         "plansuarez": 3.25
       },
-      "weekly_change_pct": -40.45
+      "weekly_change_pct": null
     },
     {
       "id": "leche_polvo",
@@ -196,7 +196,7 @@
         "gama": 6.85,
         "plansuarez": 6.25
       },
-      "weekly_change_pct": -13.18
+      "weekly_change_pct": null
     },
     {
       "id": "queso_blanco",
@@ -208,7 +208,7 @@
         "gama": 6.24,
         "plansuarez": 6.78
       },
-      "weekly_change_pct": -52.12
+      "weekly_change_pct": null
     },
     {
       "id": "mantequilla",
@@ -220,7 +220,7 @@
         "gama": 9.06,
         "plansuarez": 5.2
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": null
     },
     {
       "id": "tomate",
@@ -232,7 +232,7 @@
         "gama": 6.38,
         "plansuarez": 1.33
       },
-      "weekly_change_pct": 27.25
+      "weekly_change_pct": null
     },
     {
       "id": "cebolla",
@@ -244,7 +244,7 @@
         "gama": 1.39,
         "plansuarez": 0.6
       },
-      "weekly_change_pct": -26.46
+      "weekly_change_pct": null
     },
     {
       "id": "papa",
@@ -256,7 +256,7 @@
         "gama": 2.95,
         "plansuarez": 1.22
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": null
     },
     {
       "id": "platano",

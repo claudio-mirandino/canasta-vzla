@@ -67,7 +67,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Canasta Bot"
-          git add docs/data/prices_raw.csv docs/data/index.csv docs/data/detail.json
+          git add docs/data
           # Solo hace commit si hay cambios
           git diff --staged --quiet || git commit -m "datos: actualización semanal $(date +%Y-%m-%d)"
           git push

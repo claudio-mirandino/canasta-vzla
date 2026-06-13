@@ -238,6 +238,13 @@ def main():
         save_prices(all_results, args.scrape_date)
         print_scraping_summary(all_results, args.scrape_date)
 
+        # Guardar tasas de cambio del día (oficial/paralelo/brecha)
+        try:
+            from scrapers import fx
+            fx.save_rates(args.scrape_date)
+        except Exception as e:
+            logger.warning(f"No se pudieron guardar las tasas de cambio: {e}")
+
     # ── Cálculo del índice ────────────────────────────────────────────
     logger.info("Calculando índice...")
     result = calculate_index(args.date)
