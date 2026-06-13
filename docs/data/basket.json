@@ -5,164 +5,224 @@
     "base_date": "2026-04-01",
     "currency": "USD",
     "description": "22 productos alimentarios básicos monitoreados semanalmente en 3 supermercados de Caracas",
-    "methodology": "Índice de Laspeyres con ponderación por importancia nutricional y gasto estimado",
-    "last_updated": "2026-04-01",
-    "nota_metodologica": "Cada producto tiene marca y presentación fija para garantizar comparabilidad semana a semana"
+    "stores": {
+      "gama": "Excelsior Gama Plus Santa Eduvigis (Sucre, Caracas) — gamaenlinea.com",
+      "central": "Central Madeirense Av. Presidente Medina (Caracas) — tucentralonline.com",
+      "plansuarez": "Plan Suárez (Trinidad/Caurimare/Urbina, Caracas) — plansuarez.com (precios en Bs, convertidos a USD a tasa BCV del día)"
+    },
+    "methodology": "Índice encadenado: relativo semanal por serie tienda-producto, media geométrica entre tiendas (Jevons), agregación Laspeyres con pesos por importancia en el gasto",
+    "last_updated": "2026-06-12",
+    "nota_metodologica": "Cada producto tiene reglas de coincidencia explícitas (palabras obligatorias, palabras prohibidas y tamaño objetivo) para garantizar que se siga el mismo artículo semana a semana en cada tienda"
   },
   "products": [
     {
       "id": "harina_maiz",
-      "name": "Harina de Maíz Precocida Kaly (1kg)",
+      "name": "Harina de Maíz Precocida (1kg)",
       "category": "cereales",
       "weight": 3,
       "unit": "1kg",
       "search_terms": {
         "gama": "harina maiz precocida 1kg",
-        "plaza": "harina pan 1kg",
+        "plansuarez": "harina de maiz",
         "central": "harina maiz kaly 1kg"
       },
-      "producto_referencia": "Harina de Maíz Kaly 1Kg (amarilla o blanca)",
-      "notes": "Marca Kaly 1kg. Si no hay, cualquier harina de maíz precocida 1kg."
+      "match": {
+        "must_include": [["harina"], ["maiz"]],
+        "must_exclude": ["trigo", "avena", "arroz", "arepa"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Harina de maíz precocida 1Kg (Kaly en Central, Juana en Gama/Plan Suárez)",
+      "notes": "Marca preferida por tienda. Si no hay, cualquier harina de maíz precocida 1kg."
     },
     {
       "id": "arroz",
-      "name": "Arroz Blanco Monica (900g)",
+      "name": "Arroz Blanco (900g-1kg)",
       "category": "cereales",
       "weight": 3,
       "unit": "900g",
       "search_terms": {
         "gama": "arroz blanco 1kg",
-        "plaza": "arroz blanco",
+        "plansuarez": "arroz blanco",
         "central": "arroz monica blanco 900"
       },
-      "producto_referencia": "Arroz Monica Blanco Tipo I 900Gr",
-      "notes": "Arroz blanco regular tipo I. Marca Monica preferida."
+      "match": {
+        "must_include": [["arroz"]],
+        "must_exclude": ["harina", "preparado", "leche", "integral", "risotto", "salvaje"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Arroz blanco tipo I, 900g-1kg",
+      "notes": "Arroz blanco regular tipo I."
     },
     {
       "id": "pasta",
-      "name": "Pasta Spaghetti Galo (500g)",
+      "name": "Pasta Spaghetti (500g-1kg)",
       "category": "cereales",
       "weight": 2,
       "unit": "500g",
       "search_terms": {
         "gama": "pasta spaghetti 500g",
-        "plaza": "spaghetti 500",
+        "plansuarez": "spaghetti",
         "central": "spaghetti galo 500"
       },
-      "producto_referencia": "Pasta Galo Spaghetti 500Gr",
-      "notes": "Spaghetti 500g. Marca Galo preferida. NO sin gluten ni presentaciones especiales."
+      "match": {
+        "must_include": [["spaghetti", "espagueti", "spaguetti"]],
+        "must_exclude": ["salsa", "tomate", "integral", "queso", "gluten", "free", "garofalo"],
+        "size_value": 500, "size_unit": "g"
+      },
+      "producto_referencia": "Spaghetti 500g (Galo en Central)",
+      "notes": "Spaghetti regular. NO sin gluten ni presentaciones especiales."
     },
     {
       "id": "caraotas",
-      "name": "Caraotas Negras Mary (400g)",
+      "name": "Caraotas Negras (400-500g)",
       "category": "granos",
       "weight": 2,
       "unit": "400g",
       "search_terms": {
         "gama": "caraotas negras 400g",
-        "plaza": "caraotas negras",
+        "plansuarez": "caraotas negras",
         "central": "caraotas mary negras 400"
       },
-      "producto_referencia": "Caraotas Mary Negras 400Gr",
-      "notes": "Caraotas negras secas 400g. Marca Mary preferida."
+      "match": {
+        "must_include": [["caraotas", "caraota"], ["negras", "negra"]],
+        "must_exclude": ["blancas", "rojas", "enlatadas", "lata"],
+        "size_value": 400, "size_unit": "g"
+      },
+      "producto_referencia": "Caraotas negras secas 400Gr (Mary en Central)",
+      "notes": "Caraotas negras secas."
     },
     {
       "id": "lentejas",
-      "name": "Lentejas Mary (400g)",
+      "name": "Lentejas (400-500g)",
       "category": "granos",
       "weight": 1,
       "unit": "400g",
       "search_terms": {
         "gama": "lentejas 400g",
-        "plaza": "lentejas",
+        "plansuarez": "lentejas",
         "central": "lentejas mary 400"
       },
-      "producto_referencia": "Lentejas Mary 400Gr",
-      "notes": "Lentejas secas 400g. Marca Mary preferida."
+      "match": {
+        "must_include": [["lentejas", "lenteja"]],
+        "must_exclude": ["sopa", "enlatadas"],
+        "size_value": 400, "size_unit": "g"
+      },
+      "producto_referencia": "Lentejas secas 400Gr (Mary en Central)",
+      "notes": "Lentejas secas."
     },
     {
       "id": "aceite",
-      "name": "Aceite Coposa Vegetal (850ml)",
+      "name": "Aceite Vegetal (850ml-1L)",
       "category": "grasas",
       "weight": 3,
       "unit": "850ml",
       "search_terms": {
         "gama": "aceite vegetal 1 litro",
-        "plaza": "aceite vegetal",
+        "plansuarez": "aceite vegetal",
         "central": "aceite coposa vegetal 850"
       },
-      "producto_referencia": "Aceite Coposa Vegetal 850Mlts",
-      "notes": "Aceite vegetal. Marca Coposa 850ml en Central."
+      "match": {
+        "must_include": [["aceite"]],
+        "must_exclude": ["oliva", "coco", "ajonjoli", "aguacate", "motor", "corporal", "spray"],
+        "size_value": 1000, "size_unit": "ml"
+      },
+      "producto_referencia": "Aceite vegetal/girasol/soya 850ml-1L (Coposa 850ml en Central)",
+      "notes": "Aceite comestible regular."
     },
     {
       "id": "margarina",
-      "name": "Margarina Juana (454g)",
+      "name": "Margarina (454-500g)",
       "category": "grasas",
       "weight": 2,
       "unit": "454g",
       "search_terms": {
         "gama": "margarina 500g",
-        "plaza": "margarina",
+        "plansuarez": "margarina",
         "central": "margarina juana 454"
       },
-      "producto_referencia": "Margarina Juana 454Gr",
-      "notes": "Margarina regular 454g. Marca Juana en Central."
+      "match": {
+        "must_include": [["margarina"]],
+        "must_exclude": ["light", "liquida"],
+        "size_value": 454, "size_unit": "g"
+      },
+      "producto_referencia": "Margarina regular 454-500g (Juana en Central)",
+      "notes": "Margarina de mesa regular."
     },
     {
       "id": "azucar",
-      "name": "Azúcar Kaly Blanca (1kg)",
+      "name": "Azúcar Blanca (1kg)",
       "category": "endulzantes",
       "weight": 2,
       "unit": "1kg",
       "search_terms": {
         "gama": "azucar blanca 1kg",
-        "plaza": "azucar blanca",
+        "plansuarez": "azucar",
         "central": "azucar kaly blanca 1kg"
       },
-      "producto_referencia": "Azucar Kaly Blanca Plastico 1Kg",
-      "notes": "Azúcar blanca refinada 1kg. Marca Kaly en Central."
+      "match": {
+        "must_include": [["azucar"]],
+        "must_exclude": ["morena", "integral", "glass", "impalpable", "light", "edulcorante"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Azúcar blanca refinada 1Kg (Kaly en Central)",
+      "notes": "Azúcar blanca refinada."
     },
     {
       "id": "sal",
-      "name": "Sal Arrecife Refinada (1kg)",
+      "name": "Sal Refinada (1kg)",
       "category": "condimentos",
       "weight": 1,
       "unit": "1kg",
       "search_terms": {
         "gama": "sal refinada 1kg",
-        "plaza": "sal refinada",
-        "central": "sal arrecife refinada 1kg"
+        "plansuarez": "sal refinada",
+        "central": "sal refinada"
       },
-      "producto_referencia": "Sal Arrecife Refinada fina Paquete 1 Kg",
-      "notes": "Sal refinada fina 1kg. Marca Arrecife en Central. NO adobos ni condimentos compuestos."
+      "match": {
+        "must_include": [["sal"]],
+        "must_exclude": ["ajo", "adobo", "cebolla", "apio", "pimienta", "parrillera", "frutas", "baño"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Sal refinada fina 1Kg (Arrecife en Central)",
+      "notes": "Sal de mesa refinada. NO adobos ni condimentos compuestos."
     },
     {
       "id": "cafe",
-      "name": "Café Flor de Arauca Molido (200g)",
+      "name": "Café Molido (200-250g)",
       "category": "bebidas",
       "weight": 2,
       "unit": "200g",
       "search_terms": {
         "gama": "cafe molido 200g",
-        "plaza": "cafe molido",
+        "plansuarez": "cafe molido",
         "central": "cafe flor arauca molido 200"
       },
-      "producto_referencia": "Cafe Flor De Arauca Gourmet Molido Paq. 200Gr",
-      "notes": "Café molido tostado 200g. Marca Flor de Arauca en Central."
+      "match": {
+        "must_include": [["cafe"]],
+        "must_exclude": ["descafeinado", "capsulas", "instantaneo", "soluble", "grano", "entero", "saborizado"],
+        "size_value": 200, "size_unit": "g"
+      },
+      "producto_referencia": "Café molido tostado 200-250g (Flor de Arauca en Central)",
+      "notes": "Café molido regular."
     },
     {
       "id": "carne_molida",
-      "name": "Carne Molida de Res Premium (1kg)",
+      "name": "Carne Molida de Res (1kg)",
       "category": "proteinas",
       "weight": 5,
       "unit": "1kg",
       "search_terms": {
         "gama": "carne molida res 1kg",
-        "plaza": "carne molida",
+        "plansuarez": "carne molida",
         "central": "carne molida premium kg"
       },
-      "producto_referencia": "Carne Molida Premium KG",
-      "notes": "Carne molida de res por kg. NO presentaciones de 500g. Proteína clave."
+      "match": {
+        "must_include": [["carne"], ["molida"]],
+        "must_exclude": ["pavo", "pollo", "cerdo", "soya", "vegetal", "hamburguesa"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Carne molida de res por kg",
+      "notes": "Carne molida de res. Proteína clave."
     },
     {
       "id": "pollo",
@@ -172,25 +232,35 @@
       "unit": "1kg",
       "search_terms": {
         "gama": "pechuga pollo kg",
-        "plaza": "pechuga pollo",
+        "plansuarez": "pechuga de pollo",
         "central": "pechuga pollo kg"
       },
-      "producto_referencia": "Delicia De Pechuga de Pollo Kg KG",
-      "notes": "Pechuga de pollo fresca por kg. NO alas ni otros cortes. Proteína clave."
+      "match": {
+        "must_include": [["pechuga"], ["pollo"]],
+        "must_exclude": ["rellena", "ahumada", "empanizada", "milanesa", "pavo", "nuggets"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Pechuga de pollo fresca por kg",
+      "notes": "Pechuga de pollo fresca. NO alas ni otros cortes. Proteína clave."
     },
     {
       "id": "huevos",
-      "name": "Huevos Rojos (cartón 30 unidades)",
+      "name": "Huevos (cartón 30 unidades)",
       "category": "proteinas",
       "weight": 4,
       "unit": "30u",
       "search_terms": {
         "gama": "huevos carton 30",
-        "plaza": "huevos 30",
+        "plansuarez": "huevos",
         "central": "huevos rojos 30 unidades"
       },
-      "producto_referencia": "Huevos Rojos Grande Est. 30 Unidades",
-      "notes": "Cartón de 30 huevos rojos. NO cartones de 12 ni de 15."
+      "match": {
+        "must_include": [["huevos", "huevo"]],
+        "must_exclude": ["codorniz", "chocolate", "pascua", "liquido"],
+        "size_value": 30, "size_unit": "un"
+      },
+      "producto_referencia": "Cartón de 30 huevos",
+      "notes": "Cartón de 30 huevos. NO cartones de 12 ni de 15."
     },
     {
       "id": "sardinas",
@@ -200,109 +270,150 @@
       "unit": "170g",
       "search_terms": {
         "gama": "sardinas lata 170g",
-        "plaza": "sardinas lata",
+        "plansuarez": "sardinas",
         "central": "sardinas"
       },
-      "producto_referencia": "Sardinas en aceite o tomate 170g",
-      "notes": "Sardinas en aceite o salsa de tomate, lata ~170g. No disponible en Central."
+      "match": {
+        "must_include": [["sardinas", "sardina"]],
+        "must_exclude": ["congelada", "fresca"],
+        "size_value": 170, "size_unit": "g"
+      },
+      "producto_referencia": "Sardinas en aceite o tomate, lata ~170g",
+      "notes": "Sardinas enlatadas."
     },
     {
       "id": "atun",
-      "name": "Atún Pafia en Agua (140g)",
+      "name": "Atún en Lata (140-170g)",
       "category": "proteinas",
       "weight": 2,
       "unit": "140g",
       "search_terms": {
         "gama": "atun agua 140g",
-        "plaza": "atun agua",
+        "plansuarez": "atun",
         "central": "atun pafia agua 140"
       },
-      "producto_referencia": "Atun Pafia Lomo en Agua 140Grs",
-      "notes": "Atún en agua lata 140g. Marca Pafia en Central. NO albóndigas ni preparados."
+      "match": {
+        "must_include": [["atun"]],
+        "must_exclude": ["gato", "ensalada", "pasta", "congelado"],
+        "size_value": 140, "size_unit": "g"
+      },
+      "producto_referencia": "Atún en agua o aceite, lata 140-170g (Pafia en Central)",
+      "notes": "Atún enlatado. NO preparados."
     },
     {
       "id": "leche_polvo",
-      "name": "Leche La Campaña en Polvo (400g)",
+      "name": "Leche en Polvo (400g)",
       "category": "lacteos",
       "weight": 4,
       "unit": "400g",
       "search_terms": {
-        "gama": "leche entera polvo 400g",
-        "plaza": "leche en polvo 400",
+        "gama": "leche polvo 400g",
+        "plansuarez": "leche completa",
         "central": "leche campina polvo 400"
       },
-      "producto_referencia": "Leche La Campina En Polvo Descremada 400Gr",
-      "notes": "Leche en polvo 400g. Marca La Campaña en Central. NO chicha ni bebidas lácteas."
+      "match": {
+        "must_include": [["leche"]],
+        "must_exclude": ["achocolatada", "condensada", "chicha", "avena", "saborizada", "coco", "almendras", "soya", "uht", "liquida", "malteada"],
+        "require_unit": "g",
+        "size_value": 400, "size_unit": "g"
+      },
+      "producto_referencia": "Leche en polvo 400Gr (La Campiña en Central)",
+      "notes": "Leche en polvo. NO chicha ni bebidas lácteas."
     },
     {
       "id": "queso_blanco",
-      "name": "Queso Blanco Zedeño (1kg)",
+      "name": "Queso Blanco (1kg)",
       "category": "lacteos",
       "weight": 5,
       "unit": "1kg",
       "search_terms": {
         "gama": "queso blanco duro kg",
-        "plaza": "queso blanco",
+        "plansuarez": "queso blanco",
         "central": "queso blanco zedeno kg"
       },
-      "producto_referencia": "Queso Blanco Pasteurizado El Zedeño KG",
-      "notes": "Queso blanco duro venezolano por kg. Marca El Zedeño en Central. Uno de los más sensibles al alza."
+      "match": {
+        "must_include": [["queso"], ["blanco"]],
+        "must_exclude": ["crema", "fundido", "rallado", "mozzarella", "amarillo", "dip", "untable"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Queso blanco duro/semiduro venezolano por kg (El Zedeño en Central)",
+      "notes": "Queso blanco venezolano. Uno de los más sensibles al alza."
     },
     {
       "id": "mantequilla",
-      "name": "Mantequilla La Paisana (200g)",
+      "name": "Mantequilla (200-250g)",
       "category": "lacteos",
       "weight": 2,
       "unit": "200g",
       "search_terms": {
         "gama": "mantequilla 200g",
-        "plaza": "mantequilla",
+        "plansuarez": "mantequilla",
         "central": "mantequilla paisana 200"
       },
-      "producto_referencia": "Mantequilla La Paisana Sin Sal Barra 200Gr",
-      "notes": "Mantequilla 200g. Marca La Paisana en Central."
+      "match": {
+        "must_include": [["mantequilla"]],
+        "must_exclude": ["mani", "clarificada", "ajo", "aceite", "spray"],
+        "size_value": 200, "size_unit": "g"
+      },
+      "producto_referencia": "Mantequilla 200Gr (La Paisana en Central)",
+      "notes": "Mantequilla de barra regular."
     },
     {
       "id": "tomate",
-      "name": "Tomate Manzano (1kg)",
+      "name": "Tomate Fresco (1kg)",
       "category": "vegetales",
       "weight": 2,
       "unit": "1kg",
       "search_terms": {
         "gama": "tomate manzano kg",
-        "plaza": "tomate",
+        "plansuarez": "tomate",
         "central": "tomate"
       },
-      "producto_referencia": "Tomate fresco por kg",
-      "notes": "Tomate fresco por kg. Presentación a granel preferida."
+      "match": {
+        "must_include": [["tomate", "tomates"]],
+        "must_exclude": ["cherry", "salsa", "pasta", "jugo", "seco", "deshidratado", "lata", "margarita"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Tomate fresco por kg (manzano o perita)",
+      "notes": "Tomate fresco a granel o bandeja ~1kg. NO cherry ni procesados."
     },
     {
       "id": "cebolla",
-      "name": "Cebolla Blanca Nacional (1kg)",
+      "name": "Cebolla (1kg)",
       "category": "vegetales",
       "weight": 2,
       "unit": "1kg",
       "search_terms": {
-        "gama": "cebolla blanca kg",
-        "plaza": "cebolla",
+        "gama": "cebolla kg",
+        "plansuarez": "cebolla",
         "central": "cebolla blanca 1000"
       },
-      "producto_referencia": "Cebolla Blanca Nacional 1000Gr",
-      "notes": "Cebolla blanca nacional 1kg."
+      "match": {
+        "must_include": [["cebolla", "cebollas"]],
+        "must_exclude": ["dip", "queso", "crema", "caramelizada", "encurtida", "aros", "frita", "morada", "sopa", "molida", "polvo", "deshidratada"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Cebolla blanca nacional 1kg",
+      "notes": "Cebolla blanca fresca."
     },
     {
       "id": "papa",
-      "name": "Papa Criolla (1kg)",
+      "name": "Papa (1kg)",
       "category": "vegetales",
       "weight": 2,
       "unit": "1kg",
       "search_terms": {
-        "gama": "papa criolla kg",
-        "plaza": "papa",
+        "gama": "papa kg",
+        "plansuarez": "papa",
         "central": "papa criolla kg"
       },
-      "producto_referencia": "Papa Criolla Lavada KG",
-      "notes": "Papa criolla lavada por kg."
+      "match": {
+        "must_include": [["papa", "papas"]],
+        "must_exclude": ["melon", "fritas", "prefritas", "congeladas", "chips", "pure", "sopa", "rellena"],
+        "size_value": 1000, "size_unit": "g"
+      },
+      "producto_referencia": "Papa fresca lavada por kg",
+      "notes": "Papa fresca."
     },
     {
       "id": "platano",
@@ -312,11 +423,16 @@
       "unit": "1kg",
       "search_terms": {
         "gama": "platano kg",
-        "plaza": "platano",
+        "plansuarez": "platano",
         "central": "platano"
       },
+      "match": {
+        "must_include": [["platano", "platanos"]],
+        "must_exclude": ["chips", "tostones", "harina", "congelado"],
+        "size_value": 1000, "size_unit": "g"
+      },
       "producto_referencia": "Plátano maduro o verde por kg",
-      "notes": "Plátano por kg. No disponible en Central."
+      "notes": "Plátano fresco por kg."
     }
   ]
 }

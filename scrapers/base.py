@@ -42,27 +42,14 @@ class BaseScraper:
     def start_browser(self):
         """Launch headless Chromium with human-like headers."""
         self._playwright = sync_playwright().start()
-        # Intentar con Chrome instalado primero (evita spawn UNKNOWN en Windows)
-        # Si no hay Chrome, usa Chromium de Playwright
-        try:
-            self._browser = self._playwright.chromium.launch(
-                headless=True,
-                channel="chrome",
-                args=[
-                    "--no-sandbox",
-                    "--disable-blink-features=AutomationControlled",
-                    "--disable-dev-shm-usage",
-                ]
-            )
-        except Exception:
-            self._browser = self._playwright.chromium.launch(
-                headless=True,
-                args=[
-                    "--no-sandbox",
-                    "--disable-blink-features=AutomationControlled",
-                    "--disable-dev-shm-usage",
-                ]
-            )
+        self._browser = self._playwright.chromium.launch(
+            headless=True,
+            args=[
+                "--no-sandbox",
+                "--disable-blink-features=AutomationControlled",
+                "--disable-dev-shm-usage",
+            ]
+        )
         self.logger.info(f"Browser started for {self.STORE_NAME}")
 
     def new_page(self) -> Page:

@@ -9,6 +9,12 @@ env/
 # Playwright
 debug_screenshots/
 
+# Archivos de depuración / pruebas locales (no se publican)
+debug_*.py
+test_*.py
+*_screenshot.png
+run_log.txt
+
 # OS
 .DS_Store
 Thumbs.db

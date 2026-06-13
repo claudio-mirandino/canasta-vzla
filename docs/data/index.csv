@@ -1,15 +1,14 @@
 date,index_value,weekly_change_pct,products_priced,products_total,base_date,notes
-2026-03-22,101.41,0.0,9,22,2026-04-01,Productos sin datos: pasta (sin precio actual); sal (sin precio actual); carne_molida (sin precio actual); pollo (sin precio actual); huevos (sin precio actual); sardinas (sin precio base); atun (sin precio actual); leche_polvo (sin precio actual); queso_blanco (sin precio actual); tomate (sin precio actual); cebolla (sin precio actual); papa (sin precio actual); platano (sin precio base)
-2026-03-30,96.05,-5.29,19,22,2026-04-01,Productos sin datos: sardinas (sin precio base); tomate (sin precio actual); platano (sin precio base)
-2026-04-01,100.0,0.0,20,22,2026-04-01,Fecha base — índice = 100 por definición
-2026-04-02,97.7,-2.3,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-04-06,104.02,6.47,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-04-13,103.26,-0.73,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-04-20,101.37,-1.83,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-04-27,99.2,-2.14,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-05-04,100.84,1.65,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-05-11,101.76,0.91,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-05-18,103.21,1.42,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-05-25,104.52,1.27,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-06-01,103.12,-1.34,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
-2026-06-08,103.23,0.11,20,22,2026-04-01,Productos sin datos: sardinas (sin precio base); platano (sin precio base)
+2026-04-01,100.0,0.0,20,22,2026-04-01,Inicio de la serie
+2026-04-02,96.7,-3.3,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-04-06,102.64,6.14,18,22,2026-04-01,18/22 productos con variación esta semana
+2026-04-13,101.56,-1.05,18,22,2026-04-01,18/22 productos con variación esta semana
+2026-04-20,100.27,-1.27,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-04-27,98.29,-1.97,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-05-04,99.94,1.68,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-05-11,100.66,0.72,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-05-18,101.99,1.32,18,22,2026-04-01,18/22 productos con variación esta semana
+2026-05-25,103.27,1.26,18,22,2026-04-01,18/22 productos con variación esta semana
+2026-06-01,101.84,-1.38,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-06-08,102.0,0.16,19,22,2026-04-01,19/22 productos con variación esta semana
+2026-06-12,101.16,-0.82,19,22,2026-04-01,19/22 productos con variación esta semana

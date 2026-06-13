@@ -285,7 +285,7 @@
   <div class="container">
     <h1>Canasta Básica Alimentaria Venezuela</h1>
     <div class="subtitle">
-      Seguimiento semanal de precios &nbsp;·&nbsp; Excelsior Gama, El Plazas y Central Madeirense &nbsp;·&nbsp; Metodología Laspeyres
+      Seguimiento semanal de precios &nbsp;·&nbsp; Excelsior Gama, Central Madeirense y Plan Suárez &nbsp;·&nbsp; Índice encadenado (Jevons–Laspeyres)
     </div>
     <div class="last-updated" id="last-updated">Cargando datos…</div>
   </div>
@@ -346,17 +346,9 @@
     <div class="col-12 col-md-4">
       <div class="store-card">
         <div class="store-name">Excelsior Gama</div>
-        <div class="store-location">Gama Plus Santa Eduvigis · Baruta</div>
-        <div id="store-badge-gama"><span class="store-badge-pending">⏳ Iniciando recolección</span></div>
+        <div class="store-location">Gama Plus Santa Eduvigis · Sucre, Caracas</div>
+        <div id="store-badge-gama"><span class="store-badge-pending">⏳ Cargando…</span></div>
         <div class="mt-1" id="store-count-gama" style="font-size:0.78rem; color:#9aa5b4;"></div>
-      </div>
-    </div>
-    <div class="col-12 col-md-4">
-      <div class="store-card">
-        <div class="store-name">El Plazas</div>
-        <div class="store-location">Valle Arriba · Caracas</div>
-        <div id="store-badge-plaza"><span class="store-badge-pending">⏳ Iniciando recolección</span></div>
-        <div class="mt-1" id="store-count-plaza" style="font-size:0.78rem; color:#9aa5b4;"></div>
       </div>
     </div>
     <div class="col-12 col-md-4">
@@ -365,6 +357,14 @@
         <div class="store-location">Av. Presidente Medina · Caracas</div>
         <div id="store-badge-central"><span class="store-badge-pending">⏳ Cargando…</span></div>
         <div class="mt-1" id="store-count-central" style="font-size:0.78rem; color:#9aa5b4;"></div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="store-card">
+        <div class="store-name">Plan Suárez</div>
+        <div class="store-location">Trinidad · Caurimare · La Urbina, Caracas</div>
+        <div id="store-badge-plansuarez"><span class="store-badge-pending">⏳ Cargando…</span></div>
+        <div class="mt-1" id="store-count-plansuarez" style="font-size:0.78rem; color:#9aa5b4;"></div>
       </div>
     </div>
   </div>
@@ -397,9 +397,9 @@
                 <tr>
                   <th class="ps-3" style="min-width:180px">Producto</th>
                   <th class="text-end">Gama</th>
-                  <th class="text-end">Plaza</th>
                   <th class="text-end">Central</th>
-                  <th class="text-end">Promedio</th>
+                  <th class="text-end">Plan Suárez</th>
+                  <th class="text-end">Mediana</th>
                   <th class="text-end pe-3">vs sem. ant.</th>
                 </tr>
               </thead>
@@ -443,23 +443,30 @@
         Nota metodológica
       </p>
       <div class="methodology-box">
-        <strong>¿Qué mide este índice?</strong> El costo semanal de una canasta de 22 productos
-        alimentarios básicos en tres supermercados de Caracas: Excelsior Gama (Santa Eduvigis),
-        El Plazas (Valle Arriba) y Central Madeirense (Av. Presidente Medina). El índice base
-        es 100 a partir del 1° de abril de 2026. Un valor de 115 indica que la canasta cuesta
-        15% más que en esa fecha de referencia.
+        <strong>¿Qué mide este índice?</strong> La variación semanal del costo de una canasta de
+        22 productos alimentarios básicos en tres supermercados de Caracas: Excelsior Gama (Santa
+        Eduvigis), Central Madeirense (Av. Presidente Medina) y Plan Suárez (Trinidad, Caurimare y
+        La Urbina). El índice base es 100 el 1° de abril de 2026. Un valor de 115 indica que la
+        canasta cuesta 15% más que en esa fecha de referencia.
         <br><br>
-        <strong>Metodología:</strong> Índice de Laspeyres ponderado. Los productos con mayor
-        importancia en el gasto familiar (proteínas: carne, pollo, queso, huevos) tienen
-        mayor peso. Se usa el precio promedio entre las tiendas disponibles cada semana. Todos
-        los precios están en dólares (USD), moneda de cotización en los supermercados monitoreados.
-        Cada producto tiene marca y presentación fija para garantizar comparabilidad semana a semana.
+        <strong>Metodología:</strong> Índice <strong>encadenado de relativos</strong>, el estándar
+        para precios recolectados en línea. Cada semana se calcula la variación de precio de cada
+        producto <em>dentro de cada tienda</em> (cada tienda se compara consigo misma, nunca se
+        comparan niveles entre cadenas con empaques distintos); se promedian esas variaciones con
+        media geométrica (Jevons) y se agregan con los pesos de importancia en el gasto familiar
+        (las proteínas —carne, pollo, queso, huevos— pesan más). El resultado se encadena al índice
+        de la semana previa. Esto hace al índice robusto ante diferencias de marca/presentación entre
+        tiendas y ante la entrada o salida de una cadena, sin saltos artificiales.
+        <br><br>
+        <strong>Monedas:</strong> Gama y Central cotizan en USD; Plan Suárez cotiza en bolívares y
+        se convierte a USD con la tasa oficial del BCV del día. Cada producto tiene reglas fijas de
+        marca, presentación y tamaño para garantizar que se siga el mismo artículo semana a semana.
         <br><br>
         <strong>Recolección:</strong> Los precios se obtienen automáticamente cada lunes mediante
         scraping de los sitios web oficiales de cada supermercado. Variaciones superiores al 30%
-        respecto a la semana anterior son marcadas y verificadas. Metodología basada en
-        <strong>CENDAS-FVM</strong> (Centro de Documentación y Análisis Social de la Federación
-        Venezolana de Maestros).
+        respecto a la semana anterior <em>en la misma tienda</em> se marcan para verificación.
+        Inspirado en la metodología <strong>CENDAS-FVM</strong> (Federación Venezolana de Maestros)
+        y en la práctica de índices de precios online (Billion Prices Project / PriceStats).
       </div>
     </div>
   </div>
@@ -527,6 +534,14 @@ function fmtDate(dateStr) {
   return dt.toLocaleDateString('es-VE', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
+// ─── Mediana (precio representativo entre tiendas; robusta a outliers) ─────────
+function median(arr) {
+  const a = arr.filter(x => x !== null && !isNaN(x)).sort((x, y) => x - y);
+  if (!a.length) return null;
+  const mid = Math.floor(a.length / 2);
+  return a.length % 2 ? a[mid] : (a[mid - 1] + a[mid]) / 2;
+}
+
 // ─── Render stat cards (hero) ─────────────────────────────────────────────────
 function renderStatCards(indexData, pricesData) {
   if (!indexData.length) return;
@@ -556,7 +571,7 @@ function renderStatCards(indexData, pricesData) {
   const latestDate = dates[dates.length - 1];
   const latestRows = pricesData.filter(r => r.date === latestDate && parseFloat(r.price_usd) > 0);
 
-  // Agrupar por producto y promediar tiendas
+  // Agrupar por producto y tomar la mediana entre tiendas
   const byProduct = {};
   latestRows.forEach(r => {
     if (!byProduct[r.product_id]) byProduct[r.product_id] = [];
@@ -565,7 +580,7 @@ function renderStatCards(indexData, pricesData) {
   let total = 0;
   let count = 0;
   for (const prices of Object.values(byProduct)) {
-    total += prices.reduce((a,b) => a+b, 0) / prices.length;
+    total += median(prices);
     count++;
   }
   const basketEl = document.getElementById('sc-basket');
@@ -640,7 +655,7 @@ function renderIndexChart(indexData) {
 
 // ─── Render store status cards ────────────────────────────────────────────────
 function renderStoreCards(pricesData) {
-  const stores = ['gama', 'plaza', 'central'];
+  const stores = ['gama', 'central', 'plansuarez'];
   const dates  = [...new Set(pricesData.map(r => r.date))].sort();
   const latestDate = dates[dates.length - 1];
 
@@ -694,7 +709,7 @@ function renderPricesTable(pricesData) {
   const latest = pricesData.filter(r => r.date === latestDate);
   const prev   = prevDate ? pricesData.filter(r => r.date === prevDate) : [];
 
-  const STORES = ['gama', 'plaza', 'central'];
+  const STORES = ['gama', 'central', 'plansuarez'];
 
   // Detectar qué tiendas tienen datos esta semana
   const activeStores = STORES.filter(s =>
@@ -703,7 +718,7 @@ function renderPricesTable(pricesData) {
   const missingStores = STORES.filter(s => !activeStores.includes(s));
 
   if (missingStores.length > 0) {
-    const nombres = { gama: 'Gama', plaza: 'Plaza', central: 'Central Madeirense' };
+    const nombres = { gama: 'Gama', central: 'Central Madeirense', plansuarez: 'Plan Suárez' };
     const faltantes = missingStores.map(s => nombres[s]).join(' y ');
     noticeText.textContent =
       `${faltantes} aún no tienen datos para esta semana. ` +
@@ -782,9 +797,7 @@ function renderPricesTable(pricesData) {
       });
 
       const validPrices = STORES.map(s => storeMap[s]).filter(p => p !== null);
-      const avg = validPrices.length
-        ? validPrices.reduce((a,b)=>a+b,0) / validPrices.length
-        : null;
+      const avg = median(validPrices);
 
       if (avg !== null) { grandTotal += avg; grandCount++; }
 
@@ -824,8 +837,8 @@ function renderPricesTable(pricesData) {
         <tr>
           <td class="ps-3" style="font-size:0.85rem">${name}</td>
           ${priceCell('gama')}
-          ${priceCell('plaza')}
           ${priceCell('central')}
+          ${priceCell('plansuarez')}
           <td class="text-end avg-cell">${avg !== null ? '$'+avg.toFixed(2) : '<span class="chg-flat">—</span>'}</td>
           ${changeCell}
         </tr>`;
@@ -841,10 +854,10 @@ function renderPricesTable(pricesData) {
           ${basketCounts.gama > 0 ? '$'+basketTotals.gama.toFixed(2) : '<span style="color:#bbb">—</span>'}
         </td>
         <td class="text-end">
-          ${basketCounts.plaza > 0 ? '$'+basketTotals.plaza.toFixed(2) : '<span style="color:#bbb">—</span>'}
+          ${basketCounts.central > 0 ? '$'+basketTotals.central.toFixed(2) : '<span style="color:#bbb">—</span>'}
         </td>
         <td class="text-end">
-          ${basketCounts.central > 0 ? '$'+basketTotals.central.toFixed(2) : '<span style="color:#bbb">—</span>'}
+          ${basketCounts.plansuarez > 0 ? '$'+basketTotals.plansuarez.toFixed(2) : '<span style="color:#bbb">—</span>'}
         </td>
         <td class="text-end" style="font-size:1rem">$${grandTotal.toFixed(2)}</td>
         <td class="text-end pe-3"></td>
@@ -889,7 +902,7 @@ function renderHistory(indexData, pricesData) {
     if (basketByDate[row.date]) {
       let total = 0;
       for (const prices of Object.values(basketByDate[row.date])) {
-        total += prices.reduce((a,b)=>a+b,0) / prices.length;
+        total += median(prices);
       }
       basketCost = '$' + total.toFixed(2);
     }

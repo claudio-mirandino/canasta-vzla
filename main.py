@@ -27,7 +27,7 @@ if sys.stderr.encoding != 'utf-8':
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
 from scrapers.gama import GamaScraper
-from scrapers.plaza import PlazaScraper
+from scrapers.plansuarez import PlansuarezScraper
 from scrapers.central import CentralScraper
 from calculate_index import calculate_index, save_index, print_report
 
@@ -50,8 +50,12 @@ def load_basket() -> list:
 
 def load_previous_prices() -> dict:
     """
-    Carga los precios más recientes de la semana anterior para detección de anomalías.
-    Retorna dict {product_id: last_known_price_usd}.
+    Carga el último precio conocido de cada producto POR TIENDA, para la
+    detección de anomalías. Comparar una tienda contra su propio precio previo
+    (no contra el promedio entre tiendas) evita falsas alarmas por diferencias
+    de empaque/marca entre cadenas.
+
+    Retorna {store: {product_id: last_known_price_usd}}.
     """
     if not PRICES_FILE.exists():
         return {}
@@ -61,11 +65,13 @@ def load_previous_prices() -> dict:
     if df.empty:
         return {}
 
-    # Promedio por producto de la última semana disponible
-    latest_date = df["date"].max()
-    latest_df = df[df["date"] == latest_date]
-    avg = latest_df.groupby("product_id")["price_usd"].mean()
-    return avg.to_dict()
+    out = {}
+    for store, store_df in df.groupby("store"):
+        # Para cada producto, el precio de la fecha más reciente de esa tienda
+        last_date = store_df["date"].max()
+        latest = store_df[store_df["date"] == last_date]
+        out[store] = latest.groupby("product_id")["price_usd"].mean().to_dict()
+    return out
 
 
 def save_prices(results: list, collection_date: str):
@@ -172,8 +178,8 @@ def run_scrapers(products: list, previous_prices: dict, collection_date: str) ->
 
     scrapers = [
         GamaScraper(),
-        PlazaScraper(),
         CentralScraper(),
+        PlansuarezScraper(),
     ]
 
     for scraper in scrapers:
@@ -181,10 +187,12 @@ def run_scrapers(products: list, previous_prices: dict, collection_date: str) ->
         logger.info(f"Iniciando scraper: {scraper.STORE_NAME.upper()}")
         logger.info(f"{'─'*40}")
 
+        # Cada tienda se compara solo con su propio histórico
+        store_prev = previous_prices.get(scraper.STORE_NAME, {})
         result_queue = queue.Queue()
         t = threading.Thread(
             target=_run_scraper_in_thread,
-            args=(scraper, products, previous_prices, result_queue),
+            args=(scraper, products, store_prev, result_queue),
             daemon=True
         )
         t.start()
@@ -224,7 +232,7 @@ def main():
         previous_prices = load_previous_prices()
 
         logger.info(f"Productos en canasta: {len(products)}")
-        logger.info(f"Tiendas: Gama, Plaza, Central Madeirense")
+        logger.info(f"Tiendas: Gama, Central Madeirense, Plan Suárez")
 
         all_results = run_scrapers(products, previous_prices, args.scrape_date)
         save_prices(all_results, args.scrape_date)

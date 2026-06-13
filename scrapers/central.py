@@ -17,6 +17,7 @@ import logging
 from urllib.parse import quote_plus
 from bs4 import BeautifulSoup
 from scrapers.base import BaseScraper
+from scrapers.matching import pick_best
 
 logger = logging.getLogger("central")
 
@@ -124,7 +125,8 @@ class CentralScraper(BaseScraper):
 
             html = page.content()
 
-            price_text, found_name = self._find_product_in_html(html, search_term)
+            price_text, found_name = self._find_product_in_html(
+                html, search_term, product.get("match"))
 
             if price_text:
                 price = self.parse_price(price_text)
@@ -152,10 +154,12 @@ class CentralScraper(BaseScraper):
 
         return result
 
-    def _find_product_in_html(self, html: str, search_term: str) -> tuple[str, str]:
+    def _find_product_in_html(self, html: str, search_term: str,
+                              match_rules: dict | None) -> tuple[str, str]:
         """
-        Busca el producto más relevante en el HTML de la categoría.
-        Usa BeautifulSoup para parsing robusto.
+        Extrae todos los (nombre, precio) de la categoría y deja que
+        matching.pick_best elija el correcto según las reglas del producto
+        (palabras obligatorias/prohibidas y tamaño objetivo).
         Retorna (precio_texto, nombre_encontrado).
 
         El sitio usa WooCommerce:
@@ -165,7 +169,6 @@ class CentralScraper(BaseScraper):
         """
         soup = BeautifulSoup(html, "html.parser")
 
-        # Selector primario: article.product (WooCommerce moderno)
         product_items = soup.find_all("article", class_=lambda c: c and "product" in c)
         if not product_items:
             product_items = soup.find_all("li", class_=lambda c: c and "product-col" in c)
@@ -173,15 +176,11 @@ class CentralScraper(BaseScraper):
             product_items = soup.find_all("li", class_=lambda c: c and "product" in c)
 
         if not product_items:
-            logger.debug(f"[central] No se encontraron bloques de productos en la página")
+            logger.debug("[central] No se encontraron bloques de productos en la página")
             return "", ""
 
-        search_words = search_term.lower().split()
-        best_match = None
-        best_score = 0
-
+        candidates = []  # (nombre, precio_texto)
         for item in product_items:
-            # Nombre: .woocommerce-loop-product__title, h2, o h3
             name_tag = (
                 item.find(class_=lambda c: c and "woocommerce-loop-product__title" in c)
                 or item.find(["h2", "h3"])
@@ -192,36 +191,19 @@ class CentralScraper(BaseScraper):
             if not raw_name:
                 continue
 
-            # Score de coincidencia
-            name_lower = raw_name.lower()
-            score = sum(1 for word in search_words if word in name_lower)
-            if score == 0:
-                continue
-
-            # Precio: .woocommerce-Price-amount o .price
             price_container = item.find(class_=lambda c: c and "price" in c)
             if not price_container:
                 continue
-
             price_raw = price_container.get_text(strip=True)
-            # Soporta $1,05 / # 1,05 / 1.05 USD / etc.
             prices_found = re.findall(r'[\$#]?\s*(\d+[.,]\d{2})', price_raw)
             if not prices_found:
                 continue
-
-            # Tomar el precio más bajo (oferta sobre regular)
+            # Precio más bajo del contenedor (oferta sobre regular)
             price_text = min(prices_found, key=lambda p: float(p.replace(',', '.')))
+            candidates.append((raw_name, price_text))
 
-            if score > best_score:
-                best_score = score
-                best_match = (price_text, raw_name)
-
-        if best_match:
-            return best_match
-
-        # Fallback: cualquier precio en la página
-        any_price = re.search(r'[\$#]\s*(\d+[.,]\d{2})', html)
-        if any_price and len(search_words) >= 2:
-            return any_price.group(1), f"(match aproximado para '{search_term}')"
-
+        best = pick_best(candidates, search_term, match_rules)
+        if best:
+            name, price_text, _ = best
+            return price_text, name
         return "", ""
