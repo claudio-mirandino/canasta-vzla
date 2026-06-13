@@ -1,9 +1,9 @@
 name: Recolección Semanal de Precios
 
 on:
-  # Corre cada lunes a las 9:00 AM hora de Caracas (UTC-4 → 13:00 UTC)
+  # Corre cada domingo a las 9:00 AM hora de Caracas (UTC-4 → 13:00 UTC)
   schedule:
-    - cron: '0 13 * * 1'
+    - cron: '0 13 * * 0'
 
   # Permite correr manualmente desde GitHub (útil para pruebas)
   workflow_dispatch:
