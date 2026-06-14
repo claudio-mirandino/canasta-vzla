@@ -5,14 +5,13 @@
   "household_size": 5,
   "index_usd": 100.0,
   "index_bs": 100.0,
-  "basket_cost_usd": 348.42,
-  "basket_cost_bs_oficial": 203019.53,
-  "basket_cost_bs_paralelo": 276932.93,
+  "basket_cost_usd": 401.98,
+  "basket_cost_bs_oficial": 234228.2,
+  "basket_cost_bs_paralelo": 319915.18,
   "coverage": "21/22",
   "stores": [
     "angelicas",
-    "superfresh",
-    "trio"
+    "superfresh"
   ],
   "metrics": {
     "weekly_pct": 0.0,
@@ -24,20 +23,19 @@
   },
   "rates": {
     "oficial": 582.6862,
-    "paralelo": 794.825,
-    "brecha_pct": 36.41,
+    "paralelo": 795.8485,
+    "brecha_pct": 36.58,
     "date": "2026-06-14"
   },
   "dispersion": {
     "by_store": {
-      "angelicas": 314.62,
-      "superfresh": 291.63,
-      "trio": 253.79
+      "angelicas": 361.95,
+      "superfresh": 320.55
     },
-    "common_products": 13,
-    "min": 253.79,
-    "median": 291.63,
-    "max": 314.62,
-    "cv_pct": 8.7
+    "common_products": 15,
+    "min": 320.55,
+    "median": 341.25,
+    "max": 361.95,
+    "cv_pct": 6.1
   }
 }
