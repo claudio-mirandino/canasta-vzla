@@ -100,6 +100,34 @@ def _size_bonus(name: str, size_value: float, size_unit: str) -> float:
     return 0.0
 
 
+# Conversión de unidad de referencia → unidad base detectable y su factor.
+# ref kg ↔ g (÷1000), ref l ↔ ml (÷1000), ref u ↔ un (×1).
+_REF_TO_BASE = {"kg": ("g", 1000.0), "l": ("ml", 1000.0), "u": ("un", 1.0)}
+
+
+def unit_price(price: float, product_name: str, ref_unit: str) -> float | None:
+    """
+    Normaliza un precio a precio por unidad de referencia ($/kg, $/l, $/unidad)
+    a partir del tamaño detectado en el nombre del producto.
+
+    - Si se detecta el tamaño (p.ej. "ATÚN 140 GR" → 0,14 kg) → precio/tamaño.
+    - Si NO se detecta tamaño, se asume que el precio YA es por unidad de
+      referencia (caso típico de productos vendidos "por kg": "CARNE MOLIDA X KG").
+    Devuelve None solo si el precio es inválido.
+    """
+    if price is None or price <= 0:
+        return None
+    if ref_unit not in _REF_TO_BASE:
+        return round(price, 4)
+    base_unit, factor = _REF_TO_BASE[ref_unit]
+    size = extract_size(product_name)
+    if size and size[0] == base_unit and size[1] > 0:
+        qty_in_ref = size[1] / factor
+        if qty_in_ref > 0:
+            return round(price / qty_in_ref, 4)
+    return round(price, 4)
+
+
 def score_candidate(name: str, search_term: str, match_rules: dict | None) -> float | None:
     """
     Score de un candidato. None = rechazado por las reglas.

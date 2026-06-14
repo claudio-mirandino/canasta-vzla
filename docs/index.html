@@ -191,14 +191,21 @@
     </div></div></div>
 
     <div class="row g-3 mb-4"><div class="col-12"><div class="card">
-      <div class="card-header">Costo de la canasta básica hoy</div>
+      <div class="card-header">Costo mensual de la canasta · familia de ~5 personas</div>
       <div class="card-body py-3">
         <div class="row text-center">
-          <div class="col-4"><div class="rate-box"><div class="rl">En dólares</div><div class="rv" id="c-usd">—</div></div></div>
+          <div class="col-4"><div class="rate-box"><div class="rl">En dólares / mes</div><div class="rv" id="c-usd">—</div></div></div>
           <div class="col-4"><div class="rate-box"><div class="rl">En Bs · oficial</div><div class="rv" id="c-bs-of" style="font-size:1.15rem">—</div></div></div>
           <div class="col-4"><div class="rate-box"><div class="rl">En Bs · paralelo</div><div class="rv" id="c-bs-par" style="font-size:1.15rem">—</div></div></div>
         </div>
-        <div class="text-muted mt-2" style="font-size:.76rem">Canasta de 22 productos (mediana entre tiendas). En bolívares se convierte a la tasa oficial y a la paralela del día — la diferencia entre ambas es lo que pesa la brecha en el bolsillo.</div>
+        <div class="text-muted mt-2" style="font-size:.76rem">Costo mensual de los 22 rubros con cantidades para una familia de referencia (~5 personas), tipo CENDAS. Precio por unidad (mediana entre tiendas). En bolívares se convierte a la tasa oficial y a la paralela del día — la diferencia es lo que pesa la brecha en el bolsillo.</div>
+      </div>
+    </div></div></div>
+    <div class="row g-3 mb-4"><div class="col-12"><div class="card">
+      <div class="card-header">Evolución de las tasas y la brecha</div>
+      <div class="card-body py-3 px-3">
+        <canvas id="fxChart" height="90"></canvas>
+        <div class="text-muted mt-2" style="font-size:.76rem">Tasa oficial vs. paralela (Bs/$). La separación entre las líneas <em>es</em> la brecha. El histórico se acumula con cada corrida semanal.</div>
       </div>
     </div></div></div>
   </div><!-- /pane-tasas -->
@@ -223,10 +230,11 @@
       <a href="https://plansuarez.com" target="_blank" rel="noopener">Plan Suárez</a> (catálogo en línea, sucursales de Caracas).
       Una fuente de precio por cadena: tres cadenas, tres fuentes.
       <br><br>
-      <strong>Tasa de cambio:</strong> <a href="https://ve.dolarapi.com" target="_blank" rel="noopener">ve.dolarapi.com</a>,
-      que publica la tasa <strong>oficial del BCV</strong> y un <strong>promedio del mercado paralelo</strong>
-      (consolidado de los monitores de referencia). El paralelo es un promedio, no una cotización única; existen
-      múltiples fuentes de paralelo y pueden diferir entre sí.
+      <strong>Tasa de cambio:</strong> la tasa <strong>oficial</strong> proviene del
+      <a href="https://www.bcv.org.ve" target="_blank" rel="noopener">Banco Central de Venezuela (bcv.org.ve)</a>,
+      consultada vía la API pública de <a href="https://dolarapi.com" target="_blank" rel="noopener">dolarapi.com</a>,
+      que además publica un <strong>promedio del mercado paralelo</strong> (consolidado de monitores de referencia).
+      El paralelo es un promedio, no una cotización única; existen múltiples fuentes de paralelo y pueden diferir entre sí.
       <br><br>
       <strong>Transparencia:</strong> todos los precios crudos, el índice y las tasas están disponibles para
       descarga y vía API en la sección <em>Datos abiertos</em>, para que cualquiera pueda auditar el cálculo.
@@ -300,6 +308,18 @@ async function init(){
   if(summary){ renderHero(summary); renderRates(summary); renderStores(summary, detail); document.getElementById('last-updated').textContent = `Última actualización: ${fmtDate(summary.last_date)} · base ${fmtDate(summary.base_date)} = 100`; }
   if(seriesData.length){ renderChart(); renderHistory(); }
   if(detail){ renderPrices(detail); } else { document.getElementById('prices-loading').innerHTML='<div class="py-4 text-muted small">Sin datos de precios aún.</div>'; }
+  try { const fxj = await loadJSON('data/api/fx.json'); renderFxChart(fxj.series||[]); } catch(e){}
+}
+
+function renderFxChart(fx){
+  if(!fx.length) return;
+  const labels=fx.map(d=>new Date(d.date+'T00:00:00').toLocaleDateString('es-VE',{day:'2-digit',month:'short'}));
+  const ctx=document.getElementById('fxChart').getContext('2d');
+  new Chart(ctx,{type:'line',data:{labels,datasets:[
+    {label:'Oficial (BCV)',data:fx.map(d=>d.oficial),borderColor:'#1a2e4a',backgroundColor:'transparent',borderWidth:2.5,pointRadius:fx.length>1?3:5,tension:.3},
+    {label:'Paralelo',data:fx.map(d=>d.paralelo),borderColor:'#b02a37',backgroundColor:'transparent',borderWidth:2.5,borderDash:[5,4],pointRadius:fx.length>1?3:5,tension:.3}
+  ]},options:{responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?Number(c.parsed.y).toLocaleString('es-VE',{maximumFractionDigits:0}):'—'} Bs/$`}}},
+    scales:{y:{ticks:{font:{size:11}},grid:{color:'rgba(0,0,0,.04)'}},x:{grid:{display:false},ticks:{font:{size:11}}}}}});
 }
 
 function renderHero(s){
@@ -343,9 +363,9 @@ function renderStores(s, detail){
     const badge = active? '<span class="badge-ok">✓ activa esta semana</span>':'<span class="badge-warn">sin datos esta semana</span>';
     return `<div class="col-12 col-md-4"><div class="store-card">
       <div class="store-name">${info.name}</div><div class="store-location">${info.loc}</div>
-      <div class="store-cost">${cost!=null?'$'+cost.toFixed(2):'—'}<small> canasta común</small></div>
+      <div class="store-cost">${cost!=null?'$'+cost.toFixed(0):'—'}<small> /mes (familia)</small></div>
       ${badge}</div></div>`;
-  }).join('') + (disp.cv_pct!=null? `<div class="col-12"><div class="text-muted" style="font-size:.78rem">Dispersión entre tiendas (canasta de ${disp.common_products} productos comunes): coeficiente de variación ${disp.cv_pct.toFixed(1).replace('.',',')}% · rango $${disp.min.toFixed(2)}–$${disp.max.toFixed(2)}.</div></div>`:'');
+  }).join('') + (disp.cv_pct!=null? `<div class="col-12"><div class="text-muted" style="font-size:.78rem">Costo mensual de la canasta para una familia de ~5 personas, por tienda (sobre ${disp.common_products} productos comunes). Dispersión: coeficiente de variación ${disp.cv_pct.toFixed(1).replace('.',',')}% · rango $${disp.min.toFixed(0)}–$${disp.max.toFixed(0)}.</div></div>`:'');
 }
 
 function setCurrency(c){
@@ -372,27 +392,23 @@ function renderChart(){
 function renderPrices(detail){
   const tbody=document.getElementById('prices-tbody');
   const byId={}; detail.products.forEach(p=>byId[p.id]=p);
-  let html='', total=0, totalByStore={gama:0,central:0,plansuarez:0}, cntByStore={gama:0,central:0,plansuarez:0}, gcount=0;
+  let html='';
   CATEGORY_ORDER.forEach(cat=>{
     const ids=Object.keys(PRODUCTS).filter(id=>PRODUCTS[id].category===cat.id && byId[id]);
     if(!ids.length) return;
     html+=`<tr class="category-row"><td colspan="6">${cat.label}</td></tr>`;
     ids.forEach(id=>{
-      const p=byId[id]; const bs=p.by_store||{};
+      const p=byId[id]; const bs=p.by_store||{}; const u=p.ref_unit||'kg';
       const cell=st=>{ const v=bs[st]; return v!=null?`<td class="text-end price-available">$${v.toFixed(2)}</td>`:`<td class="text-end price-none">—</td>`; };
-      STORES.forEach(st=>{ if(bs[st]!=null){totalByStore[st]+=bs[st];cntByStore[st]++;} });
-      if(p.price_usd!=null){ total+=p.price_usd; gcount++; }
-      html+=`<tr><td class="ps-3" style="font-size:.85rem">${p.name}</td>${cell('gama')}${cell('central')}${cell('plansuarez')}
-        <td class="text-end avg-cell">$${p.price_usd.toFixed(2)}</td><td class="text-end pe-3">${pct(p.weekly_change_pct)}</td></tr>`;
+      html+=`<tr><td class="ps-3" style="font-size:.85rem">${p.name}
+          <span class="text-muted" style="font-size:.72rem">· $/${u}</span></td>
+        ${cell('gama')}${cell('central')}${cell('plansuarez')}
+        <td class="text-end avg-cell">$${p.price_usd.toFixed(2)}</td>
+        <td class="text-end pe-3">${pct(p.weekly_change_pct)}</td></tr>`;
     });
   });
-  html+=`<tr class="total-row"><td class="ps-3">CANASTA (${gcount} prod.)</td>
-    <td class="text-end">${cntByStore.gama?'$'+totalByStore.gama.toFixed(2):'—'}</td>
-    <td class="text-end">${cntByStore.central?'$'+totalByStore.central.toFixed(2):'—'}</td>
-    <td class="text-end">${cntByStore.plansuarez?'$'+totalByStore.plansuarez.toFixed(2):'—'}</td>
-    <td class="text-end" style="font-size:1rem">$${total.toFixed(2)}</td><td class="text-end pe-3"></td></tr>`;
   tbody.innerHTML=html;
-  document.getElementById('prices-date-label').textContent=`Semana del ${fmtDate(detail.last_date)}`;
+  document.getElementById('prices-date-label').textContent=`Semana del ${fmtDate(detail.last_date)} · precios por unidad`;
   document.getElementById('prices-loading').style.display='none';
   document.getElementById('prices-table-container').style.display='block';
 }
