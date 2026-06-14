@@ -5,7 +5,8 @@
   "index_usd": 100.0,
   "index_bs": 100.0,
   "basket_cost_usd": 83.02,
-  "basket_cost_bs": 48374.61,
+  "basket_cost_bs_oficial": 48374.61,
+  "basket_cost_bs_paralelo": 65851.42,
   "coverage": "22/22",
   "stores": [
     "central",

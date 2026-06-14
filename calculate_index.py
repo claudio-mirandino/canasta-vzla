@@ -281,8 +281,10 @@ def build_summary(df: pd.DataFrame, series: pd.DataFrame, fx: dict,
         "index_usd": last["index_usd"],
         "index_bs": last["index_bs"] if pd.notna(last["index_bs"]) else None,
         "basket_cost_usd": last["basket_cost_usd"],
-        "basket_cost_bs": (round(last["basket_cost_usd"] * rates["oficial"], 2)
-                           if rates.get("oficial") else None),
+        "basket_cost_bs_oficial": (round(last["basket_cost_usd"] * rates["oficial"], 2)
+                                   if rates.get("oficial") else None),
+        "basket_cost_bs_paralelo": (round(last["basket_cost_usd"] * rates["paralelo"], 2)
+                                    if rates.get("paralelo") else None),
         "coverage": f"{int(last['products_priced'])}/{int(last['products_total'])}",
         "stores": detail.get("stores", stores),
         "metrics": {

@@ -59,6 +59,10 @@
     .total-row td{background:#eef2f7!important;font-weight:700;color:var(--dark-blue);border-top:2px solid #d0d8e4!important;}
     .index-pill{display:inline-block;background:var(--dark-blue);color:#fff;font-weight:700;font-size:.85rem;padding:.2em .7em;border-radius:20px;}
 
+    /* Pestañas */
+    .nav-pills .nav-link { color:var(--slate); font-weight:600; font-size:.88rem; border:1px solid #e0e6ed; margin-right:.4rem; }
+    .nav-pills .nav-link.active { background:var(--dark-blue); color:#fff; border-color:var(--dark-blue); }
+
     /* Toggle */
     .toggle-group .btn { font-size:.78rem; padding:.2rem .8rem; }
     .btn-cur { border:1px solid var(--gold); color:var(--dark-blue); background:#fff; }
@@ -87,6 +91,14 @@
 
 <main class="container py-4">
 
+  <!-- Pestañas -->
+  <ul class="nav nav-pills mb-3" id="tabs">
+    <li class="nav-item"><button class="nav-link active" data-tab="inflacion">📈 Inflación</button></li>
+    <li class="nav-item"><button class="nav-link" data-tab="tasas">💱 Tasas y brecha</button></li>
+  </ul>
+
+  <div id="pane-inflacion">
+
   <!-- Métricas titulares -->
   <div class="row g-3 mb-3">
     <div class="col-6 col-md-3"><div class="stat-card">
@@ -108,25 +120,6 @@
       <div class="stat-label">Anualizada / Mensual</div>
       <div class="stat-value" id="m-annual" style="font-size:1.5rem">—</div>
       <div class="stat-sub" id="m-monthly">mensual: —</div>
-    </div></div>
-  </div>
-
-  <!-- Tasa de cambio y brecha -->
-  <div class="row g-3 mb-4">
-    <div class="col-12"><div class="card">
-      <div class="card-header d-flex justify-content-between align-items-center">
-        <span>Tasa de cambio y brecha cambiaria</span>
-        <span class="card-sub" id="rates-date"></span>
-      </div>
-      <div class="card-body py-3">
-        <div class="row align-items-center">
-          <div class="col-3"><div class="rate-box"><div class="rl">Oficial (BCV)</div><div class="rv" id="r-oficial">—<small> Bs/$</small></div></div></div>
-          <div class="col-3"><div class="rate-box"><div class="rl">Paralelo</div><div class="rv" id="r-paralelo">—<small> Bs/$</small></div></div></div>
-          <div class="col-3"><div class="rate-box brecha-pill"><div class="rl" style="color:#b02a37">Brecha</div><div class="rv" id="r-brecha" style="color:#b02a37">—</div></div></div>
-          <div class="col-3"><div class="rate-box"><div class="rl">Costo canasta (Bs)</div><div class="rv" id="r-canasta-bs" style="font-size:1.05rem">—</div></div></div>
-        </div>
-        <div class="text-muted mt-2" style="font-size:.76rem">La brecha (paralelo vs. oficial) es un indicador clave de presión cambiaria. El índice también se expresa en bolívares, combinando el cambio de precios en USD con la devaluación.</div>
-      </div>
     </div></div>
   </div>
 
@@ -179,6 +172,37 @@
     </div></div>
   </div></div></div>
 
+  </div><!-- /pane-inflacion -->
+
+  <div id="pane-tasas" style="display:none">
+    <div class="row g-3 mb-4"><div class="col-12"><div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Tasa de cambio y brecha cambiaria</span>
+        <span class="card-sub" id="rates-date"></span>
+      </div>
+      <div class="card-body py-3">
+        <div class="row align-items-center">
+          <div class="col-4"><div class="rate-box"><div class="rl">Oficial (BCV)</div><div class="rv" id="r-oficial">—<small> Bs/$</small></div></div></div>
+          <div class="col-4"><div class="rate-box"><div class="rl">Paralelo</div><div class="rv" id="r-paralelo">—<small> Bs/$</small></div></div></div>
+          <div class="col-4"><div class="rate-box brecha-pill"><div class="rl" style="color:#b02a37">Brecha</div><div class="rv" id="r-brecha" style="color:#b02a37">—</div></div></div>
+        </div>
+        <div class="text-muted mt-2" style="font-size:.76rem">La brecha (paralelo vs. oficial) es uno de los indicadores de presión cambiaria más vigilados en Venezuela. El índice también se expresa en bolívares, combinando la inflación en USD con la devaluación.</div>
+      </div>
+    </div></div></div>
+
+    <div class="row g-3 mb-4"><div class="col-12"><div class="card">
+      <div class="card-header">Costo de la canasta básica hoy</div>
+      <div class="card-body py-3">
+        <div class="row text-center">
+          <div class="col-4"><div class="rate-box"><div class="rl">En dólares</div><div class="rv" id="c-usd">—</div></div></div>
+          <div class="col-4"><div class="rate-box"><div class="rl">En Bs · oficial</div><div class="rv" id="c-bs-of" style="font-size:1.15rem">—</div></div></div>
+          <div class="col-4"><div class="rate-box"><div class="rl">En Bs · paralelo</div><div class="rv" id="c-bs-par" style="font-size:1.15rem">—</div></div></div>
+        </div>
+        <div class="text-muted mt-2" style="font-size:.76rem">Canasta de 22 productos (mediana entre tiendas). En bolívares se convierte a la tasa oficial y a la paralela del día — la diferencia entre ambas es lo que pesa la brecha en el bolsillo.</div>
+      </div>
+    </div></div></div>
+  </div><!-- /pane-tasas -->
+
   <!-- Datos abiertos / API -->
   <div class="row g-3 mb-4"><div class="col-12">
     <p class="text-muted mb-2" style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:600">Datos abiertos</p>
@@ -186,6 +210,26 @@
       Series y datos descargables para investigadores y medios:<br>
       ↓ <a href="data/index.csv" download>index.csv</a> &nbsp; ↓ <a href="data/prices_raw.csv" download>prices_raw.csv</a> &nbsp; ↓ <a href="data/fx.csv" download>fx.csv</a><br>
       API (JSON): <a href="data/api/latest.json">data/api/latest.json</a> &nbsp;·&nbsp; <a href="data/api/index.json">data/api/index.json</a>
+    </div>
+  </div></div>
+
+  <!-- Fuentes -->
+  <div class="row mb-4"><div class="col-12">
+    <p class="text-muted mb-2" style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:600">Fuentes de los datos</p>
+    <div class="methodology-box">
+      <strong>Precios:</strong> tomados directamente de los sitios web oficiales de cada cadena —
+      <a href="https://gamaenlinea.com" target="_blank" rel="noopener">Excelsior Gama</a> (tienda Gama Plus Santa Eduvigis),
+      <a href="https://tucentralonline.com" target="_blank" rel="noopener">Central Madeirense</a> (Av. Presidente Medina) y
+      <a href="https://plansuarez.com" target="_blank" rel="noopener">Plan Suárez</a> (catálogo en línea, sucursales de Caracas).
+      Una fuente de precio por cadena: tres cadenas, tres fuentes.
+      <br><br>
+      <strong>Tasa de cambio:</strong> <a href="https://ve.dolarapi.com" target="_blank" rel="noopener">ve.dolarapi.com</a>,
+      que publica la tasa <strong>oficial del BCV</strong> y un <strong>promedio del mercado paralelo</strong>
+      (consolidado de los monitores de referencia). El paralelo es un promedio, no una cotización única; existen
+      múltiples fuentes de paralelo y pueden diferir entre sí.
+      <br><br>
+      <strong>Transparencia:</strong> todos los precios crudos, el índice y las tasas están disponibles para
+      descarga y vía API en la sección <em>Datos abiertos</em>, para que cualquiera pueda auditar el cálculo.
     </div>
   </div></div>
 
@@ -274,9 +318,20 @@ function renderRates(s){
   document.getElementById('r-oficial').innerHTML = (r.oficial!=null? fmtNum(r.oficial):'—')+'<small> Bs/$</small>';
   document.getElementById('r-paralelo').innerHTML = (r.paralelo!=null? fmtNum(r.paralelo):'—')+'<small> Bs/$</small>';
   document.getElementById('r-brecha').textContent = r.brecha_pct!=null? '+'+r.brecha_pct.toFixed(1).replace('.',',')+'%':'—';
-  document.getElementById('r-canasta-bs').textContent = s.basket_cost_bs!=null? 'Bs '+fmtNum(s.basket_cost_bs):'—';
+  document.getElementById('c-usd').textContent = s.basket_cost_usd!=null? '$'+Number(s.basket_cost_usd).toFixed(2):'—';
+  document.getElementById('c-bs-of').textContent = s.basket_cost_bs_oficial!=null? 'Bs '+fmtNum(s.basket_cost_bs_oficial):'—';
+  document.getElementById('c-bs-par').textContent = s.basket_cost_bs_paralelo!=null? 'Bs '+fmtNum(s.basket_cost_bs_paralelo):'—';
   document.getElementById('rates-date').textContent = r.date? fmtDate(r.date):'';
 }
+
+// Pestañas
+document.getElementById('tabs').addEventListener('click', e=>{
+  const btn = e.target.closest('button[data-tab]'); if(!btn) return;
+  document.querySelectorAll('#tabs .nav-link').forEach(b=>b.classList.toggle('active', b===btn));
+  const tab = btn.dataset.tab;
+  document.getElementById('pane-inflacion').style.display = tab==='inflacion'?'block':'none';
+  document.getElementById('pane-tasas').style.display = tab==='tasas'?'block':'none';
+});
 
 function renderStores(s, detail){
   const cont = document.getElementById('store-cards');
