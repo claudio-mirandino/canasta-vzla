@@ -105,6 +105,24 @@ def _size_bonus(name: str, size_value: float, size_unit: str) -> float:
 _REF_TO_BASE = {"kg": ("g", 1000.0), "l": ("ml", 1000.0), "u": ("un", 1.0)}
 
 
+def _egg_count(name: str) -> int | None:
+    """
+    Número de huevos en una presentación: '30 unidades', '30UND', '15U',
+    '1/2 carton' (=15), 'docena' (=12), 'carton' (=30). None si no se detecta.
+    """
+    n = normalize(name)
+    if re.search(r'(1/2|medio)\s*cart', n):
+        return 15
+    m = re.search(r'(\d+)\s*(u|un|und|unds|unidad|unidades|huevos?)\b', n)
+    if m:
+        return int(m.group(1))
+    if "docena" in n:
+        return 12
+    if "carton" in n:
+        return 30
+    return None
+
+
 def unit_price(price: float, product_name: str, ref_unit: str) -> float | None:
     """
     Normaliza un precio a precio por unidad de referencia ($/kg, $/l, $/unidad)
@@ -117,6 +135,9 @@ def unit_price(price: float, product_name: str, ref_unit: str) -> float | None:
     """
     if price is None or price <= 0:
         return None
+    if ref_unit == "u":
+        cnt = _egg_count(product_name)
+        return round(price / cnt, 4) if cnt else round(price, 4)
     if ref_unit not in _REF_TO_BASE:
         return round(price, 4)
     base_unit, factor = _REF_TO_BASE[ref_unit]

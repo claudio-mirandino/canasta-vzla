@@ -116,7 +116,7 @@
       "id": "queso_blanco", "name": "Queso blanco", "spec": "1 kg",
       "category": "lacteos", "ref_unit": "kg", "household_qty_month": 3,
       "search_terms": {"gama": "queso blanco duro kg", "plansuarez": "queso blanco", "central": "queso blanco zedeno kg"},
-      "match": {"must_include": [["queso"], ["blanco"]], "must_exclude": ["crema", "fundido", "rallado", "mozzarella", "amarillo", "dip", "untable"], "size_value": 1000, "size_unit": "g"}
+      "match": {"must_include": [["queso"], ["blanco"]], "must_exclude": ["crema", "fundido", "rallado", "mozzarella", "amarillo", "dip", "untable", "pepito", "snack", "ricotta", "crinkle"], "size_value": 1000, "size_unit": "g"}
     },
     {
       "id": "mantequilla", "name": "Mantequilla", "spec": "1 kg (referencia)",

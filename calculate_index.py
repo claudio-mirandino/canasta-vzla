@@ -66,11 +66,11 @@ def load_basket() -> dict:
     return meta
 
 
-def load_prices(meta: dict) -> pd.DataFrame:
+def load_prices(meta: dict, prices_file: Path = PRICES_FILE) -> pd.DataFrame:
     """Carga precios y añade columna unit_price (precio por unidad de referencia)."""
-    if not PRICES_FILE.exists():
+    if not prices_file.exists():
         return pd.DataFrame(columns=["date", "product_id", "store", "unit_price"])
-    df = pd.read_csv(PRICES_FILE)
+    df = pd.read_csv(prices_file)
     df["date"] = df["date"].astype(str)
     df["price_usd"] = pd.to_numeric(df["price_usd"], errors="coerce")
     if "product_name_found" not in df.columns:
@@ -317,55 +317,67 @@ def build_summary(df: pd.DataFrame, series: pd.DataFrame, fx: dict, meta: dict, 
     }
 
 
-def build_api(series: pd.DataFrame, summary: dict, fx: dict):
-    API_DIR.mkdir(parents=True, exist_ok=True)
+def build_api(series: pd.DataFrame, summary: dict, fx: dict, api_dir: Path = API_DIR, base_date: str = BASE_DATE):
+    api_dir.mkdir(parents=True, exist_ok=True)
     serie = [{"date": r["date"], "index_usd": r["index_usd"],
               "index_bs": (r["index_bs"] if pd.notna(r["index_bs"]) else None),
               "weekly_change_pct": r["weekly_change_pct"],
               "basket_cost_usd": r["basket_cost_usd"]} for _, r in series.iterrows()]
-    with open(API_DIR / "index.json", "w", encoding="utf-8") as f:
-        json.dump({"base_date": BASE_DATE, "series": serie}, f, ensure_ascii=False, indent=2)
+    with open(api_dir / "index.json", "w", encoding="utf-8") as f:
+        json.dump({"base_date": base_date, "series": serie}, f, ensure_ascii=False, indent=2)
     fx_series = [{"date": dt, **vals} for dt, vals in sorted(fx.items())]
-    with open(API_DIR / "fx.json", "w", encoding="utf-8") as f:
+    with open(api_dir / "fx.json", "w", encoding="utf-8") as f:
         json.dump({"series": fx_series}, f, ensure_ascii=False, indent=2)
-    with open(API_DIR / "latest.json", "w", encoding="utf-8") as f:
+    with open(api_dir / "latest.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
 
 
 # ── Orquestación ─────────────────────────────────────────────────────────────
 
-def rebuild_index() -> pd.DataFrame:
+def rebuild_index(data_dir: Path = None, base_date: str = BASE_DATE) -> pd.DataFrame:
+    """
+    Reconstruye el índice de una ciudad. data_dir define dónde están sus archivos
+    (prices_raw.csv) y dónde se escriben (index.csv, detail.json, summary.json, api/).
+    basket.json y fx.csv son globales (compartidos entre ciudades).
+    """
+    data_dir = Path(data_dir) if data_dir else INDEX_FILE.parent
+    prices_file = data_dir / "prices_raw.csv"
+    index_file = data_dir / "index.csv"
+    detail_file = data_dir / "detail.json"
+    summary_file = data_dir / "summary.json"
+    api_dir = data_dir / "api"
+
     meta = load_basket()
-    df = load_prices(meta)
+    df = load_prices(meta, prices_file)
     fx = load_fx()
     if df.empty:
-        logger.error("No hay datos de precios. Ejecuta el scraper primero.")
+        logger.error(f"No hay datos de precios en {prices_file}.")
         return pd.DataFrame()
 
-    series = compute_series(df, meta, fx, BASE_DATE)
+    series = compute_series(df, meta, fx, base_date)
     if series.empty:
         logger.error("No se pudo construir la serie del índice.")
         return series
 
-    INDEX_FILE.parent.mkdir(parents=True, exist_ok=True)
-    series.to_csv(INDEX_FILE, index=False)
-    logger.info(f"Índice reconstruido: {INDEX_FILE} ({len(series)} semanas)")
+    data_dir.mkdir(parents=True, exist_ok=True)
+    series.to_csv(index_file, index=False)
+    logger.info(f"Índice reconstruido: {index_file} ({len(series)} semanas)")
 
     detail = build_detail(df, meta)
-    with open(DETAIL_FILE, "w", encoding="utf-8") as f:
+    with open(detail_file, "w", encoding="utf-8") as f:
         json.dump(detail, f, ensure_ascii=False, indent=2)
-    summary = build_summary(df, series, fx, meta, BASE_DATE)
-    with open(SUMMARY_FILE, "w", encoding="utf-8") as f:
+    summary = build_summary(df, series, fx, meta, base_date)
+    with open(summary_file, "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
-    build_api(series, summary, fx)
+    build_api(series, summary, fx, api_dir, base_date)
     logger.info("Detalle, resumen y mini-API generados")
     return series
 
 
 # ── Compatibilidad con main.py ───────────────────────────────────────────────
 
-def calculate_index(week_date: str = None) -> dict:
-    series = rebuild_index()
+def calculate_index(week_date: str = None, data_dir: Path = None, base_date: str = BASE_DATE) -> dict:
+    series = rebuild_index(data_dir, base_date)
     if series.empty:
         return None
     if week_date and week_date in series["date"].values:

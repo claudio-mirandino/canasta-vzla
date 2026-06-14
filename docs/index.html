@@ -84,12 +84,21 @@
 <header>
   <div class="container">
     <h1>Índice de Inflación · Canasta Básica Alimentaria Venezuela</h1>
-    <div class="subtitle">3 supermercados de Caracas · Excelsior Gama, Central Madeirense y Plan Suárez · Índice encadenado (Jevons–Laspeyres)</div>
+    <div class="subtitle" id="subtitle">Índice encadenado (Jevons–Laspeyres) · precios por unidad · actualización semanal</div>
     <div class="last-updated" id="last-updated">Cargando datos…</div>
   </div>
 </header>
 
 <main class="container py-4">
+
+  <!-- Selector de ciudad -->
+  <div class="d-flex align-items-center gap-2 mb-3 flex-wrap">
+    <span class="text-muted" style="font-size:.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600">Ciudad:</span>
+    <div class="btn-group toggle-group" id="city-selector" role="group">
+      <button class="btn btn-cur active" data-city="caracas">Caracas</button>
+      <button class="btn btn-cur" data-city="maracaibo">Maracaibo</button>
+    </div>
+  </div>
 
   <!-- Pestañas -->
   <ul class="nav nav-pills mb-3" id="tabs">
@@ -147,11 +156,7 @@
       <div id="prices-loading" class="text-center py-5"><div class="spinner-border mb-2"></div><div class="text-muted small">Cargando precios…</div></div>
       <div class="table-responsive" id="prices-table-container" style="display:none">
         <table class="table tbl mb-0">
-          <thead><tr>
-            <th class="ps-3" style="min-width:170px">Producto</th>
-            <th class="text-end">Gama</th><th class="text-end">Central</th><th class="text-end">Plan Suárez</th>
-            <th class="text-end">Mediana</th><th class="text-end pe-3">vs sem. ant.</th>
-          </tr></thead>
+          <thead><tr id="prices-head"></tr></thead>
           <tbody id="prices-tbody"></tbody>
         </table>
       </div>
@@ -278,14 +283,19 @@ const CATEGORY_ORDER = [
   {id:'proteinas',label:'Proteínas'},{id:'lacteos',label:'Lácteos'},
   {id:'vegetales',label:'Vegetales y Frutas'},
 ];
-const STORES = ['gama','central','plansuarez'];
+const CITY_BASES = { caracas:'data', maracaibo:'data/maracaibo' };
+const CITY_NAMES = { caracas:'Caracas', maracaibo:'Maracaibo' };
 const STORE_INFO = {
   gama:{name:'Excelsior Gama',loc:'Gama Plus Santa Eduvigis · Sucre'},
   central:{name:'Central Madeirense',loc:'Av. Presidente Medina'},
   plansuarez:{name:'Plan Suárez',loc:'Trinidad · Caurimare · La Urbina'},
+  angelicas:{name:'Angélicas Market',loc:'Maracaibo'},
+  superfresh:{name:'Super Fresh Market',loc:'Maracaibo'},
+  trio:{name:'Tienda Trío',loc:'Maracaibo · San Francisco'},
 };
 const PRODUCTS = {};
-let chart=null, seriesData=[], currency='usd';
+let STORES=['gama','central','plansuarez'];
+let chart=null, fxChart=null, seriesData=[], currency='usd', cityBase='data';
 
 function fmtDate(s){ return new Date(s+'T00:00:00').toLocaleDateString('es-VE',{day:'numeric',month:'short',year:'numeric'}); }
 function fmtNum(n){ return n==null?'—':Number(n).toLocaleString('es-VE',{maximumFractionDigits:0}); }
@@ -298,24 +308,51 @@ function pct(v, invertColor=false){
 
 async function loadJSON(u){ const r=await fetch(u); if(!r.ok) throw new Error(u); return r.json(); }
 
-async function init(){
-  let basket, summary, detail, api;
-  try { basket = await loadJSON('data/basket.json'); basket.products.forEach(p=>PRODUCTS[p.id]={name:p.name,category:p.category,weight:p.weight}); } catch(e){}
-  try { summary = await loadJSON('data/summary.json'); } catch(e){ summary=null; }
-  try { detail  = await loadJSON('data/detail.json'); } catch(e){ detail=null; }
-  try { api     = await loadJSON('data/api/index.json'); seriesData = api.series||[]; } catch(e){ seriesData=[]; }
+async function loadCity(city){
+  cityBase = CITY_BASES[city] || 'data';
+  let summary=null, detail=null, api=null;
+  try { summary = await loadJSON(cityBase+'/summary.json'); } catch(e){}
+  try { detail  = await loadJSON(cityBase+'/detail.json'); } catch(e){}
+  try { api     = await loadJSON(cityBase+'/api/index.json'); seriesData = api.series||[]; } catch(e){ seriesData=[]; }
 
-  if(summary){ renderHero(summary); renderRates(summary); renderStores(summary, detail); document.getElementById('last-updated').textContent = `Última actualización: ${fmtDate(summary.last_date)} · base ${fmtDate(summary.base_date)} = 100`; }
+  STORES = (detail && detail.stores && detail.stores.length) ? detail.stores
+           : ((summary && summary.stores) || STORES);
+
+  if(summary){
+    renderHero(summary); renderRates(summary); renderStores(summary, detail);
+    document.getElementById('last-updated').textContent =
+      `${CITY_NAMES[city]||''} · actualizado ${fmtDate(summary.last_date)} · base ${fmtDate(summary.base_date)} = 100`;
+    const tiendas = STORES.map(s=>(STORE_INFO[s]&&STORE_INFO[s].name)||s).join(' · ');
+    document.getElementById('subtitle').textContent =
+      `${CITY_NAMES[city]||''} · ${tiendas} · Índice encadenado (Jevons–Laspeyres)`;
+  }
   if(seriesData.length){ renderChart(); renderHistory(); }
-  if(detail){ renderPrices(detail); } else { document.getElementById('prices-loading').innerHTML='<div class="py-4 text-muted small">Sin datos de precios aún.</div>'; }
-  try { const fxj = await loadJSON('data/api/fx.json'); renderFxChart(fxj.series||[]); } catch(e){}
+  if(detail){ renderPrices(detail); }
+  else { document.getElementById('prices-loading').style.display='block';
+         document.getElementById('prices-loading').innerHTML='<div class="py-4 text-muted small">Sin datos de precios para esta ciudad aún.</div>';
+         document.getElementById('prices-table-container').style.display='none'; }
+  try { const fxj = await loadJSON(cityBase+'/api/fx.json'); renderFxChart(fxj.series||[]); } catch(e){}
+}
+
+async function init(){
+  try { const basket = await loadJSON('data/basket.json'); basket.products.forEach(p=>PRODUCTS[p.id]={name:p.name,category:p.category,weight:p.weight}); } catch(e){}
+  await loadCity('caracas');
+  document.getElementById('city-selector').addEventListener('click', e=>{
+    const btn=e.target.closest('button[data-city]'); if(!btn) return;
+    document.querySelectorAll('#city-selector button').forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('#tabs .nav-link').forEach(b=>b.classList.toggle('active', b.dataset.tab==='inflacion'));
+    document.getElementById('pane-inflacion').style.display='block';
+    document.getElementById('pane-tasas').style.display='none';
+    loadCity(btn.dataset.city);
+  });
 }
 
 function renderFxChart(fx){
   if(!fx.length) return;
   const labels=fx.map(d=>new Date(d.date+'T00:00:00').toLocaleDateString('es-VE',{day:'2-digit',month:'short'}));
   const ctx=document.getElementById('fxChart').getContext('2d');
-  new Chart(ctx,{type:'line',data:{labels,datasets:[
+  if(fxChart) fxChart.destroy();
+  fxChart=new Chart(ctx,{type:'line',data:{labels,datasets:[
     {label:'Oficial (BCV)',data:fx.map(d=>d.oficial),borderColor:'#1a2e4a',backgroundColor:'transparent',borderWidth:2.5,pointRadius:fx.length>1?3:5,tension:.3},
     {label:'Paralelo',data:fx.map(d=>d.paralelo),borderColor:'#b02a37',backgroundColor:'transparent',borderWidth:2.5,borderDash:[5,4],pointRadius:fx.length>1?3:5,tension:.3}
   ]},options:{responsive:true,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:11}}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y!=null?Number(c.parsed.y).toLocaleString('es-VE',{maximumFractionDigits:0}):'—'} Bs/$`}}},
@@ -391,18 +428,25 @@ function renderChart(){
 
 function renderPrices(detail){
   const tbody=document.getElementById('prices-tbody');
+  // Encabezado dinámico según las tiendas de la ciudad
+  const head=document.getElementById('prices-head');
+  head.innerHTML = `<th class="ps-3" style="min-width:170px">Producto</th>` +
+    STORES.map(s=>`<th class="text-end">${(STORE_INFO[s]&&STORE_INFO[s].name)||s}</th>`).join('') +
+    `<th class="text-end">Mediana</th><th class="text-end pe-3">vs sem. ant.</th>`;
+  const ncols = STORES.length + 3;
+
   const byId={}; detail.products.forEach(p=>byId[p.id]=p);
   let html='';
   CATEGORY_ORDER.forEach(cat=>{
     const ids=Object.keys(PRODUCTS).filter(id=>PRODUCTS[id].category===cat.id && byId[id]);
     if(!ids.length) return;
-    html+=`<tr class="category-row"><td colspan="6">${cat.label}</td></tr>`;
+    html+=`<tr class="category-row"><td colspan="${ncols}">${cat.label}</td></tr>`;
     ids.forEach(id=>{
       const p=byId[id]; const bs=p.by_store||{}; const u=p.ref_unit||'kg';
-      const cell=st=>{ const v=bs[st]; return v!=null?`<td class="text-end price-available">$${v.toFixed(2)}</td>`:`<td class="text-end price-none">—</td>`; };
+      const cells=STORES.map(st=>{ const v=bs[st]; return v!=null?`<td class="text-end price-available">$${v.toFixed(2)}</td>`:`<td class="text-end price-none">—</td>`; }).join('');
       html+=`<tr><td class="ps-3" style="font-size:.85rem">${p.name}
           <span class="text-muted" style="font-size:.72rem">· $/${u}</span></td>
-        ${cell('gama')}${cell('central')}${cell('plansuarez')}
+        ${cells}
         <td class="text-end avg-cell">$${p.price_usd.toFixed(2)}</td>
         <td class="text-end pe-3">${pct(p.weekly_change_pct)}</td></tr>`;
     });

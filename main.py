@@ -26,10 +26,8 @@ if sys.stdout.encoding != 'utf-8':
 if sys.stderr.encoding != 'utf-8':
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 
-from scrapers.gama import GamaScraper
-from scrapers.plansuarez import PlansuarezScraper
-from scrapers.central import CentralScraper
-from calculate_index import calculate_index, save_index, print_report
+from scrapers.cities import CITIES
+from calculate_index import rebuild_index, print_report
 
 logging.basicConfig(
     level=logging.INFO,
@@ -48,7 +46,7 @@ def load_basket() -> list:
         return json.load(f)["products"]
 
 
-def load_previous_prices() -> dict:
+def load_previous_prices(prices_file: Path) -> dict:
     """
     Carga el último precio conocido de cada producto POR TIENDA, para la
     detección de anomalías. Comparar una tienda contra su propio precio previo
@@ -57,10 +55,10 @@ def load_previous_prices() -> dict:
 
     Retorna {store: {product_id: last_known_price_usd}}.
     """
-    if not PRICES_FILE.exists():
+    if not prices_file.exists():
         return {}
 
-    df = pd.read_csv(PRICES_FILE)
+    df = pd.read_csv(prices_file)
     df = df[df["price_usd"] > 0]
     if df.empty:
         return {}
@@ -74,12 +72,12 @@ def load_previous_prices() -> dict:
     return out
 
 
-def save_prices(results: list, collection_date: str):
+def save_prices(results: list, collection_date: str, prices_file: Path):
     """
-    Guarda los resultados de scraping en el CSV de precios.
+    Guarda los resultados de scraping en el CSV de precios de la ciudad.
     Si el CSV no existe, lo crea. Si ya tiene datos de esa fecha, los reemplaza.
     """
-    PRICES_FILE.parent.mkdir(parents=True, exist_ok=True)
+    prices_file.parent.mkdir(parents=True, exist_ok=True)
 
     columns = [
         "date", "product_id", "store",
@@ -104,8 +102,8 @@ def save_prices(results: list, collection_date: str):
 
     new_df = pd.DataFrame(new_rows, columns=columns)
 
-    if PRICES_FILE.exists():
-        existing = pd.read_csv(PRICES_FILE)
+    if prices_file.exists():
+        existing = pd.read_csv(prices_file)
         # Eliminar datos de la misma fecha + tienda si ya existen (re-run)
         stores_today = new_df["store"].unique().tolist()
         mask = ~((existing["date"] == collection_date) & (existing["store"].isin(stores_today)))
@@ -115,8 +113,8 @@ def save_prices(results: list, collection_date: str):
     else:
         updated = new_df
 
-    updated.to_csv(PRICES_FILE, index=False)
-    logger.info(f"Precios guardados en {PRICES_FILE} ({len(new_rows)} registros para {collection_date})")
+    updated.to_csv(prices_file, index=False)
+    logger.info(f"Precios guardados en {prices_file} ({len(new_rows)} registros para {collection_date})")
 
 
 def print_scraping_summary(all_results: list, collection_date: str):
@@ -168,19 +166,12 @@ def _run_scraper_in_thread(scraper, products, previous_prices, result_queue):
         result_queue.put(("error", str(e)))
 
 
-def run_scrapers(products: list, previous_prices: dict, collection_date: str) -> list:
+def run_scrapers(scrapers: list, products: list, previous_prices: dict) -> list:
     """
-    Ejecuta los 3 scrapers y retorna todos los resultados.
-    Cada scraper corre en su propio thread para evitar conflicto
-    con el event loop de asyncio del entorno.
+    Ejecuta la lista de scrapers de una ciudad y retorna todos los resultados.
+    Cada scraper corre en su propio thread para evitar conflicto con asyncio.
     """
     all_results = []
-
-    scrapers = [
-        GamaScraper(),
-        CentralScraper(),
-        PlansuarezScraper(),
-    ]
 
     for scraper in scrapers:
         logger.info(f"\n{'─'*40}")
@@ -219,43 +210,49 @@ def main():
                         help=f"Fecha para el índice (default: {TODAY})")
     parser.add_argument("--scrape-date", default=TODAY,
                         help=f"Fecha a usar al guardar precios (default: {TODAY})")
+    parser.add_argument("--city", default=None,
+                        help="Procesar solo una ciudad (caracas|maracaibo). Default: todas")
     args = parser.parse_args()
 
     logger.info("=" * 60)
     logger.info("  IPC CANASTA BÁSICA ALIMENTARIA VENEZUELA")
     logger.info("=" * 60)
 
+    products = load_basket()
+    cities = {args.city: CITIES[args.city]} if args.city else CITIES
+
+    # Tasas de cambio: globales, se guardan una sola vez
     if not args.index_only:
-        # ── Scraping ──────────────────────────────────────────────────
-        logger.info(f"Fecha de recolección: {args.scrape_date}")
-        products = load_basket()
-        previous_prices = load_previous_prices()
-
-        logger.info(f"Productos en canasta: {len(products)}")
-        logger.info(f"Tiendas: Gama, Central Madeirense, Plan Suárez")
-
-        all_results = run_scrapers(products, previous_prices, args.scrape_date)
-        save_prices(all_results, args.scrape_date)
-        print_scraping_summary(all_results, args.scrape_date)
-
-        # Guardar tasas de cambio del día (oficial/paralelo/brecha)
         try:
             from scrapers import fx
             fx.save_rates(args.scrape_date)
         except Exception as e:
             logger.warning(f"No se pudieron guardar las tasas de cambio: {e}")
 
-    # ── Cálculo del índice ────────────────────────────────────────────
-    logger.info("Calculando índice...")
-    result = calculate_index(args.date)
+    for key, cfg in cities.items():
+        data_dir = Path(cfg["data_dir"])
+        prices_file = data_dir / "prices_raw.csv"
+        logger.info("\n" + "#" * 60)
+        logger.info(f"  CIUDAD: {cfg['name'].upper()}")
+        logger.info("#" * 60)
 
-    if result:
-        print_report(result)
-        save_index(result)
-        logger.info("✓ Proceso completado exitosamente")
-    else:
-        logger.warning("⚠ Índice no calculado — datos base disponibles desde 2026-04-01")
-        logger.info("✓ Scraping completado. El índice se calculará a partir del 1° de abril.")
+        if not args.index_only:
+            logger.info(f"Fecha de recolección: {args.scrape_date}")
+            previous_prices = load_previous_prices(prices_file)
+            scrapers = cfg["build_stores"]()
+            logger.info(f"Tiendas: {', '.join(s.STORE_NAME for s in scrapers)}")
+
+            all_results = run_scrapers(scrapers, products, previous_prices)
+            save_prices(all_results, args.scrape_date, prices_file)
+            print_scraping_summary(all_results, args.scrape_date)
+
+        logger.info(f"Calculando índice de {cfg['name']}...")
+        result = rebuild_index(data_dir, cfg["base_date"])
+        if result is not None and not result.empty:
+            print_report(result.iloc[-1].to_dict())
+            logger.info(f"✓ {cfg['name']} completado")
+        else:
+            logger.warning(f"⚠ Índice de {cfg['name']} no calculado (sin datos)")
 
 
 if __name__ == "__main__":

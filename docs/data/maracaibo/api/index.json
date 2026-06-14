@@ -1,0 +1,12 @@
+{
+  "base_date": "2026-06-14",
+  "series": [
+    {
+      "date": "2026-06-14",
+      "index_usd": 100.0,
+      "index_bs": 100.0,
+      "weekly_change_pct": 0.0,
+      "basket_cost_usd": 348.42
+    }
+  ]
+}
