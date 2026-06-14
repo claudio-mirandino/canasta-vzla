@@ -149,8 +149,16 @@
 
   <!-- Precios por producto -->
   <div class="row g-3 mb-4"><div class="col-12"><div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-      <span>Precios por producto</span><span class="card-sub" id="prices-date-label"></span>
+    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <span>Precios por producto</span>
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <div class="btn-group toggle-group" id="price-cur" role="group">
+          <button class="btn btn-cur active" data-cur="usd">USD</button>
+          <button class="btn btn-cur" data-cur="bs_of">Bs oficial</button>
+          <button class="btn btn-cur" data-cur="bs_par">Bs paralelo</button>
+        </div>
+        <span class="card-sub" id="prices-date-label"></span>
+      </div>
     </div>
     <div class="card-body p-0">
       <div id="prices-loading" class="text-center py-5"><div class="spinner-border mb-2"></div><div class="text-muted small">Cargando precios…</div></div>
@@ -261,7 +269,9 @@
       <br><br>
       <strong>Monedas:</strong> Gama y Central cotizan en USD; Plan Suárez en bolívares, convertidos a USD con la tasa
       oficial del BCV del día. El índice en bolívares combina la inflación en USD con la devaluación. La mediana entre
-      tiendas se usa como precio representativo (robusta a valores atípicos).
+      tiendas se usa como precio representativo (robusta a valores atípicos). Los precios por producto pueden verse en
+      USD o en bolívares (a tasa oficial o paralela): el bolívar mostrado es el equivalente en USD multiplicado por la
+      tasa del día, no necesariamente el precio de etiqueta de cada tienda (cada cadena usa su propia tasa interna).
       <br><br>
       <strong>Recolección:</strong> Automática cada domingo vía scraping de los sitios oficiales. Variaciones &gt;30% en la
       misma tienda se marcan para verificación. Inspirado en CENDAS-FVM y en la práctica de índices de precios online
@@ -296,6 +306,7 @@ const STORE_INFO = {
 const PRODUCTS = {};
 let STORES=['gama','central','plansuarez'];
 let chart=null, fxChart=null, seriesData=[], currency='usd', cityBase='data';
+let currentRates={}, priceCurrency='usd', currentDetail=null;
 
 function fmtDate(s){ return new Date(s+'T00:00:00').toLocaleDateString('es-VE',{day:'numeric',month:'short',year:'numeric'}); }
 function fmtNum(n){ return n==null?'—':Number(n).toLocaleString('es-VE',{maximumFractionDigits:0}); }
@@ -317,6 +328,8 @@ async function loadCity(city){
 
   STORES = (detail && detail.stores && detail.stores.length) ? detail.stores
            : ((summary && summary.stores) || STORES);
+  currentRates = (summary && summary.rates) || {};
+  currentDetail = detail;
 
   if(summary){
     renderHero(summary); renderRates(summary); renderStores(summary, detail);
@@ -344,6 +357,12 @@ async function init(){
     document.getElementById('pane-inflacion').style.display='block';
     document.getElementById('pane-tasas').style.display='none';
     loadCity(btn.dataset.city);
+  });
+  document.getElementById('price-cur').addEventListener('click', e=>{
+    const btn=e.target.closest('button[data-cur]'); if(!btn) return;
+    priceCurrency=btn.dataset.cur;
+    document.querySelectorAll('#price-cur button').forEach(b=>b.classList.toggle('active',b===btn));
+    if(currentDetail) renderPrices(currentDetail);
   });
 }
 
@@ -426,6 +445,14 @@ function renderChart(){
       scales:{y:{beginAtZero:false,ticks:{font:{size:11}},grid:{color:'rgba(0,0,0,.04)'}},x:{grid:{display:false},ticks:{font:{size:11}}}}}});
 }
 
+function fmtPrice(usd){
+  if(usd==null) return '—';
+  if(priceCurrency==='usd') return '$'+usd.toFixed(2);
+  const r = priceCurrency==='bs_of'? currentRates.oficial : currentRates.paralelo;
+  if(!r) return '$'+usd.toFixed(2);
+  return 'Bs '+(usd*r).toLocaleString('es-VE',{maximumFractionDigits:0});
+}
+
 function renderPrices(detail){
   const tbody=document.getElementById('prices-tbody');
   // Encabezado dinámico según las tiendas de la ciudad
@@ -443,16 +470,18 @@ function renderPrices(detail){
     html+=`<tr class="category-row"><td colspan="${ncols}">${cat.label}</td></tr>`;
     ids.forEach(id=>{
       const p=byId[id]; const bs=p.by_store||{}; const lbl=p.display_label||('/'+(p.ref_unit||'kg'));
-      const cells=STORES.map(st=>{ const v=bs[st]; return v!=null?`<td class="text-end price-available">$${v.toFixed(2)}</td>`:`<td class="text-end price-none">—</td>`; }).join('');
+      const cells=STORES.map(st=>{ const v=bs[st]; return v!=null?`<td class="text-end price-available">${fmtPrice(v)}</td>`:`<td class="text-end price-none">—</td>`; }).join('');
       html+=`<tr><td class="ps-3" style="font-size:.85rem">${p.name}
           <span class="text-muted" style="font-size:.72rem">· ${lbl}</span></td>
         ${cells}
-        <td class="text-end avg-cell">$${p.price_usd.toFixed(2)}</td>
+        <td class="text-end avg-cell">${fmtPrice(p.price_usd)}</td>
         <td class="text-end pe-3">${pct(p.weekly_change_pct)}</td></tr>`;
     });
   });
   tbody.innerHTML=html;
-  document.getElementById('prices-date-label').textContent=`Semana del ${fmtDate(detail.last_date)} · precio por presentación`;
+  const rk = priceCurrency==='bs_of'?'oficial':(priceCurrency==='bs_par'?'paralelo':null);
+  const rateNote = rk && currentRates[rk] ? ` · a tasa ${rk} (${currentRates[rk].toLocaleString('es-VE',{maximumFractionDigits:0})} Bs/$)` : '';
+  document.getElementById('prices-date-label').textContent=`Semana del ${fmtDate(detail.last_date)} · por presentación${rateNote}`;
   document.getElementById('prices-loading').style.display='none';
   document.getElementById('prices-table-container').style.display='block';
 }
