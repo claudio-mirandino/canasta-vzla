@@ -5,9 +5,9 @@
   "household_size": 5,
   "index_usd": 100.0,
   "index_bs": 100.0,
-  "basket_cost_usd": 429.55,
-  "basket_cost_bs_oficial": 250292.86,
-  "basket_cost_bs_paralelo": 340718.85,
+  "basket_cost_usd": 448.68,
+  "basket_cost_bs_oficial": 261439.64,
+  "basket_cost_bs_paralelo": 355892.75,
   "coverage": "22/22",
   "stores": [
     "central",
@@ -32,12 +32,12 @@
     "by_store": {
       "central": 397.33,
       "gama": 422.74,
-      "plansuarez": 296.72
+      "plansuarez": 411.64
     },
     "common_products": 20,
-    "min": 296.72,
-    "median": 397.33,
+    "min": 397.33,
+    "median": 411.64,
     "max": 422.74,
-    "cv_pct": 14.6
+    "cv_pct": 2.5
   }
 }

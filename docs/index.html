@@ -442,17 +442,17 @@ function renderPrices(detail){
     if(!ids.length) return;
     html+=`<tr class="category-row"><td colspan="${ncols}">${cat.label}</td></tr>`;
     ids.forEach(id=>{
-      const p=byId[id]; const bs=p.by_store||{}; const u=p.ref_unit||'kg';
+      const p=byId[id]; const bs=p.by_store||{}; const lbl=p.display_label||('/'+(p.ref_unit||'kg'));
       const cells=STORES.map(st=>{ const v=bs[st]; return v!=null?`<td class="text-end price-available">$${v.toFixed(2)}</td>`:`<td class="text-end price-none">—</td>`; }).join('');
       html+=`<tr><td class="ps-3" style="font-size:.85rem">${p.name}
-          <span class="text-muted" style="font-size:.72rem">· $/${u}</span></td>
+          <span class="text-muted" style="font-size:.72rem">· ${lbl}</span></td>
         ${cells}
         <td class="text-end avg-cell">$${p.price_usd.toFixed(2)}</td>
         <td class="text-end pe-3">${pct(p.weekly_change_pct)}</td></tr>`;
     });
   });
   tbody.innerHTML=html;
-  document.getElementById('prices-date-label').textContent=`Semana del ${fmtDate(detail.last_date)} · precios por unidad`;
+  document.getElementById('prices-date-label').textContent=`Semana del ${fmtDate(detail.last_date)} · precio por presentación`;
   document.getElementById('prices-loading').style.display='none';
   document.getElementById('prices-table-container').style.display='block';
 }

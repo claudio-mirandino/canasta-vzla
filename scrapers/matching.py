@@ -68,7 +68,8 @@ _UNIT_FACTORS = {
 
 def extract_size(name: str) -> tuple[str, float] | None:
     """Extrae (unidad_base, cantidad) del nombre de un producto, o None."""
-    m = _SIZE_RE.search(normalize(name).replace(",", "."))
+    # Plan Suárez marca el tamaño como "!500!" / "!300!": quitar signos para parsear
+    m = _SIZE_RE.search(normalize(name).replace("!", " ").replace(",", "."))
     if not m:
         return None
     qty = float(m.group(1).replace(",", "."))

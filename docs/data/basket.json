@@ -30,7 +30,7 @@
     },
     {
       "id": "pasta", "name": "Pasta (spaghetti)", "spec": "1 kg (referencia)",
-      "category": "cereales", "ref_unit": "kg", "household_qty_month": 4,
+      "category": "cereales", "ref_unit": "kg", "household_qty_month": 4, "display_qty": 0.5,
       "search_terms": {"gama": "pasta spaghetti 500g", "plansuarez": "spaghetti", "central": "spaghetti galo 500"},
       "match": {"must_include": [["spaghetti", "espagueti", "spaguetti"]], "must_exclude": ["salsa", "tomate", "integral", "queso", "gluten", "free", "garofalo"], "size_value": 500, "size_unit": "g"}
     },
@@ -90,19 +90,19 @@
     },
     {
       "id": "huevos", "name": "Huevos", "spec": "por unidad",
-      "category": "proteinas", "ref_unit": "u", "household_qty_month": 60,
+      "category": "proteinas", "ref_unit": "u", "household_qty_month": 60, "display_qty": 30,
       "search_terms": {"gama": "huevos carton 30", "plansuarez": "huevos", "central": "huevos rojos 30 unidades"},
       "match": {"must_include": [["huevos", "huevo"]], "must_exclude": ["codorniz", "chocolate", "pascua", "liquido"], "size_value": 30, "size_unit": "un"}
     },
     {
       "id": "sardinas", "name": "Sardinas en lata", "spec": "1 kg (referencia)",
-      "category": "proteinas", "ref_unit": "kg", "household_qty_month": 1,
+      "category": "proteinas", "ref_unit": "kg", "household_qty_month": 1, "display_qty": 0.17,
       "search_terms": {"gama": "sardinas lata 170g", "plansuarez": "sardinas", "central": "sardinas"},
       "match": {"must_include": [["sardinas", "sardina"]], "must_exclude": ["congelada", "fresca"], "size_value": 170, "size_unit": "g"}
     },
     {
       "id": "atun", "name": "Atún en lata", "spec": "1 kg (referencia)",
-      "category": "proteinas", "ref_unit": "kg", "household_qty_month": 1,
+      "category": "proteinas", "ref_unit": "kg", "household_qty_month": 1, "display_qty": 0.14,
       "search_terms": {"gama": "atun agua 140g", "plansuarez": "atun", "central": "atun pafia agua 140"},
       "match": {"must_include": [["atun"]], "must_exclude": ["gato", "ensalada", "pasta", "congelado"], "size_value": 140, "size_unit": "g"}
     },
@@ -120,7 +120,7 @@
     },
     {
       "id": "mantequilla", "name": "Mantequilla", "spec": "1 kg (referencia)",
-      "category": "lacteos", "ref_unit": "kg", "household_qty_month": 0.5,
+      "category": "lacteos", "ref_unit": "kg", "household_qty_month": 0.5, "display_qty": 0.2,
       "search_terms": {"gama": "mantequilla 200g", "plansuarez": "mantequilla", "central": "mantequilla paisana 200"},
       "match": {"must_include": [["mantequilla"]], "must_exclude": ["mani", "clarificada", "ajo", "aceite", "spray"], "size_value": 200, "size_unit": "g"}
     },

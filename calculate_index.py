@@ -61,9 +61,21 @@ def load_basket() -> dict:
             "category": p.get("category", ""),
             "ref_unit": p.get("ref_unit", "kg"),
             "household_qty": float(p.get("household_qty_month", 0) or 0),
+            "display_qty": float(p.get("display_qty", 1) or 1),
             "spec": p.get("spec", ""),
         }
     return meta
+
+
+def _display_label(ref_unit: str, dq: float) -> str:
+    """Etiqueta legible de la presentación mostrada (ej. '200 g', '1 kg', 'cartón 30')."""
+    if ref_unit == "kg":
+        return f"{int(round(dq*1000))} g" if dq < 1 else f"{dq:g} kg"
+    if ref_unit == "l":
+        return f"{int(round(dq*1000))} ml" if dq < 1 else f"{dq:g} L"
+    if ref_unit == "u":
+        return f"cartón {int(dq)}" if dq >= 12 else f"{int(dq)} u"
+    return f"{dq:g} {ref_unit}"
 
 
 def load_prices(meta: dict, prices_file: Path = PRICES_FILE) -> pd.DataFrame:
@@ -225,17 +237,19 @@ def build_detail(df: pd.DataFrame, meta: dict) -> dict:
         cur = d[(d["date"] == last) & (d["product_id"] == pid)]
         if cur.empty:
             continue
-        by_store = {r["store"]: round(r["unit_price"], 2) for _, r in cur.iterrows()}
+        dq = m["display_qty"]  # precio mostrado = precio unitario × presentación
+        by_store = {r["store"]: round(r["unit_price"] * dq, 2) for _, r in cur.iterrows()}
         rep = round(_median(list(by_store.values())), 2)
         change = None
         if prev is not None:
             prv = d[(d["date"] == prev) & (d["product_id"] == pid)]
             if not prv.empty:
-                pm = _median(list(prv["unit_price"]))
+                pm = _median(list(prv["unit_price"])) * dq
                 if pm > 0:
                     change = round((rep - pm) / pm * 100, 2)
         products.append({"id": pid, "name": m["name"], "spec": m["spec"],
                          "ref_unit": m["ref_unit"], "household_qty": m["household_qty"],
+                         "display_label": _display_label(m["ref_unit"], dq),
                          "price_usd": rep, "by_store": by_store, "weekly_change_pct": change})
     return {"last_date": last, "prev_date": prev,
             "stores": sorted(d[d["date"] == last]["store"].unique().tolist()),
