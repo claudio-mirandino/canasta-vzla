@@ -65,3 +65,69 @@ date,product_id,store,price_usd,price_original,currency_original,product_name_fo
 2026-06-14,tomate,angelicas,1.99,$1.99,USD,Tomate de segunda (1kg),https://angelicasmarket.com/?s=tomate&post_type=product,False,
 2026-06-14,tomate,superfresh,7.33,$7.33,USD,Tomate Pelados Pafia 800Gr,https://superfreshmarket.com.ve/?s=tomate&post_type=product,False,
 2026-06-14,tomate,trio,0.0,,USD,,https://triomcbo.com/?s=tomate&post_type=product,True,Sin resultados para 'tomate'
+2026-06-21,aceite,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=aceite+vegetal&post_type=product,True,Sin resultados para 'aceite vegetal'
+2026-06-21,aceite,superfresh,4.15,$4.15,USD,Aceite Vegetal Vatel 1L,https://superfreshmarket.com.ve/?s=aceite+vegetal&post_type=product,False,
+2026-06-21,aceite,trio,0.0,,USD,,https://triomcbo.com/?s=aceite+vegetal&post_type=product,True,Sin resultados para 'aceite vegetal'
+2026-06-21,arroz,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=arroz+blanco&post_type=product,True,Sin resultados para 'arroz blanco'
+2026-06-21,arroz,superfresh,1.47,$1.47,USD,Arroz Blanco Primor Clasico 1Kg,https://superfreshmarket.com.ve/?s=arroz+blanco&post_type=product,False,
+2026-06-21,arroz,trio,0.0,,USD,,https://triomcbo.com/?s=arroz+blanco&post_type=product,True,Sin resultados para 'arroz blanco'
+2026-06-21,atun,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=atun&post_type=product,True,Sin resultados para 'atun'
+2026-06-21,atun,superfresh,3.01,$3.01,USD,Atún Eveba En Agua Y Limón 140Gr,https://superfreshmarket.com.ve/?s=atun&post_type=product,False,
+2026-06-21,atun,trio,0.0,,USD,,https://triomcbo.com/?s=atun&post_type=product,True,Sin resultados para 'atun'
+2026-06-21,azucar,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=azucar&post_type=product,True,Sin resultados para 'azucar'
+2026-06-21,azucar,superfresh,1.88,$1.88,USD,Azúcar Publio Refinada 900G,https://superfreshmarket.com.ve/?s=azucar&post_type=product,False,
+2026-06-21,azucar,trio,0.0,,USD,,https://triomcbo.com/?s=azucar&post_type=product,True,Sin resultados para 'azucar'
+2026-06-21,cafe,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=cafe+molido&post_type=product,True,Sin resultados para 'cafe molido'
+2026-06-21,cafe,superfresh,2.86,$2.86,USD,Café Molido Blue Indigo 200Gr,https://superfreshmarket.com.ve/?s=cafe+molido&post_type=product,False,
+2026-06-21,cafe,trio,0.0,,USD,,https://triomcbo.com/?s=cafe+molido&post_type=product,True,Sin resultados para 'cafe molido'
+2026-06-21,caraotas,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=caraotas+negras&post_type=product,True,Sin resultados para 'caraotas negras'
+2026-06-21,caraotas,superfresh,1.18,$1.18,USD,Caraotas Negras Mary 400G,https://superfreshmarket.com.ve/?s=caraotas+negras&post_type=product,False,
+2026-06-21,caraotas,trio,0.0,,USD,,https://triomcbo.com/?s=caraotas+negras&post_type=product,True,Sin resultados para 'caraotas negras'
+2026-06-21,carne_molida,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=carne+molida&post_type=product,True,Sin resultados para 'carne molida'
+2026-06-21,carne_molida,superfresh,10.89,$10.89,USD,Carne Molida Premium Fresh Market (K).,https://superfreshmarket.com.ve/?s=carne+molida&post_type=product,False,
+2026-06-21,carne_molida,trio,0.0,,USD,,https://triomcbo.com/?s=carne+molida&post_type=product,True,Sin resultados para 'carne molida'
+2026-06-21,cebolla,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=cebolla&post_type=product,True,Sin resultados para 'cebolla'
+2026-06-21,cebolla,superfresh,1.7,$1.70,USD,Salsa Ajomix Con Cebolla Mccormick 150Ml,https://superfreshmarket.com.ve/?s=cebolla&post_type=product,False,
+2026-06-21,cebolla,trio,0.0,,USD,,https://triomcbo.com/?s=cebolla&post_type=product,True,Sin resultados para 'cebolla'
+2026-06-21,harina_maiz,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=harina+de+maiz&post_type=product,True,Sin resultados para 'harina de maiz'
+2026-06-21,harina_maiz,superfresh,1.17,$1.17,USD,Harina De Maíz  Mary Blanco 900Gr,https://superfreshmarket.com.ve/?s=harina+de+maiz&post_type=product,False,
+2026-06-21,harina_maiz,trio,0.0,,USD,,https://triomcbo.com/?s=harina+de+maiz&post_type=product,True,Sin resultados para 'harina de maiz'
+2026-06-21,huevos,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=huevos&post_type=product,True,Sin resultados para 'huevos'
+2026-06-21,huevos,superfresh,3.63,$3.63,USD,Huevos Kiri (15U),https://superfreshmarket.com.ve/?s=huevos&post_type=product,False,
+2026-06-21,huevos,trio,0.0,,USD,,https://triomcbo.com/?s=huevos&post_type=product,True,Sin resultados para 'huevos'
+2026-06-21,leche_polvo,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=leche+completa&post_type=product,True,Sin resultados para 'leche completa'
+2026-06-21,leche_polvo,superfresh,6.13,$6.13,USD,Leche En Polvo Silsa Completa 400G,https://superfreshmarket.com.ve/?s=leche+completa&post_type=product,False,
+2026-06-21,leche_polvo,trio,0.0,,USD,,https://triomcbo.com/?s=leche+completa&post_type=product,True,Sin resultados para 'leche completa'
+2026-06-21,lentejas,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=lentejas&post_type=product,True,Sin resultados para 'lentejas'
+2026-06-21,lentejas,superfresh,1.63,$1.63,USD,Lentejas Mary 400G,https://superfreshmarket.com.ve/?s=lentejas&post_type=product,False,
+2026-06-21,lentejas,trio,0.0,,USD,,https://triomcbo.com/?s=lentejas&post_type=product,True,Sin resultados para 'lentejas'
+2026-06-21,mantequilla,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=mantequilla&post_type=product,True,Sin resultados para 'mantequilla'
+2026-06-21,mantequilla,superfresh,7.9,$7.90,USD,Mantequilla Paisa Sin Sal 200G,https://superfreshmarket.com.ve/?s=mantequilla&post_type=product,False,
+2026-06-21,mantequilla,trio,0.0,,USD,,https://triomcbo.com/?s=mantequilla&post_type=product,True,Sin resultados para 'mantequilla'
+2026-06-21,margarina,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=margarina&post_type=product,True,Sin resultados para 'margarina'
+2026-06-21,margarina,superfresh,1.59,$1.59,USD,Margarina Soca 500G,https://superfreshmarket.com.ve/?s=margarina&post_type=product,False,
+2026-06-21,margarina,trio,0.0,,USD,,https://triomcbo.com/?s=margarina&post_type=product,True,Sin resultados para 'margarina'
+2026-06-21,papa,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=papa&post_type=product,True,Sin resultados para 'papa'
+2026-06-21,papa,superfresh,4.01,$4.01,USD,Papa Colombiana Fresh Market (K),https://superfreshmarket.com.ve/?s=papa&post_type=product,False,
+2026-06-21,papa,trio,0.0,,USD,,https://triomcbo.com/?s=papa&post_type=product,True,Sin resultados para 'papa'
+2026-06-21,pasta,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=spaghetti&post_type=product,True,Sin resultados para 'spaghetti'
+2026-06-21,pasta,superfresh,2.44,$2.44,USD,Pasta Divella Spaghetti 500Gr,https://superfreshmarket.com.ve/?s=spaghetti&post_type=product,False,
+2026-06-21,pasta,trio,0.0,,USD,,https://triomcbo.com/?s=spaghetti&post_type=product,True,Sin resultados para 'spaghetti'
+2026-06-21,platano,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=platano&post_type=product,True,Sin resultados para 'platano'
+2026-06-21,platano,superfresh,1.81,$1.81,USD,Plátano Fresh Market (K),https://superfreshmarket.com.ve/?s=platano&post_type=product,False,
+2026-06-21,platano,trio,0.0,,USD,,https://triomcbo.com/?s=platano&post_type=product,True,Sin resultados para 'platano'
+2026-06-21,pollo,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=pechuga+de+pollo&post_type=product,True,Sin resultados para 'pechuga de pollo'
+2026-06-21,pollo,superfresh,8.62,$8.62,USD,Pechuga De Pollo Cocida Asturias (K),https://superfreshmarket.com.ve/?s=pechuga+de+pollo&post_type=product,False,
+2026-06-21,pollo,trio,0.0,,USD,,https://triomcbo.com/?s=pechuga+de+pollo&post_type=product,True,Sin resultados para 'pechuga de pollo'
+2026-06-21,queso_blanco,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=queso+blanco&post_type=product,True,Sin resultados para 'queso blanco'
+2026-06-21,queso_blanco,superfresh,0.0,,USD,,https://superfreshmarket.com.ve/?s=queso+blanco&post_type=product,True,Ningún resultado cumple reglas para 'queso blanco'
+2026-06-21,queso_blanco,trio,0.0,,USD,,https://triomcbo.com/?s=queso+blanco&post_type=product,True,Sin resultados para 'queso blanco'
+2026-06-21,sal,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=sal+refinada&post_type=product,True,Sin resultados para 'sal refinada'
+2026-06-21,sal,superfresh,0.0,,USD,,https://superfreshmarket.com.ve/?s=sal+refinada&post_type=product,True,Ningún resultado cumple reglas para 'sal refinada'
+2026-06-21,sal,trio,0.0,,USD,,https://triomcbo.com/?s=sal+refinada&post_type=product,True,Sin resultados para 'sal refinada'
+2026-06-21,sardinas,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=sardinas&post_type=product,True,Sin resultados para 'sardinas'
+2026-06-21,sardinas,superfresh,0.99,$0.99,USD,Sardinas Di Fiore En Salsa De Tomate 155G,https://superfreshmarket.com.ve/?s=sardinas&post_type=product,False,
+2026-06-21,sardinas,trio,0.0,,USD,,https://triomcbo.com/?s=sardinas&post_type=product,True,Sin resultados para 'sardinas'
+2026-06-21,tomate,angelicas,0.0,,USD,,https://angelicasmarket.com/?s=tomate&post_type=product,True,Sin resultados para 'tomate'
+2026-06-21,tomate,superfresh,0.0,,USD,,https://superfreshmarket.com.ve/?s=tomate&post_type=product,True,Ningún resultado cumple reglas para 'tomate'
+2026-06-21,tomate,trio,0.0,,USD,,https://triomcbo.com/?s=tomate&post_type=product,True,Sin resultados para 'tomate'

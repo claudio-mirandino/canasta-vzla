@@ -131,3 +131,69 @@ date,product_id,store,price_usd,price_original,currency_original,product_name_fo
 2026-06-14,tomate,central,4.39,"4,39",USD,Tomate Manzano Hidroponico Bandeja,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate,False,
 2026-06-14,tomate,gama,6.38,"Ref. 6,38",USD,"TOMATE MANZANO EN BANDEJA 1,200 KG",https://gamaenlinea.com/es,False,
 2026-06-14,tomate,plansuarez,1.33,Bs.776.92,VES,BANDEJA TOMATE PERITA !500! GR,https://www.plansuarez.com/index.php?route=product/search&search=tomate,False,
+2026-06-21,aceite,central,3.75,"3,75",USD,Aceite Coposa Vegetal 850Mlts,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=aceite+coposa+vegetal+850,False,
+2026-06-21,aceite,gama,4.38,"Ref. 4,38",USD,ACEITE VEGETAL VATEL 1 LT,https://gamaenlinea.com/es,False,
+2026-06-21,aceite,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=aceite+vegetal,True,Sin resultados para 'aceite vegetal'
+2026-06-21,arroz,central,1.45,"1,45",USD,Arroz Monica Blanco Tipo I 900Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=arroz+monica+blanco+900,False,
+2026-06-21,arroz,gama,2.99,"Ref. 2,99",USD,ARROZ BLANCO PREMIUM TIPO 1 MARY 2 KG,https://gamaenlinea.com/es,False,
+2026-06-21,arroz,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=arroz+blanco,True,Sin resultados para 'arroz blanco'
+2026-06-21,atun,central,2.29,"2,29",USD,Atun Pafia Lomo en Agua 140Grs,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/?s=atun+pafia+agua+140,False,
+2026-06-21,atun,gama,2.35,"Ref. 2,35",USD,ATÚN SÓLIDO EN AGUA GAMA 160 GR,https://gamaenlinea.com/es,False,
+2026-06-21,atun,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=atun,True,Sin resultados para 'atun'
+2026-06-21,azucar,central,1.99,"1,99",USD,Azucar Kaly Blanca Plastico 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=azucar+kaly+blanca+1kg,False,
+2026-06-21,azucar,gama,2.14,"Ref. 2,14",USD,AZÚCAR BLANCA REFINADA AMANECER 1 KG,https://gamaenlinea.com/es,False,
+2026-06-21,azucar,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=azucar,True,Sin resultados para 'azucar'
+2026-06-21,cafe,central,3.05,"3,05",USD,Cafe Flor De Arauca Gourmet Molido Paq. 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=cafe+flor+arauca+molido+200,False,
+2026-06-21,cafe,gama,2.7,"Ref. 2,70",USD,CAFE GOURMET AMANECER 200 GR,https://gamaenlinea.com/es,False,
+2026-06-21,cafe,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=cafe+molido,True,Sin resultados para 'cafe molido'
+2026-06-21,caraotas,central,1.15,"1,15",USD,Caraotas Mary Negras 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=caraotas+mary+negras+400,False,
+2026-06-21,caraotas,gama,1.28,"Ref. 1,28",USD,CARAOTAS NEGRAS MARY 400 GR,https://gamaenlinea.com/es,False,
+2026-06-21,caraotas,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=caraotas+negras,True,Sin resultados para 'caraotas negras'
+2026-06-21,carne_molida,central,12.99,"12,99",USD,Carne Molida Premium KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=carne+molida+premium+kg,False,
+2026-06-21,carne_molida,gama,10.99,"Ref. 10,99",USD,CARNE MOLIDA DE RES 1 KG,https://gamaenlinea.com/es,False,
+2026-06-21,carne_molida,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=carne+molida,True,Sin resultados para 'carne molida'
+2026-06-21,cebolla,central,2.39,"2,39",USD,Cebolla Blanca Nacional 1000Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=cebolla+blanca+1000,False,
+2026-06-21,cebolla,gama,1.81,"Ref. 1,81",USD,CEBOLLA 700 GR,https://gamaenlinea.com/es,True,"Cambio de 30.2% vs semana anterior (anterior: $1.39, nuevo: $1.81)"
+2026-06-21,cebolla,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=cebolla,True,Sin resultados para 'cebolla'
+2026-06-21,harina_maiz,central,1.17,"1,17",USD,Harina de Maiz Kaly Blanca 1KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/?s=harina+maiz+kaly+1kg,False,
+2026-06-21,harina_maiz,gama,1.07,"Ref. 1,07",USD,HARINA DE MAIZ BLANCO MARY 900 GR,https://gamaenlinea.com/es,False,
+2026-06-21,harina_maiz,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=harina+de+maiz,True,Sin resultados para 'harina de maiz'
+2026-06-21,huevos,central,5.78,"5,78",USD,Huevos Rojos Grande Est. 30 Unidades,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/?s=huevos+rojos+30+unidades,False,
+2026-06-21,huevos,gama,6.56,"Ref. 6,56",USD,HUEVOS 30 UN,https://gamaenlinea.com/es,False,
+2026-06-21,huevos,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=huevos,True,Sin resultados para 'huevos'
+2026-06-21,leche_polvo,central,7.49,"7,49",USD,Leche La Campina En Polvo Completa 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/?s=leche+campina+polvo+400,False,
+2026-06-21,leche_polvo,gama,7.89,"Ref. 7,89",USD,LECHE COMPLETA EN POLVO SAN SIMÓN 400 GR,https://gamaenlinea.com/es,False,
+2026-06-21,leche_polvo,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=leche+completa,True,Sin resultados para 'leche completa'
+2026-06-21,lentejas,central,1.55,"1,55",USD,Lentejas Mary 400Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=lentejas+mary+400,False,
+2026-06-21,lentejas,gama,1.73,"Ref. 1,73",USD,LENTEJAS MARY 400 GR,https://gamaenlinea.com/es,False,
+2026-06-21,lentejas,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=lentejas,True,Sin resultados para 'lentejas'
+2026-06-21,mantequilla,central,8.7,"8,70",USD,Mantequilla La Paisana Sin Sal Barra 200Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=mantequilla+paisana+200,False,
+2026-06-21,mantequilla,gama,9.06,"Ref. 9,06",USD,MANTEQUILLA LA PAISANA 200 GR,https://gamaenlinea.com/es,False,
+2026-06-21,mantequilla,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=mantequilla,True,Sin resultados para 'mantequilla'
+2026-06-21,margarina,central,2.49,"2,49",USD,Margarina Juana 454Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=margarina+juana+454,False,
+2026-06-21,margarina,gama,3.12,"Ref. 3,12",USD,MARGARINA NORMAL MAVESA 500 GR,https://gamaenlinea.com/es,False,
+2026-06-21,margarina,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=margarina,True,Sin resultados para 'margarina'
+2026-06-21,papa,central,2.95,"2,95",USD,Papa Criolla Lavada KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=papa+criolla+kg,False,
+2026-06-21,papa,gama,2.95,"Ref. 2,95",USD,PAPA LAVADA 1 KG,https://gamaenlinea.com/es,False,
+2026-06-21,papa,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=papa,True,Sin resultados para 'papa'
+2026-06-21,pasta,central,1.16,"1,16",USD,Pasta Galo Spaghetti 500Gr,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/?s=spaghetti+galo+500,False,
+2026-06-21,pasta,gama,3.56,"Ref. 3,56",USD,PASTA SPAGUETTI SEMOLA TRIGO DURO COLAVITA 500 GR,https://gamaenlinea.com/es,False,
+2026-06-21,pasta,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=spaghetti,True,Sin resultados para 'spaghetti'
+2026-06-21,platano,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-06-21,platano,gama,3.27,"Ref. 3,27",USD,"PLATANOS 1,500 KG",https://gamaenlinea.com/es,False,
+2026-06-21,platano,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=platano,True,Sin resultados para 'platano'
+2026-06-21,pollo,central,7.4,"7,40",USD,Delicia De Pechuga de Pollo Kg KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=pechuga+pollo+kg,False,
+2026-06-21,pollo,gama,8.87,"Ref. 8,87",USD,"PECHUGA DE POLLO SIN HUESO 1,200 KG",https://gamaenlinea.com/es,False,
+2026-06-21,pollo,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=pechuga+de+pollo,True,Sin resultados para 'pechuga de pollo'
+2026-06-21,queso_blanco,central,14.16,"14,16",USD,Queso Blanco Pasteurizado El Zedeño KG,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/charcuteria/quesos/?s=queso+blanco+zedeno+kg,False,
+2026-06-21,queso_blanco,gama,2.4,"Ref. 2,40",USD,QUESO BLANCO DURO LLANERO 400 GR,https://gamaenlinea.com/es,True,"Cambio de 61.5% vs semana anterior (anterior: $6.24, nuevo: $2.40)"
+2026-06-21,queso_blanco,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=queso+blanco,True,Sin resultados para 'queso blanco'
+2026-06-21,sal,central,1.07,"1,07",USD,Sal DelMar Refinada Paquete 1Kg,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+refinada,False,
+2026-06-21,sal,gama,1.25,"Ref. 1,25",USD,SAL REFINADA EN BOLSA CELESTIAL SALT 1 KG,https://gamaenlinea.com/es,False,
+2026-06-21,sal,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=sal+refinada,True,Sin resultados para 'sal refinada'
+2026-06-21,sardinas,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-06-21,sardinas,gama,1.39,"Ref. 1,39",USD,SARDINAS ACEITE VEGETAL POSEIDON 170 GR,https://gamaenlinea.com/es,False,
+2026-06-21,sardinas,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=sardinas,True,Sin resultados para 'sardinas'
+2026-06-21,tomate,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate,True,Producto 'tomate' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate
+2026-06-21,tomate,gama,6.38,"Ref. 6,38",USD,"TOMATE MANZANO EN BANDEJA 1,200 KG",https://gamaenlinea.com/es,False,
+2026-06-21,tomate,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=tomate,True,Sin resultados para 'tomate'
