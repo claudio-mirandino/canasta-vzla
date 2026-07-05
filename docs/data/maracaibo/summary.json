@@ -1,39 +1,41 @@
 {
   "base_date": "2026-06-14",
-  "last_date": "2026-06-21",
-  "weeks": 2,
+  "last_date": "2026-07-05",
+  "weeks": 3,
   "household_size": 5,
-  "index_usd": 100.42,
-  "index_bs": 104.68,
-  "basket_cost_usd": 344.77,
-  "basket_cost_bs_oficial": 209410.51,
-  "basket_cost_bs_paralelo": 272971.61,
+  "index_usd": 97.14,
+  "index_bs": 108.86,
+  "basket_cost_usd": 414.54,
+  "basket_cost_bs_oficial": 270683.26,
+  "basket_cost_bs_paralelo": 312043.7,
   "coverage": "19/22",
   "stores": [
+    "angelicas",
     "superfresh"
   ],
   "metrics": {
-    "weekly_pct": 0.42,
+    "weekly_pct": -3.27,
     "monthly_pct": null,
-    "accumulated_pct": 0.42,
-    "annualized_pct": 24.4,
+    "accumulated_pct": -2.86,
+    "annualized_pct": -39.6,
     "interannual_pct": null,
-    "accumulated_bs_pct": 4.68
+    "accumulated_bs_pct": 8.86
   },
   "rates": {
-    "oficial": 607.3919,
-    "paralelo": 791.7499,
-    "brecha_pct": 30.35,
-    "date": "2026-06-21"
+    "oficial": 652.9726,
+    "paralelo": 752.7469,
+    "brecha_pct": 15.28,
+    "date": "2026-07-05"
   },
   "dispersion": {
     "by_store": {
-      "superfresh": 344.77
+      "angelicas": 337.38,
+      "superfresh": 260.59
     },
-    "common_products": 19,
-    "min": 344.77,
-    "median": 344.77,
-    "max": 344.77,
-    "cv_pct": 0.0
+    "common_products": 14,
+    "min": 260.59,
+    "median": 298.99,
+    "max": 337.38,
+    "cv_pct": 12.8
   }
 }
