@@ -329,3 +329,47 @@ date,product_id,store,price_usd,price_original,currency_original,product_name_fo
 2026-07-05,tomate,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate,True,Producto 'tomate' no encontrado en https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate
 2026-07-05,tomate,gama,6.38,"Ref. 6,38",USD,"TOMATE MANZANO EN BANDEJA 1,200 KG",https://gamaenlinea.com/es,False,
 2026-07-05,tomate,plansuarez,1.33,Bs.870.64,VES,BANDEJA TOMATE PERITA !500! GR,https://www.plansuarez.com/index.php?route=product/search&search=tomate,False,
+2026-07-12,aceite,gama,4.25,"Ref. 4,25",USD,ACEITE VEGETAL VATEL 1 LT,https://gamaenlinea.com/es,False,
+2026-07-12,aceite,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=aceite+vegetal,True,Sin resultados para 'aceite vegetal'
+2026-07-12,arroz,gama,2.57,"Ref. 2,57",USD,ARROZ BLANCO PREMIUM TIPO 1 MARY 2 KG,https://gamaenlinea.com/es,False,
+2026-07-12,arroz,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=arroz+blanco,True,Sin resultados para 'arroz blanco'
+2026-07-12,atun,gama,2.65,"Ref. 2,65",USD,ATUN EN AGUA NEWPESCA 170 GR,https://gamaenlinea.com/es,False,
+2026-07-12,atun,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=atun,True,Sin resultados para 'atun'
+2026-07-12,azucar,gama,2.01,"Ref. 2,01",USD,AZÚCAR BLANCA REFINADA AMANECER 1 KG,https://gamaenlinea.com/es,False,
+2026-07-12,azucar,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=azucar,True,Sin resultados para 'azucar'
+2026-07-12,cafe,gama,2.7,"Ref. 2,70",USD,CAFE GOURMET AMANECER 200 GR,https://gamaenlinea.com/es,False,
+2026-07-12,cafe,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=cafe+molido,True,Sin resultados para 'cafe molido'
+2026-07-12,caraotas,gama,1.66,"Ref. 1,66",USD,CARAOTAS NEGRAS VICONE 400 GR,https://gamaenlinea.com/es,False,
+2026-07-12,caraotas,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=caraotas+negras,True,Sin resultados para 'caraotas negras'
+2026-07-12,carne_molida,gama,9.99,"Ref. 9,99",USD,CARNE MOLIDA DE RES 1 KG,https://gamaenlinea.com/es,False,
+2026-07-12,carne_molida,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=carne+molida,True,Sin resultados para 'carne molida'
+2026-07-12,cebolla,gama,1.81,"Ref. 1,81",USD,CEBOLLA 700 GR,https://gamaenlinea.com/es,False,
+2026-07-12,cebolla,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=cebolla,True,Sin resultados para 'cebolla'
+2026-07-12,harina_maiz,gama,1.19,"Ref. 1,19",USD,HARINA DE MAIZ BLANCO JUANA 1 KG,https://gamaenlinea.com/es,False,
+2026-07-12,harina_maiz,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=harina+de+maiz,True,Sin resultados para 'harina de maiz'
+2026-07-12,huevos,gama,5.31,"Ref. 5,31",USD,HUEVOS 30 UN,https://gamaenlinea.com/es,False,
+2026-07-12,huevos,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=huevos,True,Sin resultados para 'huevos'
+2026-07-12,leche_polvo,gama,7.89,"Ref. 7,89",USD,LECHE COMPLETA EN POLVO SAN SIMÓN 400 GR,https://gamaenlinea.com/es,False,
+2026-07-12,leche_polvo,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=leche+completa,True,Sin resultados para 'leche completa'
+2026-07-12,lentejas,gama,1.54,"Ref. 1,54",USD,LENTEJAS MARY 400 GR,https://gamaenlinea.com/es,False,
+2026-07-12,lentejas,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=lentejas,True,Sin resultados para 'lentejas'
+2026-07-12,mantequilla,gama,9.06,"Ref. 9,06",USD,MANTEQUILLA LA PAISANA 200 GR,https://gamaenlinea.com/es,False,
+2026-07-12,mantequilla,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=mantequilla,True,Sin resultados para 'mantequilla'
+2026-07-12,margarina,gama,3.22,"Ref. 3,22",USD,MARGARINA LIGERA MAVESA 500 GR,https://gamaenlinea.com/es,False,
+2026-07-12,margarina,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=margarina,True,Sin resultados para 'margarina'
+2026-07-12,papa,gama,3.4,"Ref. 3,40",USD,PAPA LAVADA 1 KG,https://gamaenlinea.com/es,False,
+2026-07-12,papa,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=papa,True,Sin resultados para 'papa'
+2026-07-12,pasta,gama,4.45,"Ref. 4,45",USD,PASTA DIVELLA SPAGHETTI 500 GR,https://gamaenlinea.com/es,False,
+2026-07-12,pasta,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=spaghetti,True,Sin resultados para 'spaghetti'
+2026-07-12,platano,gama,3.27,"Ref. 3,27",USD,"PLATANOS 1,500 KG",https://gamaenlinea.com/es,False,
+2026-07-12,platano,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=platano,True,Sin resultados para 'platano'
+2026-07-12,pollo,gama,7.25,"Ref. 7,25",USD,PECHUGA DE POLLO CON HUESO 1 KG,https://gamaenlinea.com/es,False,
+2026-07-12,pollo,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=pechuga+de+pollo,True,Sin resultados para 'pechuga de pollo'
+2026-07-12,queso_blanco,gama,2.4,"Ref. 2,40",USD,QUESO BLANCO DURO LLANERO 400 GR,https://gamaenlinea.com/es,False,
+2026-07-12,queso_blanco,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=queso+blanco,True,Sin resultados para 'queso blanco'
+2026-07-12,sal,gama,1.25,"Ref. 1,25",USD,SAL REFINADA EN BOLSA CELESTIAL SALT 1 KG,https://gamaenlinea.com/es,False,
+2026-07-12,sal,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=sal+refinada,True,Sin resultados para 'sal refinada'
+2026-07-12,sardinas,gama,2.06,"Ref. 2,06",USD,SARDINAS AL LAUREL EVEBA 125 GR,https://gamaenlinea.com/es,False,
+2026-07-12,sardinas,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=sardinas,True,Sin resultados para 'sardinas'
+2026-07-12,tomate,gama,6.38,"Ref. 6,38",USD,"TOMATE MANZANO EN BANDEJA 1,200 KG",https://gamaenlinea.com/es,False,
+2026-07-12,tomate,plansuarez,0.0,,VES,,https://www.plansuarez.com/index.php?route=product/search&search=tomate,True,Sin resultados para 'tomate'
