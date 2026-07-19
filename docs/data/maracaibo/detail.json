@@ -1,6 +1,6 @@
 {
-  "last_date": "2026-07-12",
-  "prev_date": "2026-07-05",
+  "last_date": "2026-07-19",
+  "prev_date": "2026-07-12",
   "stores": [
     "angelicas",
     "superfresh"
@@ -27,12 +27,12 @@
       "ref_unit": "kg",
       "household_qty": 6.0,
       "display_label": "1 kg",
-      "price_usd": 1.59,
+      "price_usd": 1.48,
       "by_store": {
-        "angelicas": 1.71,
+        "angelicas": 1.49,
         "superfresh": 1.47
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": -6.92
     },
     {
       "id": "pasta",
@@ -54,12 +54,11 @@
       "ref_unit": "kg",
       "household_qty": 3.0,
       "display_label": "1 kg",
-      "price_usd": 3.61,
+      "price_usd": 2.62,
       "by_store": {
-        "angelicas": 4.6,
         "superfresh": 2.62
       },
-      "weekly_change_pct": -0.07
+      "weekly_change_pct": -27.47
     },
     {
       "id": "lentejas",
@@ -81,12 +80,11 @@
       "ref_unit": "l",
       "household_qty": 4.0,
       "display_label": "1 L",
-      "price_usd": 4.31,
+      "price_usd": 3.78,
       "by_store": {
-        "angelicas": 4.85,
         "superfresh": 3.78
       },
-      "weekly_change_pct": 75.2
+      "weekly_change_pct": -12.37
     },
     {
       "id": "margarina",
@@ -127,7 +125,7 @@
       "by_store": {
         "angelicas": 1.16
       },
-      "weekly_change_pct": -96.69
+      "weekly_change_pct": 0.0
     },
     {
       "id": "cafe",
@@ -136,12 +134,12 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "1 kg",
-      "price_usd": 16.7,
+      "price_usd": 15.97,
       "by_store": {
-        "angelicas": 19.45,
+        "angelicas": 18.0,
         "superfresh": 13.95
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": -4.37
     },
     {
       "id": "carne_molida",
@@ -150,12 +148,12 @@
       "ref_unit": "kg",
       "household_qty": 4.0,
       "display_label": "1 kg",
-      "price_usd": 10.64,
+      "price_usd": 10.62,
       "by_store": {
         "angelicas": 11.39,
-        "superfresh": 9.89
+        "superfresh": 9.85
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": -0.19
     },
     {
       "id": "pollo",
@@ -205,12 +203,11 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "140 g",
-      "price_usd": 2.73,
+      "price_usd": 3.01,
       "by_store": {
-        "angelicas": 2.45,
         "superfresh": 3.01
       },
-      "weekly_change_pct": -9.3
+      "weekly_change_pct": 10.34
     },
     {
       "id": "leche_polvo",
@@ -219,12 +216,12 @@
       "ref_unit": "kg",
       "household_qty": 3.0,
       "display_label": "1 kg",
-      "price_usd": 17.48,
+      "price_usd": 15.6,
       "by_store": {
-        "angelicas": 19.99,
+        "angelicas": 16.23,
         "superfresh": 14.97
       },
-      "weekly_change_pct": -1.0
+      "weekly_change_pct": -10.77
     },
     {
       "id": "mantequilla",
@@ -278,7 +275,7 @@
         "angelicas": 1.59,
         "superfresh": 4.01
       },
-      "weekly_change_pct": 5.26
+      "weekly_change_pct": 0.0
     },
     {
       "id": "platano",
@@ -292,7 +289,7 @@
         "angelicas": 2.25,
         "superfresh": 1.71
       },
-      "weekly_change_pct": 1.54
+      "weekly_change_pct": 0.0
     }
   ]
 }
