@@ -757,3 +757,129 @@ Call log:
 "
 2026-08-09,tomate,gama,6.38,"Ref. 6,38",USD,"TOMATE MANZANO EN BANDEJA 1,200 KG",https://gamaenlinea.com/es,False,
 2026-08-09,tomate,plansuarez,0.99,Bs.752.92,VES,BANDEJA TOMATE PERITA !500! GR,https://www.plansuarez.com/index.php?route=product/search&search=tomate,False,
+2026-08-16,aceite,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=aceite+coposa+vegetal+850,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=aceite+coposa+vegetal+850
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=aceite+coposa+vegetal+850"", waiting until ""domcontentloaded""
+"
+2026-08-16,aceite,gama,4.07,"Ref. 4,07",USD,ACEITE VEGETAL VATEL 1 LT,https://gamaenlinea.com/es,False,
+2026-08-16,aceite,plansuarez,3.38,"Bs.2,606.99",VES,ACEITE VATEL 1LT VEGETAL,https://www.plansuarez.com/index.php?route=product/search&search=aceite+vegetal,False,
+2026-08-16,arroz,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=arroz+monica+blanco+900,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=arroz+monica+blanco+900
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=arroz+monica+blanco+900"", waiting until ""domcontentloaded""
+"
+2026-08-16,arroz,gama,2.57,"Ref. 2,57",USD,ARROZ BLANCO PREMIUM TIPO 1 MARY 2 KG,https://gamaenlinea.com/es,False,
+2026-08-16,arroz,plansuarez,1.36,"Bs.1,047.12",VES,ARROZ PANTERA 908GR TIPO 1 BLANCO,https://www.plansuarez.com/index.php?route=product/search&search=arroz+blanco,False,
+2026-08-16,atun,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/?s=atun+pafia+agua+140,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/?s=atun+pafia+agua+140
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/enlatados/?s=atun+pafia+agua+140"", waiting until ""domcontentloaded""
+"
+2026-08-16,atun,gama,1.76,"Ref. 1,76",USD,ATUN EN AGUA VIVALDI 140 GR,https://gamaenlinea.com/es,False,
+2026-08-16,atun,plansuarez,3.25,"Bs.2,505.16",VES,ATUN LA FRAGUA 145GR LIMON,https://www.plansuarez.com/index.php?route=product/search&search=atun,False,
+2026-08-16,azucar,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=azucar+kaly+blanca+1kg,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=azucar+kaly+blanca+1kg
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=azucar+kaly+blanca+1kg"", waiting until ""domcontentloaded""
+"
+2026-08-16,azucar,gama,2.01,"Ref. 2,01",USD,AZÚCAR BLANCA REFINADA AMANECER 1 KG,https://gamaenlinea.com/es,False,
+2026-08-16,azucar,plansuarez,1.73,"Bs.1,336.85",VES,AZUCAR AMANECER 1KG REFINADA,https://www.plansuarez.com/index.php?route=product/search&search=azucar,False,
+2026-08-16,cafe,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=cafe+flor+arauca+molido+200,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=cafe+flor+arauca+molido+200
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/cafe-y-endulzantes/?s=cafe+flor+arauca+molido+200"", waiting until ""domcontentloaded""
+"
+2026-08-16,cafe,gama,2.75,"Ref. 2,75",USD,CAFE GOURMET JP 200 GR,https://gamaenlinea.com/es,False,
+2026-08-16,cafe,plansuarez,2.76,"Bs.2,128.16",VES,CAFE FLOR DE ARAUCA 200GR,https://www.plansuarez.com/index.php?route=product/search&search=cafe+molido,False,
+2026-08-16,caraotas,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=caraotas+mary+negras+400,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=caraotas+mary+negras+400
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=caraotas+mary+negras+400"", waiting until ""domcontentloaded""
+"
+2026-08-16,caraotas,gama,1.11,"Ref. 1,11",USD,CARAOTAS NEGRAS MARY 400 GR,https://gamaenlinea.com/es,False,
+2026-08-16,caraotas,plansuarez,1.1,Bs.848.18,VES,CARAOTAS MARY 400GR NEGRAS,https://www.plansuarez.com/index.php?route=product/search&search=caraotas+negras,False,
+2026-08-16,carne_molida,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=carne+molida+premium+kg,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=carne+molida+premium+kg
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=carne+molida+premium+kg"", waiting until ""domcontentloaded""
+"
+2026-08-16,carne_molida,gama,7.99,"Ref. 7,99",USD,CARNE MOLIDA DE RES 1 KG,https://gamaenlinea.com/es,False,
+2026-08-16,carne_molida,plansuarez,8.9,"Bs.6,862.54",VES,CARNE MOLIDA X KG PLANSUAREZ,https://www.plansuarez.com/index.php?route=product/search&search=carne+molida,False,
+2026-08-16,cebolla,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=cebolla+blanca+1000,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=cebolla+blanca+1000
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=cebolla+blanca+1000"", waiting until ""domcontentloaded""
+"
+2026-08-16,cebolla,gama,1.51,"Ref. 1,51",USD,CEBOLLA 700 GR,https://gamaenlinea.com/es,False,
+2026-08-16,cebolla,plansuarez,6.4,"Bs.4,934.86",VES,AJO CEBOLLA PEREJIL X KG MOLIDO,https://www.plansuarez.com/index.php?route=product/search&search=cebolla,False,
+2026-08-16,harina_maiz,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/?s=harina+maiz+kaly+1kg,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/?s=harina+maiz+kaly+1kg
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/harinas/?s=harina+maiz+kaly+1kg"", waiting until ""domcontentloaded""
+"
+2026-08-16,harina_maiz,gama,1.07,"Ref. 1,07",USD,HARINA DE MAIZ BLANCO JUANA 1 KG,https://gamaenlinea.com/es,False,
+2026-08-16,harina_maiz,plansuarez,1.04,Bs.803.46,VES,HARINA DE MAIZ KALY 1KG BLANCA,https://www.plansuarez.com/index.php?route=product/search&search=harina+de+maiz,False,
+2026-08-16,huevos,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/?s=huevos+rojos+30+unidades,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/?s=huevos+rojos+30+unidades
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/huevos/?s=huevos+rojos+30+unidades"", waiting until ""domcontentloaded""
+"
+2026-08-16,huevos,gama,5.6,"Ref. 5,60",USD,HUEVOS 30 UN,https://gamaenlinea.com/es,False,
+2026-08-16,huevos,plansuarez,5.95,"Bs.4,590.96",VES,HUEVOS EL TUNAL 30UND,https://www.plansuarez.com/index.php?route=product/search&search=huevos,False,
+2026-08-16,leche_polvo,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/?s=leche+campina+polvo+400,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/?s=leche+campina+polvo+400
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/lacteos-y-derivados/?s=leche+campina+polvo+400"", waiting until ""domcontentloaded""
+"
+2026-08-16,leche_polvo,gama,6.59,"Ref. 6,59",USD,LECHE EN POLVO COMPLETA CAMPESTRE 400 GR,https://gamaenlinea.com/es,False,
+2026-08-16,leche_polvo,plansuarez,6.25,"Bs.4,819.20",VES,LECHE DOBON 400GR COMPLETA,https://www.plansuarez.com/index.php?route=product/search&search=leche+completa,False,
+2026-08-16,lentejas,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=lentejas+mary+400,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=lentejas+mary+400
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/arroz-y-granos/?s=lentejas+mary+400"", waiting until ""domcontentloaded""
+"
+2026-08-16,lentejas,gama,1.54,"Ref. 1,54",USD,LENTEJAS MARY 400 GR,https://gamaenlinea.com/es,False,
+2026-08-16,lentejas,plansuarez,1.51,"Bs.1,166.24",VES,LENTEJAS MARY 400GR,https://www.plansuarez.com/index.php?route=product/search&search=lentejas,False,
+2026-08-16,mantequilla,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=mantequilla+paisana+200,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=mantequilla+paisana+200
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=mantequilla+paisana+200"", waiting until ""domcontentloaded""
+"
+2026-08-16,mantequilla,gama,4.72,"Ref. 4,72",USD,MANTEQUILLA CON SAL BUFIKRIM 240 GR,https://gamaenlinea.com/es,True,"Cambio de 48.5% vs semana anterior (anterior: $9.16, nuevo: $4.72)"
+2026-08-16,mantequilla,plansuarez,2.67,"Bs.2,056.22",VES,GALLETAS EMECE 125GR MANTEQUILLA,https://www.plansuarez.com/index.php?route=product/search&search=mantequilla,False,
+2026-08-16,margarina,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=margarina+juana+454,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=margarina+juana+454
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/margarinas-y-aceites/?s=margarina+juana+454"", waiting until ""domcontentloaded""
+"
+2026-08-16,margarina,gama,3.22,"Ref. 3,22",USD,MARGARINA LIGERA MAVESA 500 GR,https://gamaenlinea.com/es,False,
+2026-08-16,margarina,plansuarez,2.16,"Bs.1,663.07",VES,MARGARINA JUANA 454GR,https://www.plansuarez.com/index.php?route=product/search&search=margarina,False,
+2026-08-16,papa,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=papa+criolla+kg,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=papa+criolla+kg
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=papa+criolla+kg"", waiting until ""domcontentloaded""
+"
+2026-08-16,papa,gama,3.7,"Ref. 3,70",USD,PAPA LAVADA 1 KG,https://gamaenlinea.com/es,False,
+2026-08-16,papa,plansuarez,0.97,Bs.751.79,VES,BANDEJA PAPA !500! GR,https://www.plansuarez.com/index.php?route=product/search&search=papa,False,
+2026-08-16,pasta,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/?s=spaghetti+galo+500,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/?s=spaghetti+galo+500
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/pastas/?s=spaghetti+galo+500"", waiting until ""domcontentloaded""
+"
+2026-08-16,pasta,gama,1.05,"Ref. 1,05",USD,PASTA DE SEMOLA TRIGO DURUM SPAGUETTI GALO 500 GR,https://gamaenlinea.com/es,False,
+2026-08-16,pasta,plansuarez,2.5,"Bs.1,927.68",VES,PASTA DIVELLA 500GR SPAGHETTI,https://www.plansuarez.com/index.php?route=product/search&search=spaghetti,False,
+2026-08-16,platano,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-08-16,platano,gama,3.27,"Ref. 3,27",USD,"PLATANOS 1,500 KG",https://gamaenlinea.com/es,False,
+2026-08-16,platano,plansuarez,1.45,"Bs.1,118.05",VES,PLATANO X KG,https://www.plansuarez.com/index.php?route=product/search&search=platano,False,
+2026-08-16,pollo,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=pechuga+pollo+kg,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=pechuga+pollo+kg
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/refrigerados/carniceria-pescaderia/carnes-aves/?s=pechuga+pollo+kg"", waiting until ""domcontentloaded""
+"
+2026-08-16,pollo,gama,10.13,"Ref. 10,13",USD,"PECHUGA DE POLLO SIN HUESO 1,500 KG",https://gamaenlinea.com/es,True,"Cambio de 69.1% vs semana anterior (anterior: $5.99, nuevo: $10.13)"
+2026-08-16,pollo,plansuarez,3.43,"Bs.2,647.55",VES,BANDEJA PECHUGA HERMO DE POLLO !300! GR,https://www.plansuarez.com/index.php?route=product/search&search=pechuga+de+pollo,False,
+2026-08-16,queso_blanco,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/charcuteria/quesos/?s=queso+blanco+zedeno+kg,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/charcuteria/quesos/?s=queso+blanco+zedeno+kg
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/charcuteria/quesos/?s=queso+blanco+zedeno+kg"", waiting until ""domcontentloaded""
+"
+2026-08-16,queso_blanco,gama,2.4,"Ref. 2,40",USD,QUESO BLANCO DURO LLANERO 400 GR,https://gamaenlinea.com/es,False,
+2026-08-16,queso_blanco,plansuarez,10.35,"Bs.7,981.36",VES,QUESO BLANCO AHUMADO X KG,https://www.plansuarez.com/index.php?route=product/search&search=queso+blanco,False,
+2026-08-16,sal,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+refinada,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+refinada
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/viveres/?s=sal+refinada"", waiting until ""domcontentloaded""
+"
+2026-08-16,sal,gama,1.16,"Ref. 1,16",USD,SAL REFINADA EN BOLSA CELESTIAL SALT 1 KG,https://gamaenlinea.com/es,False,
+2026-08-16,sal,plansuarez,0.86,Bs.663.12,VES,SAL ARRECIFE 1KG REFINADA,https://www.plansuarez.com/index.php?route=product/search&search=sal+refinada,False,
+2026-08-16,sardinas,central,0.0,,USD,,,False,Producto no disponible en Central Madeirense
+2026-08-16,sardinas,gama,2.02,"Ref. 2,02",USD,SARDINAS EN ESCABECHE EVEBA 125 GR,https://gamaenlinea.com/es,True,"Cambio de 65.6% vs semana anterior (anterior: $1.22, nuevo: $2.02)"
+2026-08-16,sardinas,plansuarez,5.8,"Bs.4,472.22",VES,SARDINAS NOYA 184GR ACEITE VEGETAL SIN PIEL/ESPINAS,https://www.plansuarez.com/index.php?route=product/search&search=sardinas,False,
+2026-08-16,tomate,central,0.0,,USD,,https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate,True,"Error: Page.goto: net::ERR_EMPTY_RESPONSE at https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate
+Call log:
+  - navigating to ""https://tucentralonline.com/Av-Presidente-Medina-02/comprar/fruteria-y-vegetales/vegetales/?s=tomate"", waiting until ""domcontentloaded""
+"
+2026-08-16,tomate,gama,6.38,"Ref. 6,38",USD,"TOMATE MANZANO EN BANDEJA 1,200 KG",https://gamaenlinea.com/es,False,
+2026-08-16,tomate,plansuarez,0.94,Bs.724.81,VES,BANDEJA TOMATE PERITA !500! GR,https://www.plansuarez.com/index.php?route=product/search&search=tomate,False,
