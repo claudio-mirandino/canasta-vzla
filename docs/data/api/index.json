@@ -91,6 +91,13 @@
       "index_bs": 119.98,
       "weekly_change_pct": -0.51,
       "basket_cost_usd": 390.25
+    },
+    {
+      "date": "2026-09-06",
+      "index_usd": 86.98,
+      "index_bs": 120.52,
+      "weekly_change_pct": -1.51,
+      "basket_cost_usd": 366.08
     }
   ]
 }
