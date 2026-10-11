@@ -107,6 +107,12 @@
       "oficial": 866.5612,
       "paralelo": 974.4903,
       "brecha_pct": 12.45
+    },
+    {
+      "date": "2026-10-11",
+      "oficial": 875.6505,
+      "paralelo": 1008.3806,
+      "brecha_pct": 15.16
     }
   ]
 }
