@@ -1,41 +1,41 @@
 {
   "base_date": "2026-06-12",
-  "last_date": "2026-10-11",
-  "weeks": 19,
+  "last_date": "2026-10-18",
+  "weeks": 20,
   "household_size": 5,
-  "index_usd": 88.13,
-  "index_bs": 132.44,
-  "basket_cost_usd": 412.73,
-  "basket_cost_bs_oficial": 361407.23,
-  "basket_cost_bs_paralelo": 416188.93,
-  "coverage": "19/22",
+  "index_usd": 88.99,
+  "index_bs": 134.41,
+  "basket_cost_usd": 417.88,
+  "basket_cost_bs_oficial": 367782.83,
+  "basket_cost_bs_paralelo": 419285.16,
+  "coverage": "22/22",
   "stores": [
     "central",
     "plansuarez"
   ],
   "metrics": {
-    "weekly_pct": -1.9,
-    "monthly_pct": 1.32,
-    "accumulated_pct": -11.87,
-    "annualized_pct": -31.7,
+    "weekly_pct": 0.98,
+    "monthly_pct": -0.35,
+    "accumulated_pct": -11.01,
+    "annualized_pct": -28.3,
     "interannual_pct": null,
-    "accumulated_bs_pct": 32.44
+    "accumulated_bs_pct": 34.41
   },
   "rates": {
-    "oficial": 875.6505,
-    "paralelo": 1008.3806,
-    "brecha_pct": 15.16,
-    "date": "2026-10-11"
+    "oficial": 880.1159,
+    "paralelo": 1003.3626,
+    "brecha_pct": 14.0,
+    "date": "2026-10-18"
   },
   "dispersion": {
     "by_store": {
-      "central": 349.19,
-      "plansuarez": 356.46
+      "central": 357.68,
+      "plansuarez": 357.08
     },
     "common_products": 19,
-    "min": 349.19,
-    "median": 352.82,
-    "max": 356.46,
-    "cv_pct": 1.0
+    "min": 357.08,
+    "median": 357.38,
+    "max": 357.68,
+    "cv_pct": 0.1
   }
 }

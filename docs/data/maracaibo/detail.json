@@ -1,6 +1,6 @@
 {
-  "last_date": "2026-10-11",
-  "prev_date": "2026-10-04",
+  "last_date": "2026-10-18",
+  "prev_date": "2026-10-11",
   "stores": [
     "angelicas",
     "superfresh",
@@ -14,12 +14,12 @@
       "ref_unit": "kg",
       "household_qty": 12.0,
       "display_label": "1 kg",
-      "price_usd": 1.69,
+      "price_usd": 1.66,
       "by_store": {
         "angelicas": 2.28,
-        "superfresh": 1.1
+        "superfresh": 1.04
       },
-      "weekly_change_pct": 53.64
+      "weekly_change_pct": -1.78
     },
     {
       "id": "arroz",
@@ -34,7 +34,7 @@
         "superfresh": 1.47,
         "trio": 1.11
       },
-      "weekly_change_pct": 1.51
+      "weekly_change_pct": -0.08
     },
     {
       "id": "pasta",
@@ -70,12 +70,13 @@
       "ref_unit": "kg",
       "household_qty": 1.5,
       "display_label": "1 kg",
-      "price_usd": 3.95,
+      "price_usd": 3.6,
       "by_store": {
         "angelicas": 4.3,
-        "superfresh": 3.6
+        "superfresh": 3.6,
+        "trio": 2.5
       },
-      "weekly_change_pct": -8.14
+      "weekly_change_pct": -8.86
     },
     {
       "id": "aceite",
@@ -90,7 +91,7 @@
         "superfresh": 3.82,
         "trio": 3.0
       },
-      "weekly_change_pct": 12.02
+      "weekly_change_pct": 0.0
     },
     {
       "id": "margarina",
@@ -99,13 +100,12 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "1 kg",
-      "price_usd": 6.0,
+      "price_usd": 5.58,
       "by_store": {
         "angelicas": 7.98,
-        "superfresh": 3.18,
-        "trio": 6.0
+        "superfresh": 3.18
       },
-      "weekly_change_pct": 30.72
+      "weekly_change_pct": -7.0
     },
     {
       "id": "azucar",
@@ -120,7 +120,7 @@
         "superfresh": 1.25,
         "trio": 1.0
       },
-      "weekly_change_pct": 9.65
+      "weekly_change_pct": 0.0
     },
     {
       "id": "sal",
@@ -129,12 +129,12 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "1 kg",
-      "price_usd": 0.68,
+      "price_usd": 1.08,
       "by_store": {
-        "angelicas": 0.35,
+        "angelicas": 1.16,
         "trio": 1.0
       },
-      "weekly_change_pct": -32.0
+      "weekly_change_pct": 60.0
     },
     {
       "id": "cafe",
@@ -143,13 +143,13 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "1 kg",
-      "price_usd": 12.9,
+      "price_usd": 15.0,
       "by_store": {
         "angelicas": 17.1,
         "superfresh": 12.9,
-        "trio": 10.0
+        "trio": 15.0
       },
-      "weekly_change_pct": 12.66
+      "weekly_change_pct": 16.28
     },
     {
       "id": "carne_molida",
@@ -158,13 +158,11 @@
       "ref_unit": "kg",
       "household_qty": 4.0,
       "display_label": "1 kg",
-      "price_usd": 11.39,
+      "price_usd": 9.99,
       "by_store": {
-        "angelicas": 11.39,
-        "superfresh": 9.99,
-        "trio": 11.43
+        "superfresh": 9.99
       },
-      "weekly_change_pct": -6.16
+      "weekly_change_pct": -12.29
     },
     {
       "id": "pollo",
@@ -173,13 +171,12 @@
       "ref_unit": "kg",
       "household_qty": 6.0,
       "display_label": "1 kg",
-      "price_usd": 12.23,
+      "price_usd": 12.15,
       "by_store": {
         "angelicas": 14.99,
-        "superfresh": 12.23,
-        "trio": 8.22
+        "superfresh": 9.31
       },
-      "weekly_change_pct": 10.03
+      "weekly_change_pct": -0.65
     },
     {
       "id": "huevos",
@@ -188,13 +185,12 @@
       "ref_unit": "u",
       "household_qty": 60.0,
       "display_label": "cartón 30",
-      "price_usd": 7.26,
+      "price_usd": 8.62,
       "by_store": {
         "angelicas": 9.98,
-        "superfresh": 7.26,
-        "trio": 6.0
+        "superfresh": 7.26
       },
-      "weekly_change_pct": 0.0
+      "weekly_change_pct": 18.73
     },
     {
       "id": "sardinas",
@@ -217,11 +213,12 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "140 g",
-      "price_usd": 2.77,
+      "price_usd": 3.5,
       "by_store": {
+        "angelicas": 4.22,
         "superfresh": 2.77
       },
-      "weekly_change_pct": 5.71
+      "weekly_change_pct": 26.35
     },
     {
       "id": "leche_polvo",
@@ -236,7 +233,7 @@
         "superfresh": 14.97,
         "trio": 16.67
       },
-      "weekly_change_pct": 2.66
+      "weekly_change_pct": 0.02
     },
     {
       "id": "queso_blanco",
@@ -245,12 +242,11 @@
       "ref_unit": "kg",
       "household_qty": 3.0,
       "display_label": "1 kg",
-      "price_usd": 16.16,
+      "price_usd": 18.99,
       "by_store": {
-        "superfresh": 18.99,
-        "trio": 13.33
+        "superfresh": 18.99
       },
-      "weekly_change_pct": -14.9
+      "weekly_change_pct": 17.5
     },
     {
       "id": "mantequilla",
@@ -273,12 +269,11 @@
       "ref_unit": "kg",
       "household_qty": 4.0,
       "display_label": "1 kg",
-      "price_usd": 3.5,
+      "price_usd": 2.99,
       "by_store": {
-        "angelicas": 2.99,
-        "trio": 4.0
+        "angelicas": 2.99
       },
-      "weekly_change_pct": -12.5
+      "weekly_change_pct": -14.45
     },
     {
       "id": "cebolla",
@@ -293,7 +288,7 @@
         "superfresh": 1.61,
         "trio": 2.0
       },
-      "weekly_change_pct": -81.68
+      "weekly_change_pct": 0.0
     },
     {
       "id": "papa",
@@ -308,7 +303,7 @@
         "superfresh": 35.25,
         "trio": 2.0
       },
-      "weekly_change_pct": -89.26
+      "weekly_change_pct": 0.0
     },
     {
       "id": "platano",
@@ -317,13 +312,13 @@
       "ref_unit": "kg",
       "household_qty": 6.0,
       "display_label": "1 kg",
-      "price_usd": 2.0,
+      "price_usd": 1.82,
       "by_store": {
         "angelicas": 2.25,
-        "superfresh": 1.98,
-        "trio": 2.0
+        "superfresh": 1.82,
+        "trio": 1.0
       },
-      "weekly_change_pct": 34.23
+      "weekly_change_pct": -9.0
     }
   ]
 }
