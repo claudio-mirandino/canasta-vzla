@@ -125,6 +125,12 @@
       "oficial": 886.2271,
       "paralelo": 1002.19,
       "brecha_pct": 13.09
+    },
+    {
+      "date": "2026-11-01",
+      "oficial": 889.2553,
+      "paralelo": 990.7179,
+      "brecha_pct": 11.41
     }
   ]
 }
