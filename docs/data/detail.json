@@ -1,6 +1,6 @@
 {
-  "last_date": "2026-11-01",
-  "prev_date": "2026-10-25",
+  "last_date": "2026-11-08",
+  "prev_date": "2026-11-01",
   "stores": [
     "central",
     "gama",
@@ -88,13 +88,13 @@
       "ref_unit": "l",
       "household_qty": 4.0,
       "display_label": "1 L",
-      "price_usd": 3.67,
+      "price_usd": 3.99,
       "by_store": {
         "central": 3.19,
-        "gama": 3.81,
-        "plansuarez": 3.67
+        "gama": 4.14,
+        "plansuarez": 3.99
       },
-      "weekly_change_pct": -5.9
+      "weekly_change_pct": 8.72
     },
     {
       "id": "margarina",
@@ -106,7 +106,7 @@
       "price_usd": 5.48,
       "by_store": {
         "central": 5.48,
-        "gama": 5.96,
+        "gama": 6.28,
         "plansuarez": 4.76
       },
       "weekly_change_pct": -0.08
@@ -118,13 +118,13 @@
       "ref_unit": "kg",
       "household_qty": 4.0,
       "display_label": "1 kg",
-      "price_usd": 1.56,
+      "price_usd": 1.55,
       "by_store": {
-        "central": 1.65,
+        "central": 1.49,
         "gama": 1.55,
         "plansuarez": 1.56
       },
-      "weekly_change_pct": -5.45
+      "weekly_change_pct": -0.64
     },
     {
       "id": "sal",
@@ -139,7 +139,7 @@
         "gama": 0.87,
         "plansuarez": 0.68
       },
-      "weekly_change_pct": -18.69
+      "weekly_change_pct": 0.0
     },
     {
       "id": "cafe",
@@ -163,13 +163,13 @@
       "ref_unit": "kg",
       "household_qty": 4.0,
       "display_label": "1 kg",
-      "price_usd": 8.75,
+      "price_usd": 9.5,
       "by_store": {
         "central": 10.9,
         "gama": 7.99,
-        "plansuarez": 8.75
+        "plansuarez": 9.5
       },
-      "weekly_change_pct": -7.89
+      "weekly_change_pct": 8.57
     },
     {
       "id": "pollo",
@@ -178,13 +178,13 @@
       "ref_unit": "kg",
       "household_qty": 6.0,
       "display_label": "1 kg",
-      "price_usd": 9.3,
+      "price_usd": 9.89,
       "by_store": {
-        "central": 9.3,
+        "central": 9.89,
         "gama": 8.45,
         "plansuarez": 10.83
       },
-      "weekly_change_pct": 5.8
+      "weekly_change_pct": 6.34
     },
     {
       "id": "huevos",
@@ -196,10 +196,10 @@
       "price_usd": 5.88,
       "by_store": {
         "central": 5.75,
-        "gama": 6.45,
+        "gama": 5.99,
         "plansuarez": 5.88
       },
-      "weekly_change_pct": -8.84
+      "weekly_change_pct": 0.0
     },
     {
       "id": "sardinas",
@@ -208,12 +208,12 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "170 g",
-      "price_usd": 4.08,
+      "price_usd": 3.48,
       "by_store": {
-        "gama": 2.8,
+        "gama": 1.59,
         "plansuarez": 5.36
       },
-      "weekly_change_pct": 25.18
+      "weekly_change_pct": -14.71
     },
     {
       "id": "atun",
@@ -222,13 +222,13 @@
       "ref_unit": "kg",
       "household_qty": 1.0,
       "display_label": "140 g",
-      "price_usd": 2.15,
+      "price_usd": 2.29,
       "by_store": {
         "central": 2.29,
         "gama": 1.99,
-        "plansuarez": 2.15
+        "plansuarez": 3.14
       },
-      "weekly_change_pct": -6.11
+      "weekly_change_pct": 6.51
     },
     {
       "id": "leche_polvo",
@@ -239,11 +239,11 @@
       "display_label": "1 kg",
       "price_usd": 15.62,
       "by_store": {
-        "central": 17.23,
+        "central": 16.73,
         "gama": 15.62,
         "plansuarez": 15.62
       },
-      "weekly_change_pct": -7.51
+      "weekly_change_pct": -0.03
     },
     {
       "id": "queso_blanco",
@@ -267,13 +267,13 @@
       "ref_unit": "kg",
       "household_qty": 0.5,
       "display_label": "200 g",
-      "price_usd": 9.16,
+      "price_usd": 8.05,
       "by_store": {
-        "central": 9.46,
+        "central": 8.05,
         "gama": 9.16,
         "plansuarez": 5.99
       },
-      "weekly_change_pct": 13.79
+      "weekly_change_pct": -12.12
     },
     {
       "id": "tomate",
@@ -282,13 +282,12 @@
       "ref_unit": "kg",
       "household_qty": 4.0,
       "display_label": "1 kg",
-      "price_usd": 5.49,
+      "price_usd": 4.61,
       "by_store": {
-        "central": 5.49,
         "gama": 5.88,
         "plansuarez": 3.34
       },
-      "weekly_change_pct": 57.08
+      "weekly_change_pct": -16.03
     },
     {
       "id": "cebolla",
@@ -297,13 +296,13 @@
       "ref_unit": "kg",
       "household_qty": 3.0,
       "display_label": "1 kg",
-      "price_usd": 1.99,
+      "price_usd": 2.49,
       "by_store": {
-        "central": 1.98,
-        "gama": 1.99,
+        "central": 2.49,
+        "gama": 2.16,
         "plansuarez": 6.4
       },
-      "weekly_change_pct": -15.32
+      "weekly_change_pct": 25.4
     },
     {
       "id": "papa",
@@ -312,13 +311,13 @@
       "ref_unit": "kg",
       "household_qty": 6.0,
       "display_label": "1 kg",
-      "price_usd": 2.19,
+      "price_usd": 2.49,
       "by_store": {
-        "central": 2.19,
-        "gama": 2.25,
-        "plansuarez": 2.0
+        "central": 2.89,
+        "gama": 2.49,
+        "plansuarez": 1.98
       },
-      "weekly_change_pct": -8.37
+      "weekly_change_pct": 13.7
     },
     {
       "id": "platano",
@@ -327,12 +326,12 @@
       "ref_unit": "kg",
       "household_qty": 6.0,
       "display_label": "1 kg",
-      "price_usd": 2.29,
+      "price_usd": 2.31,
       "by_store": {
-        "gama": 2.25,
+        "gama": 2.29,
         "plansuarez": 2.33
       },
-      "weekly_change_pct": -0.94
+      "weekly_change_pct": 0.8
     }
   ]
 }
